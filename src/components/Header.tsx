@@ -34,21 +34,31 @@ const End = styled.div`
   gap: 25px;
 `;
 
+const Form = styled.form`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
 const Logo = styled.div`
   width: 97px;
   height: 20px;
   padding: 18px 14px;
+  cursor: pointer;
 `;
 
 const Search = styled.input`
-  display: inline-block;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
   width: 520px;
-  height: 38.4px;
+  height: 40px;
   margin-left: 10px;
   border-radius: 40px 0 0 40px;
   padding: 0px 4px 0px 16px;
   border: 1px solid rgb(211, 211, 211);
   box-shadow: rgb(238, 238, 238) 0px 1px 2px 0px inset;
+  border-right: none;
 `;
 
 const Submit = styled.button`
@@ -59,6 +69,7 @@ const Submit = styled.button`
   cursor: pointer;
   padding: 1px 6px;
   margin-right: 10px;
+  cursor: pointer;
 `;
 
 const Voice = styled.button`
@@ -67,6 +78,7 @@ const Voice = styled.button`
   height: 40px;
   background-color: rgb(249, 249, 249);
   border: none;
+  cursor: pointer;
 `;
 
 const Profile = styled.button`
@@ -74,13 +86,21 @@ const Profile = styled.button`
   width: 40px;
   height: 40px;
   border: none;
+  cursor: pointer;
 `;
 
 const Header = () => {
   return (
     <Container>
       <Start>
-        <SlMenu style={{ width: "18px", height: "18px", padding: "8px" }} />
+        <SlMenu
+          style={{
+            width: "18px",
+            height: "18px",
+            padding: "8px",
+            cursor: "pointer",
+          }}
+        />
         <Logo>
           <svg
             viewBox="0 0 90 20"
@@ -112,20 +132,20 @@ const Header = () => {
         </Logo>
       </Start>
       <Center>
-        <form>
+        <Form>
           <Search type="text" placeholder="검색" />
           <Submit type="submit">
             <SlMagnifier style={{ fontSize: "18px" }} />
           </Submit>
-        </form>
+        </Form>
 
         <Voice>
           <BsFillMicFill style={{ fontSize: "16px" }}></BsFillMicFill>
         </Voice>
       </Center>
       <End>
-        <RiVideoAddLine style={{ fontSize: "24px" }} />
-        <BsBell style={{ fontSize: "20px" }} />
+        <RiVideoAddLine style={{ fontSize: "24px", cursor: "pointer" }} />
+        <BsBell style={{ fontSize: "20px", cursor: "pointer" }} />
         <Profile></Profile>
       </End>
     </Container>
