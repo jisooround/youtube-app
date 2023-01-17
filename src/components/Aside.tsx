@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const Aside = () => {
-  const [fold, setFold] = useState(false);
+  const [fold, setFold] = useState(true);
   console.log(fold)
 
   if(fold === true) {
@@ -19,14 +19,13 @@ const Fold = styled.div`
   width: 72px;
   height: 100vh;
   position: absolute;
-  background-color: green;
+  left: 0;
 `
 
 const Unfold = styled.div`
   width: 240px;
   height: 100vh;
   position: absolute;
-  background-color: green;
 `
 
 export default Aside;
