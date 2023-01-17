@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { instance } from "../api/api";
+import RelatedCard from "./RelatedCard";
 
-function RelatedVideo() {
+function RelatedVideo(): React.ReactElement {
   const [data, setData] = useState([]);
 
   const getVideoData = async () => {
@@ -18,9 +19,11 @@ function RelatedVideo() {
 
   return (
     <div>
-      
+      {data.map((item) => (
+        <RelatedCard item={item} />
+      ))}
     </div>
-  )
+  );
 }
 
-export default RelatedVideo
+export default RelatedVideo;
