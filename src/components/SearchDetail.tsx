@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { instance } from "../api/api";
+import { timeAgo } from "../utils/timeAgo";
 
-const SearchDetail = ({ videoId, duration, views }: any) => {
+const SearchDetail = ({ videoId, duration, views, time }: any) => {
   const [videoResult, setVideoResult] = useState<any>("");
   useEffect(() => {
     videoData();
@@ -18,18 +19,21 @@ const SearchDetail = ({ videoId, duration, views }: any) => {
   return (
     <>
       {videoResult && duration ? (
-        <Div>
+        <Duration>
           <span>{videoResult.contentDetails.duration}</span>
-        </Div>
+        </Duration>
       ) : null}
       {videoResult && views ? (
         <span>조회수 {videoResult.statistics.viewCount}</span>
+      ) : null}
+      {videoResult && time ? (
+        <span>{timeAgo(videoResult.snippet.publishedAt)}</span>
       ) : null}
     </>
   );
 };
 
-const Div = styled.div`
+const Duration = styled.div`
   padding: 3px 4px;
   background-color: red;
   position: absolute;

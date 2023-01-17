@@ -23,7 +23,6 @@ const Search = () => {
         `/search?part=snippet&maxResults=10&q=${searchWord}`,
       );
       setResult(response.data.items);
-      console.log(response);
     } catch (e) {
       console.log((e as Error).message);
     }
@@ -33,17 +32,13 @@ const Search = () => {
   const videoDetail = JSON.parse(localStorage.getItem("video"));
 
   return (
-    <>
-      {result.map((data: any, i: any) => {
+    <main>
+      {result.map((data: any, i: number) => {
         return (
           <Section key={i}>
             <Card>
               <Video>
-                <img
-                  src={data.snippet.thumbnails.high.url}
-                  alt="video"
-                  style={{ width: "360px", height: "200px" }}
-                />
+                <img src={data.snippet.thumbnails.medium.url} alt="video" />
                 <SearchDetail
                   videoId={data.id.videoId}
                   duration="duration"
@@ -56,8 +51,11 @@ const Search = () => {
                 <SearchDetail
                   videoId={data.id.videoId}
                   views="views"
+                ></SearchDetail>{" "}
+                <SearchDetail
+                  videoId={data.id.videoId}
+                  time="time"
                 ></SearchDetail>
-                <span> 2개월 전</span>
               </Views>
               <Name>
                 <button></button>
@@ -68,7 +66,7 @@ const Search = () => {
           </Section>
         );
       })}
-    </>
+    </main>
   );
 };
 
@@ -78,8 +76,7 @@ const Section = styled.section`
 `;
 
 const Card = styled.div`
-  max-width: 1000px;
-  height: 184px;
+  height: 200px;
   color: #fff;
   font-size: 15px;
   letter-spacing: 0.2px;
@@ -87,23 +84,18 @@ const Card = styled.div`
 
 const Video = styled.div`
   max-width: 360px;
-  height: 100%;
+  height: 200px;
   position: relative;
   margin-right: 20px;
   img {
     border-radius: 10px;
+    height: 100%;
   }
 `;
 
 const Info = styled.div`
-  width: fit-content;
   display: flex;
   flex-direction: column;
-`;
-
-const Text = styled.div`
-  width: 100%;
-  padding-right: 1rem;
 `;
 
 const Title = styled.h3`
@@ -117,12 +109,10 @@ const Views = styled.div`
   color: rgb(96, 96, 96);
 `;
 
-const Name = styled.div`
+const Name = styled(Views)`
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 12px;
-  color: rgb(96, 96, 96);
   padding: 12px 0;
   button {
     width: 24px;
@@ -132,9 +122,6 @@ const Name = styled.div`
   }
 `;
 
-const Descript = styled.div`
-  color: rgb(96, 96, 96);
-  font-size: 12px;
-`;
+const Descript = styled(Views)``;
 
 export default Search;

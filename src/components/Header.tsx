@@ -56,7 +56,7 @@ const Header = () => {
       </Start>
       <Center>
         <Form
-          onSubmit={(e: any) => {
+          onSubmit={(e) => {
             handleSubmit(e);
           }}
         >
