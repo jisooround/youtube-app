@@ -27,7 +27,11 @@ const Header = () => {
             cursor: "pointer",
           }}
         />
-        <Logo>
+        <Logo
+          onClick={() => {
+            navigate("/");
+          }}
+        >
           <svg
             viewBox="0 0 90 20"
             preserveAspectRatio="xMidYMid meet"
