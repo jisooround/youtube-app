@@ -7,7 +7,6 @@ import styled from "styled-components";
 const Search = () => {
   const [result, setResult] = useState<any>([]);
   const { id } = useParams();
-  console.log(id);
 
   useEffect(() => {
     fetchData();
@@ -17,7 +16,6 @@ const Search = () => {
     const response = await instance.get(
       `/search?part=snippet&maxResults=10&q=${id}`,
     );
-    console.log(response);
     setResult(response.data.items);
   };
 
@@ -25,7 +23,7 @@ const Search = () => {
     <main>
       <Section>
         <Card>
-          <div>
+          <Video>
             {result.map((data: any) => {
               <img
                 src={data.snippet.thumbnails.medium.url}
@@ -33,7 +31,7 @@ const Search = () => {
                 style={{ width: "300px", height: "200px" }}
               />;
             })}
-          </div>
+          </Video>
         </Card>
       </Section>
     </main>
@@ -46,11 +44,17 @@ const Section = styled.section`
 
 const Card = styled.div`
   max-width: 1000px;
-  height: 100%;
+  height: 184px;
   padding: 1rem;
   color: #fff;
   font-size: 15px;
   letter-spacing: 0.2px;
+`;
+
+const Video = styled.div`
+  max-width: 360px;
+  height: 100%;
+  position: relative;
 `;
 
 export default Search;
