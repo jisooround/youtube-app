@@ -2,65 +2,19 @@ import React, { useState, useEffect } from "react";
 import { instance } from "../api/api";
 import styled from 'styled-components';
 import { useNavigate } from "react-router-dom";
+import { displayedAt } from "../utils/displayedAt";
+import { nFormatter } from "../utils/nFormatter";
+import { videoTime } from "../utils/videoTime";
 
 function RelatedCard({ item }: any) {
-  const navigate = useNavigate();
-  const date: Date = new Date(item.snippet.publishTime);
   console.log(item)
 
-  let now: any = new Date(); // 현재 날짜 및 시간
+  const navigate = useNavigate();
+  const date: Date = new Date(item.snippet.publishTime);
+  let now: Date = new Date(); // 현재 날짜 및 시간
+
   const [videoView, setVideoView] = useState<any>('')
-  const [videoTime, setVideoTime] = useState<any>('')
-
-  function displayedAt(createdAt: any) {
-    const milliSeconds = now - createdAt;
-    const seconds = milliSeconds / 1000;
-    if (seconds < 60) return `recently`;
-    const minutes = seconds / 60;
-    if (minutes < 60) return `${Math.floor(minutes)}minutes ago`;
-    const hours = minutes / 60;
-    if (hours < 24) return `${Math.floor(hours)}hours ago`;
-    const days = hours / 24;
-    if (days < 7) return `${Math.floor(days)}days ago`; 
-    const weeks = days / 7;
-    if (weeks < 5) return `${Math.floor(weeks)}weeks ago`;
-    const months = days / 30;
-    if (months < 12) return `${Math.floor(months)}months ago`;
-    const years = days / 365;
-    return `${Math.floor(years)}years ago`;
-  }
-
-  function nFormatter(num:number) { //조회수 'k m'
-    if (num >= 1000000000) {
-       return (num / 1000000000).toFixed(1).replace(/\.0$/, '') + 'G';
-    }
-    if (num >= 1000000) {
-       return (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
-    }
-    if (num >= 1000) {
-       return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
-    }
-    return num;
-  }
-
-  const time = (input:string)=>{ // 영상길이 
-    let reptms = /^PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?$/;
-    let hours = '', minutes = '', seconds = ''
-    if (reptms.test(input)) {
-      let matches:any = reptms.exec(input);
-      if (matches[1]) hours = matches[1];
-      if (matches[2]) minutes = matches[2];
-      if (matches[3]) seconds = matches[3];
-    }
-    if (minutes.length === 1) minutes = `0${minutes}`
-    if (seconds.length === 1) seconds = `0${seconds}`
-    if (hours.length === 1) {
-    hours = `${hours}`
-    return `${hours}:${minutes}:${seconds}`
-    }
-    if(hours.length === 0)
-      return `${minutes}:${seconds}`
-    }
+  const [time, setTime] = useState<any>('')
 
   // const getDetail = async (videoId=item.id.videoId) => {
   //   const res = await instance.get(
@@ -68,12 +22,9 @@ function RelatedCard({ item }: any) {
   //   );
   //   const view = nFormatter(res.data.items[0].statistics.viewCount)
   //   setVideoView(view)
-  //   const vTime =time(res.data.items[0].contentDetails.duration)
+  //   const vTime =videoTime(res.data.items[0].contentDetails.duration)
   //   setVideoTime(vTime)
   // }
-
-
-
 
   const goToVideo = (videoId: string) => {
     navigate(`/watch/${videoId}`);
@@ -82,7 +33,7 @@ function RelatedCard({ item }: any) {
   useEffect(()=>{
     // getDetail()
     setVideoView(nFormatter(100000))
-    setVideoTime(time('PT1H15M15S'))
+    setTime(videoTime('PT1H15M15S'))
 
   },[])
 
@@ -90,7 +41,7 @@ function RelatedCard({ item }: any) {
     <VideoCard onClick={() => goToVideo(item.id.videoId)}>
       <PreviewBox>
         <Thumbnail src={item.snippet.thumbnails.medium.url} />
-        <VideoTime>{videoTime}</VideoTime>
+        <VideoTime>{time}</VideoTime>
       </PreviewBox>
       <DetailBox>
         <RelatedTitle>{item.snippet.title}</RelatedTitle>
@@ -98,12 +49,14 @@ function RelatedCard({ item }: any) {
         <InfoBox>
           <p>{videoView} views</p>
           <InfoDot> • </InfoDot>
-          <p>{displayedAt(date)}</p>
+          <p>{displayedAt(now,date)}</p>
         </InfoBox>
       </DetailBox>
     </VideoCard>
   );
 }
+
+
 const PreviewBox = styled.div`
   position: relative;
   width: 160px;
@@ -127,7 +80,7 @@ const VideoCard = styled.div`
   width: 100%;
   display: flex;
   height: 90px;
-  margin-bottom: 10px
+  margin-bottom: 10px;
 `
 const RelatedTitle = styled.h3`
   width: 100%;
@@ -162,7 +115,7 @@ const InfoBox = styled.div`
   font-weight: 600;
 `
 const InfoDot = styled.span`
-  margin: 0 10px;
+  margin: 0 3px;
 `
 
 export default RelatedCard;

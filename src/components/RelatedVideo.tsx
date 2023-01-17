@@ -436,14 +436,14 @@ function RelatedVideo(): React.ReactElement {
 
   return (
     <RelatedList>
-      {data.map((item) => (
-        <RelatedCard item={item} />
+      {data.map((item,index) => (
+        <RelatedCard key={index} item={item} />
       ))}
     </RelatedList>
   );
 }
 const RelatedList = styled.div`
-  max-width: 400px
+  max-width: 400px;
 `
 
 
