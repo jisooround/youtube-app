@@ -289,11 +289,11 @@ const MainVideo = ({}: MainVideoProps) => {
       ></VideoPlayer>
       <Tags>{tags}</Tags>
       <Title>{videoDetailData?.items[0]?.snippet?.title}</Title>
-      <div>
+      <ViewDateInfo>
         {handleViewCount() || ""}
         {" views • "}
         {handleDate() || ""}
-      </div>
+      </ViewDateInfo>
       <ButtonWrapper>
         <LikeContainer>
           <Button>
@@ -378,7 +378,7 @@ const MainVideo = ({}: MainVideoProps) => {
 };
 
 const VideoContainer = styled.div`
-  border-bottom: 2px solid rgba(90, 90, 90, 0.55);
+  border-bottom: 1px solid rgba(90, 90, 90, 0.55);
 `;
 
 const VideoPlayer = styled.div`
@@ -407,6 +407,12 @@ const Title = styled.div`
   font-size: 20px;
   font-weight: 600;
   margin: 12px 0;
+  /* color: white; */
+`;
+
+const ViewDateInfo = styled.div`
+  color: #aaaaaa;
+  font-size: 14px;
 `;
 
 const ButtonWrapper = styled.div`
@@ -415,6 +421,7 @@ const ButtonWrapper = styled.div`
 `;
 
 const Button = styled.div`
+  /* color: white; */
   display: flex;
   align-items: center;
   padding: 1.2rem;
@@ -424,15 +431,13 @@ const Button = styled.div`
     font-weight: 600;
     margin-left: 0.5rem;
   }
-  svg {
-    /* color: white; */
-  }
 `;
 
 const LikeContainer = styled.div`
   display: flex;
   align-items: center;
   border-bottom: 2px solid black;
+  /* border-bottom: 2px solid white; */
 `;
 
 export default MainVideo;
