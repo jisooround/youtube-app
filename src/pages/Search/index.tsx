@@ -1,40 +1,48 @@
 import { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import { instance } from "../../api/api";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 const Search = () => {
   const [result, setResult] = useState<any>([]);
-  const { id } = useParams();
+
+  const useQuery = () => {
+    return new URLSearchParams(useLocation().search);
+  };
+  const query = useQuery();
+  const searchWord = query.get("q");
 
   useEffect(() => {
     fetchData();
-  }, [id]);
+  }, []);
 
   const fetchData = async () => {
     const response = await instance.get(
-      `/search?part=snippet&maxResults=10&q=${id}`,
+      `/search?part=snippet&maxResults=10&q=${searchWord}`,
     );
+    console.log(response);
     setResult(response.data.items);
   };
 
   return (
-    <main>
-      <Section>
-        <Card>
-          <Video>
-            {result.map((data: any) => {
+    <>
+      <main>
+        <Section>
+          <Card>
+            <Video>
               <img
-                src={data.snippet.thumbnails.medium.url}
+                src="https://i.ytimg.com/vi/zNRtUP5jeZo/mqdefault.jpg"
                 alt="video"
-                style={{ width: "300px", height: "200px" }}
-              />;
-            })}
-          </Video>
-        </Card>
-      </Section>
-    </main>
+              />
+              ;
+              {/* {result.map((value: any) => {
+              })} */}
+            </Video>
+          </Card>
+        </Section>
+      </main>
+    </>
   );
 };
 

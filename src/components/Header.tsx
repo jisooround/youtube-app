@@ -9,11 +9,11 @@ const Header = () => {
   const navigate = useNavigate();
   const [value, setValue] = useState("");
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    navigate(`/search/${value}`);
+    navigate(`/search?q=${value}`);
     setValue("");
-    e.target.value = null;
+    e.target.value = "";
   };
 
   return (
@@ -56,7 +56,7 @@ const Header = () => {
       </Start>
       <Center>
         <Form
-          onSubmit={(e) => {
+          onSubmit={(e: any) => {
             handleSubmit(e);
           }}
         >
@@ -64,7 +64,7 @@ const Header = () => {
             type="text"
             placeholder="검색"
             value={value}
-            onChange={(e) => {
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setValue(e.target.value);
             }}
           />
