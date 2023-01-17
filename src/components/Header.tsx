@@ -19,14 +19,7 @@ const Header = () => {
   return (
     <Container>
       <Start>
-        <SlMenu
-          style={{
-            width: "18px",
-            height: "18px",
-            padding: "8px",
-            cursor: "pointer",
-          }}
-        />
+        <SlMenu className="bar" />
         <Logo
           onClick={() => {
             navigate("/");
@@ -76,17 +69,17 @@ const Header = () => {
             }}
           />
           <Submit type="submit">
-            <SlMagnifier style={{ fontSize: "18px" }} />
+            <SlMagnifier />
           </Submit>
         </Form>
 
         <Voice>
-          <BsFillMicFill style={{ fontSize: "16px" }}></BsFillMicFill>
+          <BsFillMicFill></BsFillMicFill>
         </Voice>
       </Center>
       <End>
-        <RiVideoAddLine style={{ fontSize: "24px", cursor: "pointer" }} />
-        <BsBell style={{ fontSize: "20px", cursor: "pointer" }} />
+        <RiVideoAddLine className="video" />
+        <BsBell className="bell" />
         <Profile></Profile>
       </End>
     </Container>
@@ -99,34 +92,18 @@ const Container = styled.header`
   align-items: center;
   background-color: #fff;
   margin-left: 15px;
-  margin-right: 45px;
 `;
 
 const Start = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
-const Center = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 728px;
-`;
-
-const End = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  min-width: 225px;
-  gap: 25px;
-`;
-
-const Form = styled.form`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  .bar {
+    width: 18px;
+    height: 18px;
+    padding: 8px;
+    cursor: pointer;
+  }
 `;
 
 const Logo = styled.div`
@@ -134,6 +111,29 @@ const Logo = styled.div`
   height: 20px;
   padding: 18px 14px;
   cursor: pointer;
+`;
+
+const Center = styled(Start)`
+  width: 728px;
+`;
+
+const End = styled(Start)`
+  min-width: 225px;
+  gap: 25px;
+  .video {
+    font-size: 24px;
+    cursor: pointer;
+  }
+  .bell {
+    font-size: 20px;
+    cursor: pointer;
+  }
+`;
+
+const Form = styled.form`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 `;
 
 const Search = styled.input`
@@ -155,10 +155,12 @@ const Submit = styled.button`
   height: 40px;
   border-radius: 0 40px 40px 0;
   border: 1px solid rgb(211, 211, 211);
-  cursor: pointer;
   padding: 1px 6px;
   margin-right: 10px;
   cursor: pointer;
+  svg {
+    font-size: 18px;
+  }
 `;
 
 const Voice = styled.button`
@@ -168,14 +170,11 @@ const Voice = styled.button`
   background-color: rgb(249, 249, 249);
   border: none;
   cursor: pointer;
+  svg {
+    font-size: 16px;
+  }
 `;
 
-const Profile = styled.button`
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  border: none;
-  cursor: pointer;
-`;
+const Profile = styled(Voice)``;
 
 export default Header;
