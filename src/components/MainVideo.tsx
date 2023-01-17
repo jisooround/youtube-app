@@ -285,8 +285,6 @@ const MainVideo = ({}: MainVideoProps) => {
     <VideoContainer>
       <VideoPlayer>
         <Iframe
-          width="480"
-          height="270"
           src={`https://www.youtube.com/embed/${videoDetailData?.items[0].id}?autoplay=1&mute=1`}
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
