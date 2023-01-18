@@ -19,14 +19,14 @@ const Watch = () => {
 const WatchPageWrapper = styled.div`
   max-width: 1200px;
   margin-right: 40px;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-between; */
 `;
 const WatchContainer = styled.div`
   display: flex;
-  margin: 0 auto;
-  max-width: 1400px;
+  justify-content: space-between;
+  padding: 3rem;
 `;
 
 export default Watch;
