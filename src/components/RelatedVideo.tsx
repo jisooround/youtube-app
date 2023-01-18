@@ -436,8 +436,8 @@ function RelatedVideo(): React.ReactElement {
 
   return (
     <RelatedList>
-      {data?.map((item,index?) => (
-        <RelatedCard key={index} item={item} />
+      {data?.map((item) => (
+        <RelatedCard key={item.id.videoId} item={item} />
       ))}
     </RelatedList>
   );
