@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
-
 import reset from "styled-reset";
+
 const GlobalStyles = createGlobalStyle`
 ${reset}
 
@@ -9,7 +9,6 @@ ${reset}
     background-color: #fff;
     color: #0f0f0f
   }
-
 
   a {
     text-decoration: none;
@@ -30,8 +29,6 @@ ${reset}
       color: #fff
     }
   }
-
-
 `;
 
 export default GlobalStyles;
