@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { instance } from "../api/api";
+import { instance } from "../api";
+import { getDescription } from "../api/api";
 
-interface Desc {
+interface Description {
   kind: string;
   etag: string;
   pageInfo: {
@@ -111,22 +112,25 @@ const dummyData = {
 const Description = ({ channelId }: { channelId: string }) => {
   localStorage.setItem("desc", JSON.stringify(dummyData));
   const localDesc = JSON.parse(localStorage.getItem("desc") || "");
+  const [isError, setIsError] = useState<string>("");
 
-  const [description, setDescription] = useState<Desc>(()=> localDesc || dummyData);
+  const [description, setDescription] = useState<Description>(
+    () => localDesc || dummyData,
+  );
 
-  const getDescription = async () => {
-    const res = await instance(
-      `/channels?part=snippet&part=statistics&part=contentDetails&id=${channelId}`,
-    );
+  // const getDescription = async () => {
+  //   const res = await instance(
+  //     `/channels?part=snippet&part=statistics&part=contentDetails&id=${channelId}`,
+  //   );
 
-    if (res.status === 200) {
-      localStorage.setItem("desc", JSON.stringify(res.data));
-      setDescription(res.data);
-    }
-  };
+  //   if (res.status === 200) {
+  //     localStorage.setItem("desc", JSON.stringify(res.data));
+  //     setDescription(res.data);
+  //   }
+  // };
 
   useEffect(() => {
-    // getDescription();
+    // getDescription(channelId, setDescription, setIsError);
   }, []);
 
   const desc = description.items.map((item) => item);
@@ -134,18 +138,20 @@ const Description = ({ channelId }: { channelId: string }) => {
   return (
     <DescContainer>
       {desc.map((item) => (
-        <>
+        <div key={item.snippet.title}>
           <ProfileWrapper>
-            <img src={item.snippet.thumbnails.default.url} alt="avatar" />
-          </ProfileWrapper>
-          <DescWrapper>
+            <Profile>
+              <img src={item.snippet.thumbnails.default.url} alt="avatar" />
+            </Profile>
             <div>
               <h4>{item.snippet.title}</h4>
               <Follower>{item.statistics.subscriberCount}</Follower>
             </div>
+          </ProfileWrapper>
+          <DescWrapper>
             <Desc>{item.snippet.description}</Desc>
           </DescWrapper>
-        </>
+        </div>
       ))}
     </DescContainer>
   );
@@ -159,7 +165,13 @@ const DescContainer = styled.section`
   padding: 1.5rem;
 `;
 
-export const ProfileWrapper = styled.div`
+const ProfileWrapper = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+`;
+
+export const Profile = styled.div`
   border-radius: 50%;
   width: 32px;
   height: 32px;
@@ -191,8 +203,9 @@ const Follower = styled.p`
 `;
 
 const Desc = styled.p`
-  /* overflow: hidden;
+  overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical; */
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  line-height: 1.4;
 `;

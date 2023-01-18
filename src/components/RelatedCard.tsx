@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { instance } from "../api/api";
+import { instance } from "../api";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { displayedAt } from "../utils/displayedAt";
@@ -63,15 +63,13 @@ function RelatedCard({ item }: Props) {
       <DetailBox>
         <RelatedTitle>{item.snippet.title}</RelatedTitle>
         {isHovering ? (
-            <MoreInfoBtn>
-              <BiDotsVerticalRounded />
-            </MoreInfoBtn>
-          ) : (
-            ""
-          )}
-        <RelatedChannel>
-          {item.snippet.channelTitle}
-        </RelatedChannel>
+          <MoreInfoBtn>
+            <BiDotsVerticalRounded />
+          </MoreInfoBtn>
+        ) : (
+          ""
+        )}
+        <RelatedChannel>{item.snippet.channelTitle}</RelatedChannel>
         <InfoBox>
           <p>{videoView} views</p>
           <InfoDot> • </InfoDot>
@@ -107,7 +105,7 @@ const VideoCard = styled.div`
   display: flex;
   height: 90px;
   margin-bottom: 10px;
-  :hover h3{
+  :hover h3 {
     font-weight: 500;
   }
 `;
@@ -172,7 +170,7 @@ const MoreInfoBtn = styled.div`
   right: 0px;
   top: 5px;
   cursor: pointer;
-  svg{
+  svg {
     font-size: 20px;
   }
 `;
