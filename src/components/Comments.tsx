@@ -744,6 +744,7 @@ const dummyData = [
 ];
 
 const Comments = ({ id }: CommentsProp) => {
+  localStorage.setItem("comments", JSON.stringify(dummyData));
   const localComments = JSON.parse(localStorage.getItem("comments") || "");
   const [comments, setComments] = useState<Comment[]>(() => localComments);
   const [isError, setIsError] = useState<string>("");
