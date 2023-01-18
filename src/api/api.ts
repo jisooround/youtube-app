@@ -1,6 +1,5 @@
 import { AxiosError } from "axios";
 import { instance } from ".";
-import { VideoDetailData } from "../components/MainVideo";
 
 // get comments
 type GetcommentsFn = {
@@ -20,7 +19,7 @@ type FetchFn = {
 interface GetDetailFn{
   (
     videoId: string,
-    setState: (value: React.SetStateAction<VideoDetailData>) => void,
+    setState: React.Dispatch<React.SetStateAction<any>>,
   ): void
 }
 
