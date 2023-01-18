@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { instance } from "../api/api";
 import { timeAgo } from "../utils/timeAgo";
 import { Search } from "../pages/Search";
+import { nFormatter } from "../utils/nFormatter";
+import { videoTime } from "../utils/videoTime";
 
 const SearchCard = ({ data }: { data: Search }) => {
   const [videoResult, setVideoResult] = useState<Video>();
@@ -37,14 +39,17 @@ const SearchCard = ({ data }: { data: Search }) => {
             <Video>
               <img src={data.snippet.thumbnails.medium.url} alt="video" />
               <Duration>
-                <span>{videoResult.contentDetails.duration}</span>
+                <span>{videoTime(videoResult.contentDetails.duration)}</span>
               </Duration>
             </Video>
           </Card>
           <Info>
             <Title>{data.snippet.title}</Title>
             <Views>
-              <span>조회수 {videoResult.statistics.viewCount}</span>{" "}
+              <span>
+                조회수 {nFormatter(Number(videoResult.statistics.viewCount))}
+              </span>
+              {" • "}
               <span>{timeAgo(videoResult.snippet.publishedAt)}</span>
             </Views>
             <Name>
@@ -77,7 +82,9 @@ const Video = styled.div`
   height: 200px;
   position: relative;
   margin-right: 20px;
+  cursor: pointer;
   img {
+    width: 360px;
     border-radius: 10px;
     height: 100%;
   }
@@ -94,6 +101,7 @@ const Duration = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 5px;
+  font-size: 12px;
 `;
 
 const Info = styled.div`
@@ -105,11 +113,13 @@ const Title = styled.h3`
   margin-bottom: 0.5rem;
   line-height: 150%;
   font-size: 18px;
+  cursor: pointer;
 `;
 
 const Views = styled.div`
   font-size: 12px;
   color: rgb(96, 96, 96);
+  cursor: pointer;
 `;
 
 const Name = styled(Views)`
@@ -122,6 +132,7 @@ const Name = styled(Views)`
     border-radius: 50%;
     width: 24px;
     height: 24px;
+    cursor: pointer;
   }
 `;
 
