@@ -10,7 +10,7 @@ const SearchCard = ({ data }: any) => {
   useEffect(() => {
     videoData();
     channelData();
-  }, []);
+  }, [data]);
 
   const videoData = async () => {
     const response = await instance.get(
