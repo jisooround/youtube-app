@@ -3,16 +3,11 @@ import styled from "styled-components";
 import Comments from "../../components/Comments";
 import Description from "../../components/Description";
 import MainVideo from "../../components/MainVideo";
-<<<<<<< Updated upstream
 import RelatedVideo from "../../components/RelatedVideo";
 const Watch = () => {
   // type assertion
   const { id } = useParams() as { id: string };
 
-=======
-
-const Watch = ({ open }: { open: boolean }) => {
->>>>>>> Stashed changes
   return (
     <WatchContainer>
       <WatchPageWrapper>

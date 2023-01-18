@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 import { instance } from "../../api";
 import SearchCard from "../../components/SearchCard";
 
-<<<<<<< Updated upstream
 const Search = () => {
   const [result, setResult] = useState<Search[]>([]);
 
@@ -12,12 +11,6 @@ const Search = () => {
   };
   const query = useQuery();
   const searchWord = query.get("q");
-=======
-const Search = ({ open }: { open: boolean }) => {
-  const [result, setResult] = useState<any>([]);
-  const { id } = useParams();
-  console.log(id);
->>>>>>> Stashed changes
 
   useEffect(() => {
     fetchData();
