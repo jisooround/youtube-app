@@ -388,13 +388,9 @@ const VideoContainer = styled.div`
 const VideoPlayer = styled.div`
   position: relative;
   padding-top: 56.25%;
-  /* width: 1048px;  */
-  /* height: 590px;  */
 `;
 
 const Iframe = styled.iframe`
-  /* width: 100%; */
-  /* height: 100%; */
   position: absolute;
   top: 0;
   left: 0;
@@ -419,7 +415,6 @@ const Title = styled.div`
   font-size: 20px;
   font-weight: 600;
   margin: 12px 0;
-  /* color: white; */
 `;
 
 const ViewDateInfo = styled.div`
@@ -433,7 +428,6 @@ const ButtonWrapper = styled.div`
 `;
 
 const Button = styled.div`
-  /* color: white; */
   display: flex;
   align-items: center;
   padding: 1.2rem;
@@ -448,8 +442,7 @@ const Button = styled.div`
 const LikeContainer = styled.div`
   display: flex;
   align-items: center;
-  border-bottom: 2px solid black;
-  /* border-bottom: 2px solid white; */
+  border-bottom: 2px solid;
 `;
 
 export default MainVideo;
