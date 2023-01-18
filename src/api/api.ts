@@ -1,5 +1,6 @@
 import { AxiosError } from "axios";
 import { instance } from ".";
+import { VideoDetailData } from "../components/MainVideo";
 
 // get comments
 type GetcommentsFn = {
@@ -16,6 +17,12 @@ type FetchFn = {
     setError: (value: React.SetStateAction<string>) => void,
   ): void;
 };
+interface GetDetailFn{
+  (
+    videoId: string,
+    setState: (value: React.SetStateAction<VideoDetailData>) => void,
+  ): void
+}
 
 export const getComments: GetcommentsFn = async (
   videoId,
@@ -55,6 +62,23 @@ export const getDescription: FetchFn = async (id, setState, setError) => {
     if (error instanceof AxiosError) {
       console.log(error.message);
       setError(error.message);
+    } else {
+      throw error;
+    }
+  }
+};
+
+export const getVideoDetail: GetDetailFn  = async (videoId, setState) => {
+  try {
+    const res = await instance.get(
+      `/videos?part=snippet&part=contentDetails&part=player&part=statistics&id=${videoId}`,
+    );
+    if (res.status === 200) {
+      setState(res.data);
+    }
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.message);
     } else {
       throw error;
     }
