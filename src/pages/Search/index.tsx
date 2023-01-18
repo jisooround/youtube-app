@@ -33,8 +33,8 @@ const Search = ({}: SearchProps) => {
 
   return (
     <main>
-      {result.map((data, i: number) => {
-        return <SearchCard data={data} key={i}></SearchCard>;
+      {result.map((data: Search, i: number) => {
+        return <SearchCard data={data} key={data.id.videoId}></SearchCard>;
       })}
     </main>
   );
