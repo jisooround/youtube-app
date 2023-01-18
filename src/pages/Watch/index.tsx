@@ -2,23 +2,31 @@ import styled from "styled-components";
 import Comments from "../../components/Comments";
 import Description from "../../components/Description";
 import MainVideo from "../../components/MainVideo";
-
+import RelatedVideo from "../../components/RelatedVideo";
 const Watch = () => {
   return (
-    <WatchPageWrapper>
-      <MainVideo />
-      <Description />
-      <Comments id="" />
-    </WatchPageWrapper>
+    <WatchContainer>
+      <WatchPageWrapper>
+        <MainVideo />
+        <Description channelId="UCwQLh1dMRrT4WRjNKYzGHcw"/>
+        <Comments  videoId="" />
+      </WatchPageWrapper>
+      <RelatedVideo />
+    </WatchContainer>
   );
 };
 
 const WatchPageWrapper = styled.div`
-  max-width: 1400px;
-  margin: 0 auto;
-  display: flex;
+  max-width: 1200px;
+  margin-right: 40px;
+  /* display: flex;
   flex-direction: column;
+  justify-content: space-between; */
+`;
+const WatchContainer = styled.div`
+  display: flex;
   justify-content: space-between;
+  padding: 3rem;
 `;
 
 export default Watch;
