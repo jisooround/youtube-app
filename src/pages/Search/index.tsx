@@ -3,10 +3,8 @@ import { instance } from "../../api/api";
 import { useLocation } from "react-router-dom";
 import SearchCard from "../../components/SearchCard";
 
-type SearchProps = {};
-
-const Search = ({}: SearchProps) => {
-  const [result, setResult] = useState<[]>([]);
+const Search = () => {
+  const [result, setResult] = useState<Search[]>([]);
 
   const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -29,11 +27,11 @@ const Search = ({}: SearchProps) => {
     }
   };
 
-  const items = JSON.parse(localStorage.getItem("item")).data.items;
+  // localStorage.setItem("item", JSON.stringify(result));
 
   return (
     <main>
-      {result.map((data: Search, i: number) => {
+      {result.map((data: Search) => {
         return <SearchCard data={data} key={data.id.videoId}></SearchCard>;
       })}
     </main>

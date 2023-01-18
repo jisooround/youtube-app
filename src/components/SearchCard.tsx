@@ -24,11 +24,10 @@ const SearchCard = ({ data }: { data: Search }) => {
     const response = await instance.get(
       `/channels?part=snippet&part=statistics&part=contentDetails&id=${data.snippet.channelId}`,
     );
-    console.log(response);
     setChannelResult(response.data.items[0]);
   };
 
-  const videoDetail = JSON.parse(localStorage.getItem("video"));
+  // const videoDetail = JSON.parse(localStorage.getItem("video"));
 
   return (
     <>
