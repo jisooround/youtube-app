@@ -9,7 +9,7 @@ const Header = () => {
   const navigate = useNavigate();
   const [value, setValue] = useState("");
 
-  const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     navigate(`/search?q=${value}`);
     setValue("");
@@ -56,7 +56,7 @@ const Header = () => {
       </Start>
       <Center>
         <Form
-          onSubmit={(e) => {
+          onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
             handleSubmit(e);
           }}
         >
@@ -90,7 +90,6 @@ const Container = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #fff;
   margin-left: 15px;
 `;
 
