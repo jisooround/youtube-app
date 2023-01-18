@@ -8,6 +8,11 @@ ${reset}
     font-family: 'Roboto', sans-serif;
   }
 
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
 `;
 
 export default GlobalStyles;

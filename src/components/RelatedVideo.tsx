@@ -3,7 +3,7 @@ import { instance } from "../api/api";
 import RelatedCard from "./RelatedCard";
 import styled from 'styled-components';
 
-const myData:any = [
+const myData = [
   {
     "kind": "youtube#searchResult",
     "etag": "GRuv7Grp6FaviVH8yWbbiCcig2w",
@@ -418,7 +418,7 @@ const myData:any = [
 
 
 function RelatedVideo(): React.ReactElement {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<IData | null>(null);
 
   // const getVideoData = async () => {
   //   const res = await instance.get(
@@ -436,7 +436,7 @@ function RelatedVideo(): React.ReactElement {
 
   return (
     <RelatedList>
-      {data.map((item,index) => (
+      {data?.map((item,index?) => (
         <RelatedCard key={index} item={item} />
       ))}
     </RelatedList>
@@ -446,14 +446,9 @@ const RelatedList = styled.div`
   max-width: 400px;
 `
 
+export type IData = Root2[]
 
-export interface Root {
-  kind: string
-  etag: string
-  items: Item[]
-}
-
-export interface Item {
+export interface Root2 {
   kind: string
   etag: string
   id: Id
@@ -513,6 +508,7 @@ export interface Maxres {
   width: number
   height: number
 }
+
 
 
 export default RelatedVideo;

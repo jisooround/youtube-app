@@ -1,4 +1,31 @@
+import React, { useState } from "react";
+import styled from "styled-components";
+
 const Aside = () => {
-  return <aside>Aside</aside>;
+  const [fold, setFold] = useState(true);
+  console.log(fold)
+
+  if(fold === true) {
+    return (
+      <Fold>Aside</Fold>
+      );
+  } else {
+    return (
+    <Unfold>Aside</Unfold>
+  )}
 };
+
+const Fold = styled.div`
+  width: 72px;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+`
+
+const Unfold = styled.div`
+  width: 240px;
+  height: 100vh;
+  position: absolute;
+`
+
 export default Aside;

@@ -204,7 +204,7 @@ const MainVideo = ({}: MainVideoProps) => {
         player: {
           // O
           embedHtml:
-            '<iframe width="480" height="270" src="//www.youtube.com/embed/ZDHCU-j3y4Y" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
+            '<iframe width="480" height="270" src="//www.youtube.com/embed/ZDHCU-j3y4Y?autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
         },
       },
     ],
@@ -290,7 +290,7 @@ const MainVideo = ({}: MainVideoProps) => {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
         ></Iframe>
-        </VideoPlayer>
+      </VideoPlayer>
       <Tags>{tags}</Tags>
       <Title>{videoDetailData?.items[0]?.snippet?.title}</Title>
       <ViewDateInfo>
@@ -388,10 +388,11 @@ const VideoContainer = styled.div`
 const VideoPlayer = styled.div`
   width: 1048px;
   height: 590px;
-  iframe {
-    width: 100%;
-    height: 100%;
-  }
+`;
+
+const Iframe = styled.iframe`
+  width: 100%;
+  height: 100%;
 `;
 
 const Tags = styled.div`
@@ -442,10 +443,6 @@ const LikeContainer = styled.div`
   align-items: center;
   border-bottom: 2px solid black;
   /* border-bottom: 2px solid white; */
-`;
-const Iframe = styled.iframe`
-  width: 100%;
-  height: 100%;
 `;
 
 export default MainVideo;
