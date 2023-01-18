@@ -39,7 +39,7 @@ interface Comment {
   };
 }
 interface CommentsProp {
-  id: string;
+  videoId: string;
 }
 
 const dummyData = [
@@ -743,10 +743,12 @@ const dummyData = [
   },
 ];
 
-const Comments = ({ id }: CommentsProp) => {
+const Comments = ({ videoId }: CommentsProp) => {
   localStorage.setItem("comments", JSON.stringify(dummyData));
   const localComments = JSON.parse(localStorage.getItem("comments") || "");
-  const [comments, setComments] = useState<Comment[]>(() => localComments);
+  const [comments, setComments] = useState<Comment[]>(
+    () => localComments || dummyData,
+  );
   const [isError, setIsError] = useState<string>("");
 
   const getComments = async () => {
@@ -756,8 +758,8 @@ const Comments = ({ id }: CommentsProp) => {
       );
 
       if (res.status === 200) {
-        // setComments(res.data.items);
         localStorage.setItem("comments", JSON.stringify(res.data.items));
+        setComments(res.data.items);
       }
     } catch (error) {
       if (error instanceof AxiosError) {
@@ -777,8 +779,6 @@ const Comments = ({ id }: CommentsProp) => {
   const commentsData = comments.map(
     (comment) => comment.snippet.topLevelComment.snippet,
   );
-
-  console.log(commentsData);
 
   return (
     <CommentSection>

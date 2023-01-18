@@ -5,10 +5,11 @@ import MainVideo from "../../components/MainVideo";
 
 const Watch = () => {
   return (
+   
     <WatchPageWrapper>
       <MainVideo />
-      <Description />
-      <Comments id="" />
+      <Description channelId="UCwQLh1dMRrT4WRjNKYzGHcw" />
+      <Comments videoId="" />
     </WatchPageWrapper>
   );
 };
