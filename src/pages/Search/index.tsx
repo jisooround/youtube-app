@@ -4,6 +4,41 @@ import { useLocation } from "react-router-dom";
 import SearchCard from "../../components/SearchCard";
 
 type SearchProps = {};
+
+const Search = ({}: SearchProps) => {
+  const [result, setResult] = useState<[]>([]);
+
+  const useQuery = () => {
+    return new URLSearchParams(useLocation().search);
+  };
+  const query = useQuery();
+  const searchWord = query.get("q");
+
+  useEffect(() => {
+    fetchData();
+  }, [searchWord]);
+
+  const fetchData = async () => {
+    try {
+      const response = await instance.get(
+        `/search?part=snippet&maxResults=10&q=${searchWord}`,
+      );
+      setResult(response.data.items);
+    } catch (e) {
+      console.log((e as Error).message);
+    }
+  };
+
+  const items = JSON.parse(localStorage.getItem("item")).data.items;
+
+  return (
+    <main>
+      {result.map((data, i: number) => {
+        return <SearchCard data={data} key={i}></SearchCard>;
+      })}
+    </main>
+  );
+};
 export interface Search {
   kind: string;
   etag: string;
@@ -44,40 +79,5 @@ export interface High {
   width: number;
   height: number;
 }
-
-const Search = ({}: SearchProps) => {
-  const [result, setResult] = useState<[]>([]);
-
-  const useQuery = () => {
-    return new URLSearchParams(useLocation().search);
-  };
-  const query = useQuery();
-  const searchWord = query.get("q");
-
-  useEffect(() => {
-    fetchData();
-  }, [searchWord]);
-
-  const fetchData = async () => {
-    try {
-      const response = await instance.get(
-        `/search?part=snippet&maxResults=10&q=${searchWord}`,
-      );
-      setResult(response.data.items);
-    } catch (e) {
-      console.log((e as Error).message);
-    }
-  };
-
-  const items = JSON.parse(localStorage.getItem("item")).data.items;
-
-  return (
-    <main>
-      {result.map((data, i: number) => {
-        return <SearchCard data={data} key={i}></SearchCard>;
-      })}
-    </main>
-  );
-};
 
 export default Search;
