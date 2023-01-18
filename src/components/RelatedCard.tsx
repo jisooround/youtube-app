@@ -10,8 +10,9 @@ function RelatedCard({ item }: any) {
   console.log(item)
 
   const navigate = useNavigate();
-  const date: Date = new Date(item.snippet.publishTime);
-  let now: Date = new Date(); // 현재 날짜 및 시간
+  const date: number = new Date(item.snippet.publishTime).getTime();
+  let now:number = new Date().getTime(); // 현재 날짜 및 시간
+  console.log(now)
 
   const [videoView, setVideoView] = useState<any>('')
   const [time, setTime] = useState<any>('')

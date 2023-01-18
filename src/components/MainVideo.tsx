@@ -283,11 +283,14 @@ const MainVideo = ({}: MainVideoProps) => {
 
   return (
     <VideoContainer>
-      <VideoPlayer
-        dangerouslySetInnerHTML={{
-          __html: videoDetailData?.items[0]?.player?.embedHtml || "",
-        }}
-      ></VideoPlayer>
+      <VideoPlayer>
+        <Iframe
+          src={`https://www.youtube.com/embed/${videoDetailData?.items[0].id}?autoplay=1&mute=1`}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        ></Iframe>
+        </VideoPlayer>
       <Tags>{tags}</Tags>
       <Title>{videoDetailData?.items[0]?.snippet?.title}</Title>
       <ViewDateInfo>
@@ -439,6 +442,10 @@ const LikeContainer = styled.div`
   align-items: center;
   border-bottom: 2px solid black;
   /* border-bottom: 2px solid white; */
+`;
+const Iframe = styled.iframe`
+  width: 100%;
+  height: 100%;
 `;
 
 export default MainVideo;

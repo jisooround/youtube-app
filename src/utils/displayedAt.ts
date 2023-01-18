@@ -1,4 +1,4 @@
-export function displayedAt(now:any, createdAt: any) {
+export function displayedAt(now:number, createdAt: number) {
   const milliSeconds = now - createdAt;
   const seconds = milliSeconds / 1000;
   if (seconds < 60) return `recently`;
