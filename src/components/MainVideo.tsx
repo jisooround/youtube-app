@@ -386,11 +386,18 @@ const VideoContainer = styled.div`
 `;
 
 const VideoPlayer = styled.div`
-  width: 1048px;
-  height: 590px;
+  position: relative;
+  padding-top: 56.25%;
+  /* width: 1048px;  */
+  /* height: 590px;  */
 `;
 
 const Iframe = styled.iframe`
+  /* width: 100%; */
+  /* height: 100%; */
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
 `;

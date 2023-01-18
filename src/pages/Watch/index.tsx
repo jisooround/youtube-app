@@ -8,8 +8,8 @@ const Watch = () => {
     <WatchContainer>
       <WatchPageWrapper>
         <MainVideo />
-        <Description />
-        <Comments id="" />
+        <Description channelId="UCwQLh1dMRrT4WRjNKYzGHcw"/>
+        <Comments  videoId="" />
       </WatchPageWrapper>
       <RelatedVideo />
     </WatchContainer>
