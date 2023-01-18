@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import styled from "styled-components";
-import { instance } from "../api/api";
+import { instance } from "../api";
 import { VideoData } from "../pages/Home";
 import { timeAgo } from "../utils/timeAgo";
 import { Link } from "react-router-dom";

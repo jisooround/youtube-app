@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { instance } from "../../api/api";
 import { useLocation } from "react-router-dom";
+import { instance } from "../../api";
 import SearchCard from "../../components/SearchCard";
 
 const Search = () => {

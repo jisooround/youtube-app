@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { instance } from "../api/api";
-import { ProfileWrapper } from "./Description";
+import { Profile } from "./Description";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { timeAgo } from "../utils/timeAgo";
-import { AxiosError } from "axios";
+import { getComments } from "../api/api";
 
 interface Comment {
   kind: string;
@@ -751,28 +750,28 @@ const Comments = ({ videoId }: CommentsProp) => {
   );
   const [isError, setIsError] = useState<string>("");
 
-  const getComments = async () => {
-    try {
-      const res = await instance.get(
-        `/commentThreads?part=snippet&videoId=T95sMUMyb3o`,
-      );
+  // const getComments = async () => {
+  //   try {
+  //     const res = await instance.get(
+  //       `/commentThreads?part=snippet&videoId=${videoId}`,
+  //     );
 
-      if (res.status === 200) {
-        localStorage.setItem("comments", JSON.stringify(res.data.items));
-        setComments(res.data.items);
-      }
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        console.log(error.message);
-        setIsError(error.message);
-      } else {
-        throw error;
-      }
-    }
-  };
+  //     if (res.status === 200) {
+  //       localStorage.setItem("comments", JSON.stringify(res.data.items));
+  //       setComments(res.data.items);
+  //     }
+  //   } catch (error) {
+  //     if (error instanceof AxiosError) {
+  //       console.log(error.message);
+  //       setIsError(error.message);
+  //     } else {
+  //       throw error;
+  //     }
+  //   }
+  // };
 
   useEffect(() => {
-    // getComments();
+    // getComments(videoId, setComments, setIsError);
     setComments(dummyData);
   }, []);
 
@@ -787,12 +786,12 @@ const Comments = ({ videoId }: CommentsProp) => {
       <ul>
         {commentsData.map((comment) => (
           <CommentList key={comment.authorDisplayName}>
-            <ProfileWrapper>
+            <Profile>
               <img
                 src={comment.authorProfileImageUrl}
                 alt={comment.authorDisplayName}
               />
-            </ProfileWrapper>
+            </Profile>
             <CommentWrapper>
               <Comment>
                 <Author>{comment.authorDisplayName}</Author>
@@ -808,7 +807,7 @@ const Comments = ({ videoId }: CommentsProp) => {
                   <AiOutlineLike /> <span>{comment.likeCount}</span>
                 </Btn>
                 <Btn type="button">
-                  <AiOutlineDislike />{" "}
+                  <AiOutlineDislike />
                 </Btn>
                 <Reply>답글</Reply>
               </Comment>
@@ -887,5 +886,10 @@ const Btn = styled.button`
 
   span {
     font-size: 12px;
+    color: #0f0f0f;
+
+    @media (prefers-color-scheme: dark) {
+      color: #fff;
+    }
   }
 `;
