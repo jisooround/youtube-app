@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import SearchCard from "../../components/SearchCard";
 
 type SearchProps = {};
-export interface Root {
+export interface Search {
   kind: string;
   etag: string;
   id: Id;
@@ -46,7 +46,7 @@ export interface High {
 }
 
 const Search = ({}: SearchProps) => {
-  const [result, setResult] = useState<Root[]>([]);
+  const [result, setResult] = useState<[]>([]);
 
   const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -73,7 +73,7 @@ const Search = ({}: SearchProps) => {
 
   return (
     <main>
-      {result.map((data: {}, i: number) => {
+      {result.map((data, i: number) => {
         return <SearchCard data={data} key={i}></SearchCard>;
       })}
     </main>

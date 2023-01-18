@@ -2,10 +2,163 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { instance } from "../api/api";
 import { timeAgo } from "../utils/timeAgo";
+import { Search } from "../pages/Search";
 
-const SearchCard = ({ data }: any) => {
-  const [videoResult, setVideoResult] = useState<any>("");
-  const [channelResult, setChannelResult] = useState<any>("");
+export interface Video {
+  kind: string;
+  etag: string;
+  id: string;
+  snippet: Snippet;
+  contentDetails: ContentDetails;
+  statistics: Statistics;
+  player: Player;
+}
+
+export interface Snippet {
+  publishedAt: string;
+  channelId: string;
+  title: string;
+  description: string;
+  thumbnails: Thumbnails;
+  channelTitle: string;
+  tags: string[];
+  categoryId: string;
+  liveBroadcastContent: string;
+  localized: Localized;
+}
+
+export interface Thumbnails {
+  default: Default;
+  medium: Medium;
+  high: High;
+  standard: Standard;
+  maxres: Maxres;
+}
+
+export interface Default {
+  url: string;
+  width: number;
+  height: number;
+}
+
+export interface Medium {
+  url: string;
+  width: number;
+  height: number;
+}
+
+export interface High {
+  url: string;
+  width: number;
+  height: number;
+}
+
+export interface Standard {
+  url: string;
+  width: number;
+  height: number;
+}
+
+export interface Maxres {
+  url: string;
+  width: number;
+  height: number;
+}
+
+export interface Localized {
+  title: string;
+  description: string;
+}
+
+export interface ContentDetails {
+  duration: string;
+  dimension: string;
+  definition: string;
+  caption: string;
+  licensedContent: boolean;
+  contentRating: ContentRating;
+  projection: string;
+}
+
+export interface ContentRating {}
+
+export interface Statistics {
+  viewCount: string;
+  likeCount: string;
+  favoriteCount: string;
+  commentCount: string;
+}
+
+export interface Player {
+  embedHtml: string;
+}
+export interface Channel {
+  kind: string;
+  etag: string;
+  id: string;
+  snippet: Snippet;
+  contentDetails: ContentDetails;
+  statistics: Statistics;
+}
+
+export interface Snippet {
+  title: string;
+  description: string;
+  customUrl: string;
+  publishedAt: string;
+  thumbnails: Thumbnails;
+  localized: Localized;
+  country: string;
+}
+
+export interface Thumbnails {
+  default: Default;
+  medium: Medium;
+  high: High;
+}
+
+export interface Default {
+  url: string;
+  width: number;
+  height: number;
+}
+
+export interface Medium {
+  url: string;
+  width: number;
+  height: number;
+}
+
+export interface High {
+  url: string;
+  width: number;
+  height: number;
+}
+
+export interface Localized {
+  title: string;
+  description: string;
+}
+
+export interface ContentDetails {
+  relatedPlaylists: RelatedPlaylists;
+}
+
+export interface RelatedPlaylists {
+  likes: string;
+  uploads: string;
+}
+
+export interface Statistics {
+  viewCount: string;
+  subscriberCount: string;
+  hiddenSubscriberCount: boolean;
+  videoCount: string;
+}
+
+const SearchCard = ({ data }: { data: Search }) => {
+  const [videoResult, setVideoResult] = useState<Video>();
+  const [channelResult, setChannelResult] = useState<Channel>();
 
   useEffect(() => {
     videoData();
@@ -23,6 +176,7 @@ const SearchCard = ({ data }: any) => {
     const response = await instance.get(
       `/channels?part=snippet&part=statistics&part=contentDetails&id=${data.snippet.channelId}`,
     );
+    console.log(response);
     setChannelResult(response.data.items[0]);
   };
 
@@ -116,7 +270,6 @@ const Name = styled(Views)`
   align-items: center;
   gap: 10px;
   padding: 12px 0;
-
   img {
     border: none;
     border-radius: 50%;
