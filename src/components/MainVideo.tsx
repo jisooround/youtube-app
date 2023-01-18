@@ -1,11 +1,12 @@
-import { instance } from "../api";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useParams } from "react-router";
+import { getVideoDetail } from "../api/api";
 
-type MainVideoProps = {};
+interface MainVideoProps {
+  videoId: string
+};
 
-export interface videoDetailData {
+export interface VideoDetailData {
   kind: string;
   etag: string;
   items: Item[];
@@ -107,7 +108,7 @@ export interface PageInfo {
   resultsPerPage: number;
 }
 
-const MainVideo = ({}: MainVideoProps) => {
+const MainVideo = ({videoId}: MainVideoProps) => {
   const initialData = {
     kind: "youtube#videoListResponse",
     etag: "UaVhWWfFRX6oOr9PuxvQGoIRITU",
@@ -214,8 +215,7 @@ const MainVideo = ({}: MainVideoProps) => {
     },
   };
   const [videoDetailData, setVideoDetailData] =
-    useState<videoDetailData | null>(null);
-  const { id } = useParams();
+    useState<VideoDetailData | null>(null);
   const tags = videoDetailData?.items[0].snippet.tags.map((tag, index) => {
     if (index < 4) return <Tag key={index}>#{tag}</Tag>;
   });
@@ -264,22 +264,10 @@ const MainVideo = ({}: MainVideoProps) => {
     return likeCount;
   };
 
-  const getVideoData = async () => {
-    try {
-      const { data } = await instance.get(
-        `/videos?part=snippet&part=contentDetails&part=player&part=statistics&id=${id}`,
-      );
-      setVideoDetailData(data);
-      console.log(data);
-    } catch (e) {
-      console.log((e as Error).message);
-    }
-  };
-
   useEffect(() => {
-    // getVideoData();
+    // getVideoDetail(videoId, setVideoDetailData)
     setVideoDetailData(initialData);
-  }, []);
+  }, [videoId]);
 
   return (
     <VideoContainer>
@@ -388,13 +376,9 @@ const VideoContainer = styled.div`
 const VideoPlayer = styled.div`
   position: relative;
   padding-top: 56.25%;
-  /* width: 1048px;  */
-  /* height: 590px;  */
 `;
 
 const Iframe = styled.iframe`
-  /* width: 100%; */
-  /* height: 100%; */
   position: absolute;
   top: 0;
   left: 0;
@@ -419,7 +403,6 @@ const Title = styled.div`
   font-size: 20px;
   font-weight: 600;
   margin: 12px 0;
-  /* color: white; */
 `;
 
 const ViewDateInfo = styled.div`
@@ -433,7 +416,6 @@ const ButtonWrapper = styled.div`
 `;
 
 const Button = styled.div`
-  /* color: white; */
   display: flex;
   align-items: center;
   padding: 1.2rem;
@@ -448,8 +430,7 @@ const Button = styled.div`
 const LikeContainer = styled.div`
   display: flex;
   align-items: center;
-  border-bottom: 2px solid black;
-  /* border-bottom: 2px solid white; */
+  border-bottom: 2px solid;
 `;
 
 export default MainVideo;

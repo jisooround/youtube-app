@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import { instance } from "./../api/index";
+import { instance } from "../api";
 import { timeAgo } from "../utils/timeAgo";
 import { Search } from "../pages/Search";
 import { nFormatter } from "../utils/nFormatter";
