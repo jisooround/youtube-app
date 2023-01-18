@@ -28,7 +28,6 @@ const Search = () => {
   };
 
   const items = JSON.parse(localStorage.getItem("item")).data.items;
-  const videoDetail = JSON.parse(localStorage.getItem("video"));
 
   return (
     <main>

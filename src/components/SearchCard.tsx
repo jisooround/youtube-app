@@ -5,8 +5,11 @@ import { timeAgo } from "../utils/timeAgo";
 
 const SearchCard = ({ data }: any) => {
   const [videoResult, setVideoResult] = useState<any>("");
+  const [channelResult, setChannelResult] = useState<any>("");
+
   useEffect(() => {
     videoData();
+    channelData();
   }, []);
 
   const videoData = async () => {
@@ -16,9 +19,18 @@ const SearchCard = ({ data }: any) => {
     setVideoResult(response.data.items[0]);
   };
 
+  const channelData = async () => {
+    const response = await instance.get(
+      `/channels?part=snippet&part=statistics&part=contentDetails&id=${data.snippet.channelId}`,
+    );
+    setChannelResult(response.data.items[0]);
+  };
+
+  const videoDetail = JSON.parse(localStorage.getItem("video"));
+
   return (
     <>
-      {videoResult ? (
+      {videoResult && channelResult ? (
         <Section>
           <Card>
             <Video>
@@ -35,7 +47,8 @@ const SearchCard = ({ data }: any) => {
               <span>{timeAgo(videoResult.snippet.publishedAt)}</span>
             </Views>
             <Name>
-              <button></button>
+              <img src={channelResult.snippet.thumbnails.medium.url}></img>
+
               <span>{data.snippet.channelTitle}</span>
             </Name>
             <Descript>{data.snippet.description}</Descript>
@@ -71,10 +84,10 @@ const Video = styled.div`
 
 const Duration = styled.div`
   padding: 3px 4px;
-  background-color: red;
+  background-color: rgba(0, 0, 0, 0.8);
   position: absolute;
-  bottom: -15px;
-  right: 60px;
+  bottom: 0;
+  right: 0;
   font-weight: 600;
   display: flex;
   justify-content: center;
@@ -103,11 +116,12 @@ const Name = styled(Views)`
   align-items: center;
   gap: 10px;
   padding: 12px 0;
-  button {
+
+  img {
+    border: none;
+    border-radius: 50%;
     width: 24px;
     height: 24px;
-    border-radius: 50%;
-    border: none;
   }
 `;
 
