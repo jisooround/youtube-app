@@ -1,15 +1,19 @@
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Comments from "../../components/Comments";
 import Description from "../../components/Description";
 import MainVideo from "../../components/MainVideo";
 import RelatedVideo from "../../components/RelatedVideo";
 const Watch = () => {
+  // type assertion
+  const { id } = useParams() as { id: string };
+
   return (
     <WatchContainer>
       <WatchPageWrapper>
         <MainVideo />
         <Description channelId="UCwQLh1dMRrT4WRjNKYzGHcw" />
-        <Comments videoId="" />
+        <Comments videoId={id} />
       </WatchPageWrapper>
       <RelatedVideo />
     </WatchContainer>

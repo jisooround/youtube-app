@@ -1,56 +1,81 @@
 import { useEffect, useState } from "react";
-import Header from "../../components/Header";
-import { instance } from "../../api/api";
-import { useParams } from "react-router-dom";
-import styled from "styled-components";
+import { useLocation } from "react-router-dom";
+import { instance } from "../../api";
+import SearchCard from "../../components/SearchCard";
 
 const Search = () => {
-  const [result, setResult] = useState<any>([]);
-  const { id } = useParams();
-  console.log(id);
+  const [result, setResult] = useState<Search[]>([]);
+
+  const useQuery = () => {
+    return new URLSearchParams(useLocation().search);
+  };
+  const query = useQuery();
+  const searchWord = query.get("q");
 
   useEffect(() => {
     fetchData();
-  }, [id]);
+  }, [searchWord]);
 
   const fetchData = async () => {
-    const response = await instance.get(
-      `/search?part=snippet&maxResults=10&q=${id}`,
-    );
-    console.log(response);
-    setResult(response.data.items);
+    try {
+      const response = await instance.get(
+        `/search?part=snippet&maxResults=10&q=${searchWord}`,
+      );
+      setResult(response.data.items);
+    } catch (e) {
+      console.log((e as Error).message);
+    }
   };
+
+  // localStorage.setItem("item", JSON.stringify(result));
 
   return (
     <main>
-      <Section>
-        <Card>
-          <div>
-            {result.map((data: any) => {
-              <img
-                src={data.snippet.thumbnails.medium.url}
-                alt="video"
-                style={{ width: "300px", height: "200px" }}
-              />;
-            })}
-          </div>
-        </Card>
-      </Section>
+      {result.map((data: Search) => {
+        return <SearchCard data={data} key={data.id.videoId}></SearchCard>;
+      })}
     </main>
   );
 };
-
-const Section = styled.section`
-  padding: 1.5rem 2rem;
-`;
-
-const Card = styled.div`
-  max-width: 1000px;
-  height: 100%;
-  padding: 1rem;
-  color: #fff;
-  font-size: 15px;
-  letter-spacing: 0.2px;
-`;
+export interface Search {
+  kind: string;
+  etag: string;
+  id: Id;
+  snippet: Snippet;
+}
+export interface Id {
+  kind: string;
+  videoId: string;
+}
+export interface Snippet {
+  publishedAt: string;
+  channelId: string;
+  title: string;
+  description: string;
+  thumbnails: Thumbnails;
+  channelTitle: string;
+  liveBroadcastContent: string;
+  publishTime: string;
+}
+export interface Thumbnails {
+  default: Default;
+  medium: Medium;
+  high: High;
+}
+export interface Default {
+  url: string;
+  width: number;
+  height: number;
+}
+export interface Medium {
+  url: string;
+  width: number;
+  height: number;
+}
+export interface High {
+  url: string;
+  width: number;
+  height: number;
+}
 
 export default Search;
