@@ -16,11 +16,10 @@ type FetchFn = {
     setError: (value: React.SetStateAction<string>) => void,
   ): void;
 };
-interface GetDetailFn{
-  (
-    videoId: string,
-    setState: React.Dispatch<React.SetStateAction<any>>,
-  ): void
+
+// get video detail
+interface GetDetailFn {
+  (videoId: string, setState: React.Dispatch<React.SetStateAction<any>>): void;
 }
 
 export const getComments: GetcommentsFn = async (
@@ -67,7 +66,7 @@ export const getDescription: FetchFn = async (id, setState, setError) => {
   }
 };
 
-export const getVideoDetail: GetDetailFn  = async (videoId, setState) => {
+export const getVideoDetail: GetDetailFn = async (videoId, setState) => {
   try {
     const res = await instance.get(
       `/videos?part=snippet&part=contentDetails&part=player&part=statistics&id=${videoId}`,
