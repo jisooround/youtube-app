@@ -11,8 +11,8 @@ import { BiListCheck, BiDotsVerticalRounded } from "react-icons/bi";
 type Props = { item: Root };
 
 function RelatedCard({ item }: Props) {
-  console.log(JSON.stringify(item));
 
+  console.log(JSON.stringify(item));
   const navigate = useNavigate();
   const date: number = new Date(item.snippet.publishTime).getTime();
   let now: number = new Date().getTime(); // 현재 날짜 및 시간
@@ -29,7 +29,7 @@ function RelatedCard({ item }: Props) {
   //   const view = nFormatter(res.data.items[0].statistics.viewCount)
   //   setVideoView(view)
   //   const vTime =videoTime(res.data.items[0].contentDetails.duration)
-  //   setVideoTime(vTime)
+  //   setTime(vTime)
   // }
 
   const goToVideo = (videoId: string) => {

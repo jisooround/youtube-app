@@ -17,16 +17,15 @@ const Watch = () => {
 };
 
 const WatchPageWrapper = styled.div`
-  max-width: 1200px;
+  max-width: 1000px;
+  min-width: 500px;
   margin-right: 40px;
-  /* display: flex;
-  flex-direction: column;
-  justify-content: space-between; */
 `;
 const WatchContainer = styled.div`
   display: flex;
-  justify-content: space-between;
   padding: 3rem;
+  display: flex;
+  /* flex-wrap: wrap; */
 `;
 
 export default Watch;

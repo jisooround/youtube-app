@@ -277,9 +277,9 @@ const MainVideo = ({}: MainVideoProps) => {
   };
 
   useEffect(() => {
-    // getVideoData();
-    setVideoDetailData(initialData);
-  }, []);
+    getVideoData();
+    // setVideoDetailData(initialData);
+  }, [id]);
 
   return (
     <VideoContainer>
