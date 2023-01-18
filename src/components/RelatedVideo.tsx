@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { instance } from "../api/api";
+import { instance } from "../api";
 import RelatedCard from "./RelatedCard";
 import styled from "styled-components";
-import { useParams } from "react-router"
 
 const myData = [
   {
@@ -429,22 +428,31 @@ const myData = [
   },
 ];
 
-function RelatedVideo(): React.ReactElement {
-  const { id } = useParams()
+interface GetVideoFnc{
+  (
+    videoId: string,
+    setState: (value: React.SetStateAction<any>) => void,
+  ): void;
+};
+
+type Props = { videoId: string };
+ 
+function RelatedVideo({videoId}:Props){
+
   const [data, setData] = useState<IData | null>(null);
 
-//   const getVideoData = async (id:any = 'uLxPN-J8WqA') => {
-//     const res = await instance.get(
-//       `/search?part=snippet&maxResults=10&relatedToVideoId=${id}&type=video`,
-//     );
-//     setData(res.data.items);
-//     // console.log(JSON.stringify(res));
-//   };
+  const getVideoData:GetVideoFnc = async (videoId:string, setData) => {
+    const res = await instance.get(
+      `/search?part=snippet&maxResults=10&relatedToVideoId=${videoId}&type=video`,
+    );
+    setData(res.data.items);
+  };
 
   useEffect(() => {
-    // getVideoData(id);
-    setData(myData);
-  }, [id]);
+    getVideoData(videoId, setData);
+    console.log(typeof(videoId))
+    // setData(myData);
+  }, [videoId]);
 
   return (
     <RelatedList>

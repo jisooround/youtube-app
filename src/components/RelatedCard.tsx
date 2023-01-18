@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { instance } from "../api/api";
+import { instance } from "../api";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { displayedAt } from "../utils/displayedAt";
 import { nFormatter } from "../utils/nFormatter";
 import { videoTime } from "../utils/videoTime";
@@ -11,77 +11,68 @@ import { BiListCheck, BiDotsVerticalRounded } from "react-icons/bi";
 type Props = { item: Root };
 
 function RelatedCard({ item }: Props) {
-
-  console.log(JSON.stringify(item));
-  const navigate = useNavigate();
   const date: number = new Date(item.snippet.publishTime).getTime();
   let now: number = new Date().getTime(); // 현재 날짜 및 시간
-  console.log(now);
 
   const [videoView, setVideoView] = useState<string | number>(0);
   const [time, setTime] = useState<string>("");
   const [isHovering, setIsHovering] = useState<boolean>(false);
 
-  // const getDetail = async (videoId=item.id.videoId) => {
-  //   const res = await instance.get(
-  //     `/videos?part=snippet&part=contentDetails&part=player&part=statistics&id=${videoId}`,
-  //   );
-  //   const view = nFormatter(res.data.items[0].statistics.viewCount)
-  //   setVideoView(view)
-  //   const vTime =videoTime(res.data.items[0].contentDetails.duration)
-  //   setTime(vTime)
-  // }
-
-  const goToVideo = (videoId: string) => {
-    navigate(`/watch/${videoId}`);
+  const getDetail = async (videoId = item.id.videoId) => {
+    const res = await instance.get(
+      `/videos?part=snippet&part=contentDetails&part=player&part=statistics&id=${videoId}`,
+    );
+    const view = nFormatter(res.data.items[0].statistics.viewCount);
+    setVideoView(view);
+    const vTime = videoTime(res.data.items[0].contentDetails.duration);
+    setTime(vTime);
   };
 
+  item.id.videoId;
   useEffect(() => {
-    // getDetail()
-    setVideoView(nFormatter(100000));
-    setTime(videoTime("PT1H15M15S"));
+    getDetail();
+    // setVideoView(nFormatter(100000));
+    // setTime(videoTime("PT1H15M15S"));
   }, []);
-
+  const watchLink = `/watch/${item.id.videoId}`
   return (
-    <VideoCard
-      onClick={() => goToVideo(item.id.videoId)}
-      onMouseOver={() => setIsHovering(true)}
-      onMouseOut={() => setIsHovering(false)}
-    >
-      <PreviewBox>
-        <Thumbnail src={item.snippet.thumbnails.medium.url} />
-        <VideoTime>{time}</VideoTime>
-        {isHovering ? (
-          <HoverBox>
-            <AiOutlineClockCircle />
-            <BiListCheck />
-          </HoverBox>
-        ) : (
-          ""
-        )}
-      </PreviewBox>
-      <DetailBox>
-        <RelatedTitle>{item.snippet.title}</RelatedTitle>
-        {isHovering ? (
+    <Link to={watchLink}>
+      <VideoCard
+        onMouseOver={() => setIsHovering(true)}
+        onMouseOut={() => setIsHovering(false)}
+      >
+        <PreviewBox>
+          <Thumbnail src={item.snippet.thumbnails.medium.url} />
+          <VideoTime>{time}</VideoTime>
+          {isHovering ? (
+            <HoverBox>
+              <AiOutlineClockCircle />
+              <BiListCheck />
+            </HoverBox>
+          ) : (
+            ""
+          )}
+        </PreviewBox>
+        <DetailBox>
+          <RelatedTitle>{item.snippet.title}</RelatedTitle>
+          {isHovering ? (
             <MoreInfoBtn>
               <BiDotsVerticalRounded />
             </MoreInfoBtn>
           ) : (
             ""
           )}
-        <RelatedChannel>
-          {item.snippet.channelTitle}
-        </RelatedChannel>
-        <InfoBox>
-          <p>{videoView} views</p>
-          <InfoDot> • </InfoDot>
-          <p>{displayedAt(now, date)}</p>
-        </InfoBox>
-      </DetailBox>
-    </VideoCard>
+          <RelatedChannel>{item.snippet.channelTitle}</RelatedChannel>
+          <InfoBox>
+            <p>조회수 {videoView}</p>
+            <InfoDot> • </InfoDot>
+            <p>{displayedAt(now, date)}</p>
+          </InfoBox>
+        </DetailBox>
+      </VideoCard>
+    </Link>
   );
 }
-
 const PreviewBox = styled.div`
   position: relative;
   width: 160px;
@@ -103,11 +94,12 @@ const Thumbnail = styled.img`
   border-radius: 5px;
 `;
 const VideoCard = styled.div`
-  width: 100%;
+  max-width: 400px;
+  min-width: 300px;
   display: flex;
   height: 90px;
   margin-bottom: 10px;
-  :hover h3{
+  :hover h3 {
     font-weight: 500;
   }
 `;
@@ -172,7 +164,7 @@ const MoreInfoBtn = styled.div`
   right: 0px;
   top: 5px;
   cursor: pointer;
-  svg{
+  svg {
     font-size: 20px;
   }
 `;

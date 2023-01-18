@@ -1,4 +1,4 @@
-import { instance } from "../api/api";
+import { instance } from "../api";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router";
