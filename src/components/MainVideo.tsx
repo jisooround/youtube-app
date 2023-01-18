@@ -1,6 +1,7 @@
 import { instance } from "../api/api";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useParams } from "react-router";
 
 type MainVideoProps = {};
 
@@ -203,7 +204,7 @@ const MainVideo = ({}: MainVideoProps) => {
         player: {
           // O
           embedHtml:
-            '<iframe width="480" height="270" src="//www.youtube.com/embed/ZDHCU-j3y4Y" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
+            '<iframe width="480" height="270" src="//www.youtube.com/embed/ZDHCU-j3y4Y?autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
         },
       },
     ],
@@ -214,7 +215,7 @@ const MainVideo = ({}: MainVideoProps) => {
   };
   const [videoDetailData, setVideoDetailData] =
     useState<videoDetailData | null>(null);
-
+  const { id } = useParams();
   const tags = videoDetailData?.items[0].snippet.tags.map((tag, index) => {
     if (index < 4) return <Tag key={index}>#{tag}</Tag>;
   });
@@ -266,7 +267,7 @@ const MainVideo = ({}: MainVideoProps) => {
   const getVideoData = async () => {
     try {
       const { data } = await instance.get(
-        "/videos?part=snippet&part=contentDetails&part=player&part=statistics&id=ZDHCU-j3y4Y",
+        `/videos?part=snippet&part=contentDetails&part=player&part=statistics&id=${id}`,
       );
       setVideoDetailData(data);
       console.log(data);
@@ -282,11 +283,14 @@ const MainVideo = ({}: MainVideoProps) => {
 
   return (
     <VideoContainer>
-      <VideoPlayer
-        dangerouslySetInnerHTML={{
-          __html: videoDetailData?.items[0]?.player?.embedHtml || "",
-        }}
-      ></VideoPlayer>
+      <VideoPlayer>
+        <Iframe
+          src={`https://www.youtube.com/embed/${videoDetailData?.items[0].id}?autoplay=1&mute=1`}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        ></Iframe>
+      </VideoPlayer>
       <Tags>{tags}</Tags>
       <Title>{videoDetailData?.items[0]?.snippet?.title}</Title>
       <ViewDateInfo>
@@ -384,10 +388,11 @@ const VideoContainer = styled.div`
 const VideoPlayer = styled.div`
   width: 1048px;
   height: 590px;
-  iframe {
-    width: 100%;
-    height: 100%;
-  }
+`;
+
+const Iframe = styled.iframe`
+  width: 100%;
+  height: 100%;
 `;
 
 const Tags = styled.div`
