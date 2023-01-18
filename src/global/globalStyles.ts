@@ -11,17 +11,26 @@ ${reset}
   }
 
 
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #0F0F0F;
-    color: #fff
+  a {
+    text-decoration: none;
+    color: #0F0F0F;
   }
 
-  svg {
-    color: #fff
+  @media (prefers-color-scheme: dark) {
+    body {
+      background-color: #0F0F0F;
+      color: #fff
+    }
+
+    svg {
+      color: #fff
+    }
+
+    a {
+      color: #fff
+    }
   }
 
-}
 
 `;
 
