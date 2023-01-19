@@ -63,7 +63,9 @@ const Header = ({
       <Center>
         <Form
           onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
-            handleSubmit(e);
+            {
+              value ? handleSubmit(e) : e.preventDefault();
+            }
           }}
         >
           <Search

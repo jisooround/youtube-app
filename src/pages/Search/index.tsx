@@ -3,30 +3,20 @@ import { useLocation } from "react-router-dom";
 import { instance } from "../../api";
 import styled from "styled-components";
 import SearchCard from "../../components/SearchCard";
+import { getSearchData } from "../../api/api";
 
 const Search = () => {
   const [result, setResult] = useState<Search[]>([]);
-
+  const [isError, setIsError] = useState<string>("");
   const useQuery = () => {
     return new URLSearchParams(useLocation().search);
   };
   const query = useQuery();
-  const searchWord = query.get("q");
+  const searchWord = query.get("q") || "";
 
   useEffect(() => {
-    fetchData();
+    getSearchData(searchWord, setResult, setIsError);
   }, [searchWord]);
-
-  const fetchData = async () => {
-    try {
-      const response = await instance.get(
-        `/search?part=snippet&maxResults=10&q=${searchWord}`,
-      );
-      setResult(response.data.items);
-    } catch (e) {
-      console.log((e as Error).message);
-    }
-  };
 
   // localStorage.setItem("item", JSON.stringify(result));
 
@@ -59,7 +49,7 @@ const Search = () => {
 
 const Container = styled.div`
   margin-left: 250px;
-  padding: 16px 24px;
+  padding: 90px 24px 16px 0px;
   overflow-y: hidden;
 `;
 
