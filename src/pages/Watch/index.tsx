@@ -123,7 +123,7 @@ const Watch = ({ open }: WatchProps) => {
   const [isError, setIsError] = useState("");
 
   useEffect(() => {
-    const data = axios.all([
+    axios.all([
       getVideoDetail(id, setVideoDetailData, setIsError),
       getComments(id, setComments, setIsError),
     ]);

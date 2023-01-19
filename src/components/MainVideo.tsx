@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { getVideoDetail } from "../api/api";
 import { VideoDetailData } from "../pages/Watch";
+import { videoDetailDummyData } from "../data";
 import { displayedAt } from "../utils/displayedAt";
 import { nFormatter } from "../utils/nFormatter";
 
@@ -13,6 +13,14 @@ const MainVideo = ({ videoDetailData }: MainVideoProps) => {
   const tags = videoDetailData?.items[0].snippet.tags.map((tag, index) => {
     if (index < 4) return <Tag key={index}>#{tag}</Tag>;
   });
+
+  const handleViewCount = (): string => {
+    let viewCount = Number(
+      videoDetailData?.items[0]?.statistics?.viewCount,
+    ).toLocaleString("ko-kr");
+    if (viewCount === "NaN") viewCount = "";
+    return viewCount;
+  };
 
   return (
     <VideoContainer>
