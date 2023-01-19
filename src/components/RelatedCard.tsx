@@ -66,7 +66,7 @@ function RelatedCard({ item }: Props) {
           <InfoBox>
             <p>조회수 {videoView}</p>
             <InfoDot> • </InfoDot>
-            <p>{displayedAt(now, date)}</p>
+            <p>{displayedAt(date)}</p>
           </InfoBox>
         </DetailBox>
       </VideoCard>

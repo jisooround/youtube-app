@@ -1,5 +1,8 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { getComments, getDescription, getVideoDetail } from "../../api/api";
 import Comments from "../../components/Comments";
 import Description from "../../components/Description";
 import MainVideo from "../../components/MainVideo";
@@ -12,6 +15,16 @@ interface WatchProps {
 const Watch = ({ open }: WatchProps) => {
   // type assertion
   const { id } = useParams() as { id: string };
+  const [videoDetailData, setVideoDetailData] = useState();
+  const [comments, setComments] = useState();
+  const [isError, setIsError] = useState("");
+
+  useEffect(() => {
+    const data = axios.all([
+      getVideoDetail(id, setVideoDetailData, setIsError),
+      getComments(id, setComments, setIsError),
+    ]);
+  }, [id]);
 
   return (
     <WatchContainer open={open}>

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { getVideoDetail } from "../api/api";
+import { displayedAt } from "../utils/displayedAt";
+import { nFormatter } from "../utils/nFormatter";
 
 interface MainVideoProps {
   videoId: string;
@@ -216,6 +218,7 @@ const MainVideo = ({ videoId }: MainVideoProps) => {
   };
   const [videoDetailData, setVideoDetailData] =
     useState<VideoDetailData | null>(null);
+  const [isError, setIsError] = useState<string>("");
   const tags = videoDetailData?.items[0].snippet.tags.map((tag, index) => {
     if (index < 4) return <Tag key={index}>#{tag}</Tag>;
   });
@@ -226,42 +229,6 @@ const MainVideo = ({ videoId }: MainVideoProps) => {
     ).toLocaleString("ko-kr");
     if (viewCount === "NaN") viewCount = "";
     return viewCount;
-  };
-
-  const handleDate = (): string => {
-    const months = [
-      "",
-      "Jan",
-      "Feb",
-      "Mar",
-      "April",
-      "May",
-      "June",
-      "July",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
-    let temp = videoDetailData?.items[0]?.snippet?.publishedAt.split("-");
-    let date = "";
-    if (temp)
-      date +=
-        months[Number(temp[1] || 0)] +
-        " " +
-        temp[2].substring(0, 2) +
-        ", " +
-        temp[0];
-    return date;
-  };
-
-  const handleLikeCount = (): string => {
-    let likeCount = (
-      Number(videoDetailData?.items[0].statistics.likeCount) / 1000
-    ).toFixed(1);
-    if (likeCount === "NaN") likeCount = "";
-    return likeCount;
   };
 
   useEffect(() => {
@@ -282,9 +249,14 @@ const MainVideo = ({ videoId }: MainVideoProps) => {
       <Tags>{tags}</Tags>
       <Title>{videoDetailData?.items[0]?.snippet?.title}</Title>
       <ViewDateInfo>
-        {handleViewCount() || ""}
-        {" views • "}
-        {handleDate() || ""}
+        {"조회수 "}
+        {nFormatter(Number(videoDetailData?.items[0]?.statistics?.viewCount))}
+        {"회 "} &nbsp;
+        {displayedAt(
+          new Date(
+            videoDetailData?.items[0]?.snippet?.publishedAt || "",
+          ).getTime(),
+        )}
       </ViewDateInfo>
       <ButtonWrapper>
         <LikeContainer>
@@ -300,7 +272,11 @@ const MainVideo = ({ videoId }: MainVideoProps) => {
             >
               <path d="M20 8h-5.612l1.123-3.367c.202-.608.1-1.282-.275-1.802S14.253 2 13.612 2H12c-.297 0-.578.132-.769.36L6.531 8H4c-1.103 0-2 .897-2 2v9c0 1.103.897 2 2 2h13.307a2.01 2.01 0 0 0 1.873-1.298l2.757-7.351A1 1 0 0 0 22 12v-2c0-1.103-.897-2-2-2zM4 10h2v9H4v-9zm16 1.819L17.307 19H8V9.362L12.468 4h1.146l-1.562 4.683A.998.998 0 0 0 13 10h7v1.819z"></path>
             </svg>
-            <span>{handleLikeCount()}K</span>
+            <span>
+              {nFormatter(
+                Number(videoDetailData?.items[0].statistics.likeCount),
+              )}
+            </span>
           </Button>
           <Button>
             <svg
