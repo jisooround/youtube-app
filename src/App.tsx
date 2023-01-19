@@ -16,7 +16,13 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route
-          element={<Layout open={open} handleClickOpen={handleClickOpen} />}
+          element={
+            <Layout
+              open={open}
+              handleClickOpen={handleClickOpen}
+              setOpen={setOpen}
+            />
+          }
         >
           <Route index path="/" element={<Home open={open} />} />
           <Route index path="/search" element={<Search />} />
