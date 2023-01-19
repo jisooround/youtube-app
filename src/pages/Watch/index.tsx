@@ -2,14 +2,17 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { getComments, getDescription, getVideoDetail } from "../../api/api";
+import { getComments, getRelated, getVideoDetail } from "../../api/api";
 import Comments from "../../components/Comments";
 import Description from "../../components/Description";
 import MainVideo from "../../components/MainVideo";
 import RelatedVideo from "../../components/RelatedVideo";
 import { commentsDummyData, videoDetailDummyData } from "../../data";
 import type { IComment } from "../../types/commentsTypes";
-import type { VideoDetailData } from "../../types/videoDetailTypes";
+
+import { VideoDetailData } from "../../types/videoDetailTypes";
+import type { IData } from "../../types/relatedTypes"
+
 
 interface WatchProps {
   open: boolean;
@@ -25,17 +28,17 @@ const Watch = ({ open }: WatchProps) => {
       JSON.parse(localStorage.getItem("comments") || "") || commentsDummyData,
   );
   const [isError, setIsError] = useState("");
+  const [relatedData, setRelatedData] = useState<IData>([]);
 
   useEffect(() => {
-    axios;
-    // .all([
-    //   getVideoDetail(id, setVideoDetailData, setIsError),
-    //   getComments(id, setComments, setIsError),
-    // ])
-    // .catch((error) => setIsError(error.message));
+    axios
+      .all([
+        getVideoDetail(id, setVideoDetailData, setIsError),
+        getComments(id, setComments, setIsError),
+        getRelated(id, setRelatedData, setIsError),
+      ])
+      .catch((error) => setIsError(error.message));
   }, [id]);
-
-  console.log(comments);
 
   return (
     <WatchContainer open={open}>
@@ -44,7 +47,7 @@ const Watch = ({ open }: WatchProps) => {
         <Description channelId="UCwQLh1dMRrT4WRjNKYzGHcw" />
         <Comments comments={comments} />
       </WatchPageWrapper>
-      <RelatedVideo videoId={id} />
+      <RelatedVideo relatedData={relatedData} />
     </WatchContainer>
   );
 };
