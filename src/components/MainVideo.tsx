@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { VideoDetailData } from "../pages/Watch";
+import { VideoDetailData } from "../types/videoDetailTypes";
 import { displayedAt } from "../utils/displayedAt";
 import { nFormatter } from "../utils/nFormatter";
 
