@@ -7,11 +7,12 @@ import Comments from "../../components/Comments";
 import Description from "../../components/Description";
 import MainVideo from "../../components/MainVideo";
 import RelatedVideo from "../../components/RelatedVideo";
+import { videoDetailDummyData } from "../../data";
 
 interface WatchProps {
   open: boolean;
 }
-//videoDetailDAta type
+//videoDetailData type
 export interface VideoDetailData {
   kind: string;
   etag: string;
@@ -116,17 +117,20 @@ export interface PageInfo {
 
 const Watch = ({ open }: WatchProps) => {
   // type assertion
+  localStorage.setItem("detail", JSON.stringify(videoDetailDummyData));
+  const localDetail = JSON.parse(localStorage.getItem("detail") || "");
+
   const { id } = useParams() as { id: string };
   const [videoDetailData, setVideoDetailData] =
-    useState<VideoDetailData | null>(null);
+    useState<VideoDetailData>(localDetail);
   const [comments, setComments] = useState();
   const [isError, setIsError] = useState("");
 
   useEffect(() => {
-    axios.all([
-      getVideoDetail(id, setVideoDetailData, setIsError),
-      getComments(id, setComments, setIsError),
-    ]);
+    // axios.all([
+    //   getVideoDetail(id, setVideoDetailData, setIsError),
+    //   getComments(id, setComments, setIsError),
+    // ]);
   }, [id]);
 
   return (
