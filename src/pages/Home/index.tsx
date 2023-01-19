@@ -1,5 +1,5 @@
-import { instance } from "../../api";
-import React, { useEffect, useState } from "react";
+import { instance } from "../../api/index";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Card from "../../components/Card";
 
@@ -381,9 +381,7 @@ const dummyData = {
   ],
 };
 
-const Home = () => {
-  const [fold, setFold] = useState(true);
-
+const Home = ({ open }: { open: boolean }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -406,21 +404,21 @@ const Home = () => {
   const localData = JSON.parse(localStorage.getItem("동물의숲") || "");
 
   return (
-    <Container>
+    <Container open={open}>
       {localData.items.map((item: VideoData) => {
-        return <Card item={item} />;
+        return <Card key={item.id.videoId} item={item} />;
       })}
     </Container>
   );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ open: boolean }>`
   display: flex;
   flex-wrap: wrap;
-  width: calc(100% - 72px);
+  width: ${(props) => (props.open ? "calc(100% - 240)" : "calc(100% - 72)")}px;
   height: auto;
-  padding: 20px 33px 0 33px;
-  margin-left: 72px;
+  padding: 100px 33px 0 33px;
+  margin-left: ${(props) => (props.open ? "240" : "72")}px;
   box-sizing: border-box;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { instance } from "../api";
+import {getRelated} from "../api/api"
+
 import RelatedCard from "./RelatedCard";
 import styled from "styled-components";
 
@@ -428,12 +429,6 @@ const myData = [
   },
 ];
 
-interface GetVideoFnc{
-  (
-    videoId: string,
-    setState: (value: React.SetStateAction<any>) => void,
-  ): void;
-};
 
 type Props = { videoId: string };
  
@@ -441,15 +436,10 @@ function RelatedVideo({videoId}:Props){
 
   const [data, setData] = useState<IData | null>(null);
 
-  const getVideoData:GetVideoFnc = async (videoId:string, setData) => {
-    const res = await instance.get(
-      `/search?part=snippet&maxResults=10&relatedToVideoId=${videoId}&type=video`,
-    );
-    setData(res.data.items);
-  };
+  
 
   useEffect(() => {
-    // getVideoData(videoId, setData);
+    // getRelated(videoId, setData);
     setData(myData);
   }, [videoId]);
 

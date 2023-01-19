@@ -22,6 +22,10 @@ interface GetDetailFn {
   (videoId: string, setState: React.Dispatch<React.SetStateAction<any>>): void;
 }
 
+interface GetRelatedFnc {
+  (videoId: string, setState: (value: React.SetStateAction<any>) => void): void;
+}
+
 export const getComments: GetcommentsFn = async (
   videoId,
   setState,
@@ -74,6 +78,21 @@ export const getVideoDetail: GetDetailFn = async (videoId, setState) => {
     if (res.status === 200) {
       setState(res.data);
     }
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.message);
+    } else {
+      throw error;
+    }
+  }
+};
+
+export const getRelated: GetRelatedFnc = async (videoId, setData) => {
+  try {
+    const res = await instance.get(
+      `/search?part=snippet&maxResults=10&relatedToVideoId=${videoId}&type=video`,
+    );
+    setData(res.data.items);
   } catch (error) {
     if (error instanceof AxiosError) {
       console.log(error.message);
