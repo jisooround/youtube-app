@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { instance } from "../api";
 import { getDescription } from "../api/api";
+import { descriptionDummyData } from "../data";
 import { nFormatter } from "../utils/nFormatter";
 
 interface Description {
@@ -58,70 +59,18 @@ interface Description {
   }>;
 }
 
-const dummyData = {
-  kind: "youtube#channelListResponse",
-  etag: "ajF4r6clnUEyVb9aBeacaRfXn5w",
-  pageInfo: { totalResults: 1, resultsPerPage: 5 },
-  items: [
-    {
-      kind: "youtube#channel",
-      etag: "lahV7vkMgJ4f4Hw9t8XXIBGrzps",
-      id: "UCwQLh1dMRrT4WRjNKYzGHcw",
-      snippet: {
-        title: "Vars",
-        description:
-          '“You take 20 minutes to explain what should only take 2."\n\nWelcome to my main channel! Here you can find discussions, analysis and video essays on League of Legends. My second channel has the same but for Genshin Impact and my third channel features Super Smash Bros. Utlimate.\n\n(As of 04/13/2022) Currently making videos/content on:\n- League of Legends - This channel!\n- Genshin Impact - https://www.youtube.com/varsii\n- Super Smash Bros. Ultimate - https://www.youtube.com/varsiii\n',
-        customUrl: "@varsverum",
-        publishedAt: "2018-01-26T02:28:53Z",
-        thumbnails: {
-          default: {
-            url: "https://yt3.ggpht.com/HwXPP35OjkzHI6_BSUe0XvtrM7zg5mb__A1a_xl4oiehjIZyVTusYkyl9jWv8eByy7Yw7QbR=s88-c-k-c0x00ffffff-no-rj",
-            width: 88,
-            height: 88,
-          },
-          medium: {
-            url: "https://yt3.ggpht.com/HwXPP35OjkzHI6_BSUe0XvtrM7zg5mb__A1a_xl4oiehjIZyVTusYkyl9jWv8eByy7Yw7QbR=s240-c-k-c0x00ffffff-no-rj",
-            width: 240,
-            height: 240,
-          },
-          high: {
-            url: "https://yt3.ggpht.com/HwXPP35OjkzHI6_BSUe0XvtrM7zg5mb__A1a_xl4oiehjIZyVTusYkyl9jWv8eByy7Yw7QbR=s800-c-k-c0x00ffffff-no-rj",
-            width: 800,
-            height: 800,
-          },
-        },
-        localized: {
-          title: "Vars",
-          description:
-            '“You take 20 minutes to explain what should only take 2."\n\nWelcome to my main channel! Here you can find discussions, analysis and video essays on League of Legends. My second channel has the same but for Genshin Impact and my third channel features Super Smash Bros. Utlimate.\n\n(As of 04/13/2022) Currently making videos/content on:\n- League of Legends - This channel!\n- Genshin Impact - https://www.youtube.com/varsii\n- Super Smash Bros. Ultimate - https://www.youtube.com/varsiii\n',
-        },
-        country: "US",
-      },
-      contentDetails: {
-        relatedPlaylists: { likes: "", uploads: "UUwQLh1dMRrT4WRjNKYzGHcw" },
-      },
-      statistics: {
-        viewCount: "54584880",
-        subscriberCount: "176000",
-        hiddenSubscriberCount: false,
-        videoCount: "622",
-      },
-    },
-  ],
-};
-
 const Description = ({ channelId }: { channelId: string }) => {
-  localStorage.setItem("desc", JSON.stringify(dummyData));
+  localStorage.setItem("desc", JSON.stringify(descriptionDummyData));
   const localDesc = JSON.parse(localStorage.getItem("desc") || "");
   const [isError, setIsError] = useState<string>("");
 
   const [description, setDescription] = useState<Description>(
-    () => localDesc || dummyData,
+    () => localDesc || descriptionDummyData,
   );
 
   useEffect(() => {
     // getDescription(channelId, setDescription, setIsError);
-  }, []);
+  }, [channelId]);
 
   const desc = description.items.map((item) => item);
 
