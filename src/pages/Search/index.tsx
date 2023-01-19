@@ -5,7 +5,7 @@ import styled from "styled-components";
 import SearchCard from "../../components/SearchCard";
 import { getSearchData } from "../../api/api";
 
-const Search = () => {
+const Search = ({ open }: { open: boolean }) => {
   const [result, setResult] = useState<Search[]>([]);
   const [isError, setIsError] = useState<string>("");
   const useQuery = () => {
@@ -21,7 +21,7 @@ const Search = () => {
   // localStorage.setItem("item", JSON.stringify(result));
 
   return (
-    <Container>
+    <Container open={open}>
       <Filter>
         <div className="box">
           <svg
@@ -47,8 +47,10 @@ const Search = () => {
   );
 };
 
-const Container = styled.div`
-  margin-left: 250px;
+const Container = styled.div<{ open: boolean }>`
+  width: ${(props) => (props.open ? "calc(100% - 72)" : "calc(100% - 240)")}px;
+  margin-left: ${(props) => (props.open ? "250" : "72")}px;
+  /* margin-left: 250px; */
   padding: 90px 24px 16px 0px;
   overflow-y: hidden;
 `;

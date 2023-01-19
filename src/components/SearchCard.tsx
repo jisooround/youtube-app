@@ -106,6 +106,7 @@ const Video = styled.div`
   margin-right: 20px;
   cursor: pointer;
   img {
+    aspect-ratio: 16 / 9;
     width: fit-content;
     height: 100%;
     border-radius: 10px;
