@@ -6,10 +6,13 @@ import { Search } from "../pages/Search";
 import { nFormatter } from "../utils/nFormatter";
 import { videoTime } from "../utils/videoTime";
 import { Link } from "react-router-dom";
+import { AiOutlineClockCircle } from "react-icons/ai";
+import { BiListCheck, BiDotsVerticalRounded } from "react-icons/bi";
 
 const SearchCard = ({ data }: { data: Search }) => {
   const [videoResult, setVideoResult] = useState<Video>();
   const [channelResult, setChannelResult] = useState<Channel>();
+  const [isHovering, setIsHovering] = useState<boolean>(false);
 
   useEffect(() => {
     videoData();
@@ -35,7 +38,10 @@ const SearchCard = ({ data }: { data: Search }) => {
   return (
     <>
       {videoResult && channelResult ? (
-        <Section>
+        <Section
+          onMouseOver={() => setIsHovering(true)}
+          onMouseOut={() => setIsHovering(false)}
+        >
           <Card>
             <Video>
               <Link to={`/watch/${data.id.videoId}`}>
@@ -44,12 +50,29 @@ const SearchCard = ({ data }: { data: Search }) => {
               <Duration>
                 <span>{videoTime(videoResult.contentDetails.duration)}</span>
               </Duration>
+              {isHovering ? (
+                <HoverBox>
+                  <AiOutlineClockCircle />
+                  <BiListCheck />
+                </HoverBox>
+              ) : (
+                ""
+              )}
             </Video>
           </Card>
           <Info>
-            <Link to={`/watch/${data.id.videoId}`}>
-              <Title>{data.snippet.title}</Title>
-            </Link>
+            <TitleBox>
+              <Link to={`/watch/${data.id.videoId}`}>
+                <Title>{data.snippet.title}</Title>
+              </Link>
+              {isHovering ? (
+                <MoreInfoBtn>
+                  <BiDotsVerticalRounded />
+                </MoreInfoBtn>
+              ) : (
+                ""
+              )}
+            </TitleBox>
             <Views>
               <span>
                 조회수 {nFormatter(Number(videoResult.statistics.viewCount))}
@@ -71,7 +94,7 @@ const SearchCard = ({ data }: { data: Search }) => {
 };
 
 const Section = styled.section`
-  padding: 1.5rem 2rem;
+  padding: 1rem 2rem 0 2rem;
   display: flex;
 `;
 
@@ -89,9 +112,40 @@ const Video = styled.div`
   margin-right: 20px;
   cursor: pointer;
   img {
-    width: 360px;
-    border-radius: 10px;
+    width: 100%;
     height: 100%;
+    border-radius: 10px;
+  }
+`;
+
+const HoverBox = styled.div`
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  gap: 3px;
+  top: 5px;
+  right: 5px;
+  svg {
+    font-size: 22px;
+    background-color: #000000c0;
+    border-radius: 3px;
+    padding: 3px;
+    color: #fff;
+    cursor: pointer;
+  }
+`;
+
+const TitleBox = styled.div`
+  display: flex;
+  cursor: pointer;
+`;
+
+const MoreInfoBtn = styled.div`
+  position: absolute;
+  right: 130px;
+  cursor: pointer;
+  svg {
+    font-size: 20px;
   }
 `;
 
@@ -107,6 +161,7 @@ const Duration = styled.div`
   align-items: center;
   border-radius: 5px;
   font-size: 12px;
+  margin-bottom: 3px;
 `;
 
 const Info = styled.div`
@@ -118,7 +173,6 @@ const Title = styled.h3`
   margin-bottom: 0.5rem;
   line-height: 150%;
   font-size: 18px;
-  cursor: pointer;
 `;
 
 const Views = styled.div`
