@@ -1,6 +1,6 @@
 import { AiOutlineDislike, AiOutlineLike } from "react-icons/ai";
 import styled from "styled-components";
-import type { ISnippet } from "../types";
+import type { ISnippet } from "../types/commentsTypes";
 import { displayedAt } from "../utils/displayedAt";
 import { Profile } from "./Description";
 

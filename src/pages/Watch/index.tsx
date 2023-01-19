@@ -8,7 +8,7 @@ import Description from "../../components/Description";
 import MainVideo from "../../components/MainVideo";
 import RelatedVideo from "../../components/RelatedVideo";
 import { commentsDummyData, videoDetailDummyData } from "../../data";
-import type { IComment } from "../../types";
+import type { IComment } from "../../types/commentsTypes";
 
 interface WatchProps {
   open: boolean;
@@ -121,17 +121,19 @@ const Watch = ({ open }: WatchProps) => {
   const { id } = useParams() as { id: string };
   const [videoDetailData, setVideoDetailData] =
     useState<VideoDetailData>(videoDetailDummyData);
-
-  const [comments, setComments] = useState<IComment[]>(() => commentsDummyData);
+  const [comments, setComments] = useState<IComment[]>(
+    () =>
+      JSON.parse(localStorage.getItem("comments") || "") || commentsDummyData,
+  );
   const [isError, setIsError] = useState("");
 
   useEffect(() => {
-    // axios
-    //   .all([
-    //     getVideoDetail(id, setVideoDetailData, setIsError),
-    //     getComments(id, setComments, setIsError),
-    //   ])
-    //   .catch((error) => setIsError(error.message));
+    axios;
+    // .all([
+    //   getVideoDetail(id, setVideoDetailData, setIsError),
+    //   getComments(id, setComments, setIsError),
+    // ])
+    // .catch((error) => setIsError(error.message));
   }, [id]);
 
   console.log(comments);
