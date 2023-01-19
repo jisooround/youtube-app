@@ -15,7 +15,7 @@ const Watch = () => {
         <Description channelId="UCwQLh1dMRrT4WRjNKYzGHcw" />
         <Comments videoId={id} />
       </WatchPageWrapper>
-      <RelatedVideo />
+      <RelatedVideo videoId={id}/>
     </WatchContainer>
   );
 };
@@ -27,8 +27,8 @@ const WatchPageWrapper = styled.div`
 `;
 const WatchContainer = styled.div`
   display: flex;
-  justify-content: space-between;
   padding: 3rem;
+  justify-content: center;
 `;
 
 export default Watch;

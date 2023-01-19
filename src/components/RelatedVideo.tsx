@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { instance } from "../api";
+import {getRelated} from "../api/api"
+
 import RelatedCard from "./RelatedCard";
 import styled from "styled-components";
 
@@ -428,21 +429,19 @@ const myData = [
   },
 ];
 
-function RelatedVideo(): React.ReactElement {
+
+type Props = { videoId: string };
+ 
+function RelatedVideo({videoId}:Props){
+
   const [data, setData] = useState<IData | null>(null);
 
-  // const getVideoData = async () => {
-  //   const res = await instance.get(
-  //     "/search?part=snippet&maxResults=10&relatedToVideoId=ZDHCU-j3y4Y&type=video",
-  //   );
-  //   setData(res.data.items);
-  //   // console.log(JSON.stringify(res.data.items));
-  // };
+  
 
   useEffect(() => {
-    // getVideoData();
+    // getRelated(videoId, setData);
     setData(myData);
-  }, []);
+  }, [videoId]);
 
   return (
     <RelatedList>
@@ -452,6 +451,7 @@ function RelatedVideo(): React.ReactElement {
     </RelatedList>
   );
 }
+
 const RelatedList = styled.div`
   max-width: 400px;
 `;
