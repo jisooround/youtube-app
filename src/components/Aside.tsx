@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MdHomeFilled } from "react-icons/md";
+// import { MdHomeFilled } from "react-icons/md";
 import { useLocation } from "react-router-dom";
 
 const Aside = ({ open }: { open: boolean }) => {
@@ -12,7 +12,7 @@ const Aside = ({ open }: { open: boolean }) => {
     else {
       return (
         <Close>
-          <div className="wrap">
+          {/* <div className="wrap">
             <MdHomeFilled className="icon" />
             <p>홈</p>
           </div>
@@ -27,7 +27,7 @@ const Aside = ({ open }: { open: boolean }) => {
           <div className="wrap">
             <MdHomeFilled className="icon" />
             <p>보관함</p>
-          </div>
+          </div> */}
         </Close>
       );
     }
