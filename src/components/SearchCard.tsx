@@ -1,59 +1,81 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import { instance } from "../api";
-import { timeAgo } from "../utils/timeAgo";
 import { Search } from "../pages/Search";
 import { nFormatter } from "../utils/nFormatter";
 import { videoTime } from "../utils/videoTime";
+import { Link } from "react-router-dom";
+import { AiOutlineClockCircle } from "react-icons/ai";
+import { BiListCheck, BiDotsVerticalRounded } from "react-icons/bi";
+import { displayedAt } from "./../utils/displayedAt";
+import { getVideoDetail, getDescription } from "../api/api";
 
 const SearchCard = ({ data }: { data: Search }) => {
   const [videoResult, setVideoResult] = useState<Video>();
   const [channelResult, setChannelResult] = useState<Channel>();
-
+  const [isHovering, setIsHovering] = useState<boolean>(false);
+  const date: number = new Date(data.snippet.publishTime).getTime();
+  const [isError, setIsError] = useState<string>("");
   useEffect(() => {
-    videoData();
-    channelData();
+    getVideoDetail(data.id.videoId, setVideoResult, setIsError);
+    getDescription(data.snippet.channelId, setChannelResult, setIsError);
   }, [data]);
-
-  const videoData = async () => {
-    const response = await instance.get(
-      `/videos?part=snippet&part=contentDetails&part=player&part=statistics&id=${data.id.videoId}`,
-    );
-    setVideoResult(response.data.items[0]);
-  };
-
-  const channelData = async () => {
-    const response = await instance.get(
-      `/channels?part=snippet&part=statistics&part=contentDetails&id=${data.snippet.channelId}`,
-    );
-    setChannelResult(response.data.items[0]);
-  };
 
   // const videoDetail = JSON.parse(localStorage.getItem("video"));
 
   return (
     <>
-      {videoResult && channelResult ? (
-        <Section>
+      {videoResult && channelResult && videoResult.items.length > 0 ? (
+        <Section
+          onMouseOver={() => setIsHovering(true)}
+          onMouseOut={() => setIsHovering(false)}
+        >
           <Card>
             <Video>
-              <img src={data.snippet.thumbnails.medium.url} alt="video" />
+              <Link to={`/watch/${data.id.videoId}`}>
+                <img src={data.snippet.thumbnails.medium.url} alt="video" />
+              </Link>
               <Duration>
-                <span>{videoTime(videoResult.contentDetails.duration)}</span>
+                <span>
+                  {videoTime(videoResult?.items[0]?.contentDetails?.duration)}
+                </span>
               </Duration>
+              {isHovering ? (
+                <HoverBox>
+                  <AiOutlineClockCircle />
+                  <BiListCheck />
+                </HoverBox>
+              ) : (
+                ""
+              )}
             </Video>
           </Card>
           <Info>
-            <Title>{data.snippet.title}</Title>
+            <TitleBox>
+              <Link to={`/watch/${data.id.videoId}`}>
+                <Title>{data.snippet.title}</Title>
+              </Link>
+              {isHovering ? (
+                <MoreInfoBtn>
+                  <BiDotsVerticalRounded />
+                </MoreInfoBtn>
+              ) : (
+                ""
+              )}
+            </TitleBox>
             <Views>
               <span>
-                조회수 {nFormatter(Number(videoResult.statistics.viewCount))}
+                조회수{" "}
+                {nFormatter(
+                  Number(videoResult?.items[0]?.statistics?.viewCount),
+                )}
               </span>
               {" • "}
-              <span>{timeAgo(videoResult.snippet.publishedAt)}</span>
+              <span>{displayedAt(date)}</span>
             </Views>
             <Name>
-              <img src={channelResult.snippet.thumbnails.medium.url}></img>
+              <img
+                src={channelResult?.items[0]?.snippet?.thumbnails?.medium.url}
+              ></img>
 
               <span>{data.snippet.channelTitle}</span>
             </Name>
@@ -66,27 +88,59 @@ const SearchCard = ({ data }: { data: Search }) => {
 };
 
 const Section = styled.section`
-  padding: 1.5rem 2rem;
+  padding: 1rem 2rem 0 2rem;
   display: flex;
 `;
 
 const Card = styled.div`
+  width: 360px;
   height: 200px;
   color: #fff;
   font-size: 15px;
   letter-spacing: 0.2px;
+  position: relative;
 `;
 
 const Video = styled.div`
-  max-width: 360px;
   height: 200px;
-  position: relative;
   margin-right: 20px;
   cursor: pointer;
   img {
-    width: 360px;
-    border-radius: 10px;
+    width: fit-content;
     height: 100%;
+    border-radius: 10px;
+  }
+`;
+
+const HoverBox = styled.div`
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  gap: 3px;
+  top: 5px;
+  right: 5px;
+  svg {
+    font-size: 22px;
+    background-color: #000000c0;
+    border-radius: 3px;
+    padding: 3px;
+    color: #fff;
+    cursor: pointer;
+  }
+`;
+
+const TitleBox = styled.div`
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+`;
+
+const MoreInfoBtn = styled.div`
+  position: absolute;
+  right: 130px;
+  cursor: pointer;
+  svg {
+    font-size: 20px;
   }
 `;
 
@@ -95,25 +149,26 @@ const Duration = styled.div`
   background-color: rgba(0, 0, 0, 0.8);
   position: absolute;
   bottom: 0;
-  right: 0;
+  right: 5px;
   font-weight: 600;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 5px;
   font-size: 12px;
+  margin-bottom: 3px;
 `;
 
 const Info = styled.div`
   display: flex;
   flex-direction: column;
+  margin-left: 15px;
 `;
 
 const Title = styled.h3`
   margin-bottom: 0.5rem;
   line-height: 150%;
   font-size: 18px;
-  cursor: pointer;
 `;
 
 const Views = styled.div`
@@ -139,6 +194,17 @@ const Name = styled(Views)`
 const Descript = styled(Views)``;
 
 export interface Video {
+  kind: string;
+  etag: string;
+  id: string;
+  snippet: Snippet;
+  contentDetails: ContentDetails;
+  statistics: Statistics;
+  player: Player;
+  items: Item[];
+}
+
+export interface Item {
   kind: string;
   etag: string;
   id: string;
@@ -233,6 +299,7 @@ export interface Channel {
   snippet: Snippet;
   contentDetails: ContentDetails;
   statistics: Statistics;
+  items: Item[];
 }
 
 export interface Snippet {
