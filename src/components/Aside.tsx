@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MdHomeFilled } from "react-icons/Md";
+import { MdHomeFilled } from "react-icons/md";
 import { useLocation } from "react-router-dom";
 
 const Aside = ({ open }: { open: boolean }) => {
