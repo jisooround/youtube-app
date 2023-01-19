@@ -5,7 +5,13 @@ import { BsFillMicFill, BsBell } from "react-icons/bs";
 import { RiVideoAddLine } from "react-icons/ri";
 import { useNavigate, Link } from "react-router-dom";
 
-const Header = () => {
+const Header = ({
+  open,
+  handleClickOpen,
+}: {
+  open: boolean;
+  handleClickOpen: () => void;
+}) => {
   const navigate = useNavigate();
   const [value, setValue] = useState("");
 
@@ -15,6 +21,7 @@ const Header = () => {
     (document.activeElement as HTMLElement).blur();
   };
 
+  console.log("open", open);
   return (
     <Container>
       <Start>
@@ -92,14 +99,20 @@ const Header = () => {
     </Container>
   );
 };
-
 const Container = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-left: 15px;
+  background-color: #fff;
+  padding-left: 15px;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  @media (prefers-color-scheme: dark) {
+    background-color: #0f0f0f;
+  }
 `;
-
 const Start = styled.div`
   display: flex;
   justify-content: center;
