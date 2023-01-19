@@ -11,8 +11,7 @@ import { commentsDummyData, videoDetailDummyData } from "../../data";
 import type { IComment } from "../../types/commentsTypes";
 
 import { VideoDetailData } from "../../types/videoDetailTypes";
-import type { IData } from "../../types/relatedTypes"
-
+import type { IData } from "../../types/relatedTypes";
 
 interface WatchProps {
   open: boolean;
@@ -23,10 +22,7 @@ const Watch = ({ open }: WatchProps) => {
   const { id } = useParams() as { id: string };
   const [videoDetailData, setVideoDetailData] =
     useState<VideoDetailData>(videoDetailDummyData);
-  const [comments, setComments] = useState<IComment[]>(
-    () =>
-      JSON.parse(localStorage.getItem("comments") || "") || commentsDummyData,
-  );
+  const [comments, setComments] = useState<IComment[]>(() => commentsDummyData);
   const [isError, setIsError] = useState("");
   const [relatedData, setRelatedData] = useState<IData>([]);
 
@@ -40,11 +36,13 @@ const Watch = ({ open }: WatchProps) => {
       .catch((error) => setIsError(error.message));
   }, [id]);
 
+  console.log(comments);
+
   return (
     <WatchContainer open={open}>
       <WatchPageWrapper>
         <MainVideo videoDetailData={videoDetailData} />
-        <Description channelId="UCwQLh1dMRrT4WRjNKYzGHcw" />
+        <Description channelId={videoDetailData.items[0].snippet.channelId} />
         <Comments comments={comments} />
       </WatchPageWrapper>
       <RelatedVideo relatedData={relatedData} />
