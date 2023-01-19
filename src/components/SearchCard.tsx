@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import { instance } from "../api/api";
+import { instance } from "./../api/index";
 import { timeAgo } from "../utils/timeAgo";
 import { Search } from "../pages/Search";
 import { nFormatter } from "../utils/nFormatter";
 import { videoTime } from "../utils/videoTime";
+import { Link } from "react-router-dom";
 
 const SearchCard = ({ data }: { data: Search }) => {
   const [videoResult, setVideoResult] = useState<Video>();
@@ -37,14 +38,18 @@ const SearchCard = ({ data }: { data: Search }) => {
         <Section>
           <Card>
             <Video>
-              <img src={data.snippet.thumbnails.medium.url} alt="video" />
+              <Link to={`/watch/${data.id.videoId}`}>
+                <img src={data.snippet.thumbnails.medium.url} alt="video" />
+              </Link>
               <Duration>
                 <span>{videoTime(videoResult.contentDetails.duration)}</span>
               </Duration>
             </Video>
           </Card>
           <Info>
-            <Title>{data.snippet.title}</Title>
+            <Link to={`/watch/${data.id.videoId}`}>
+              <Title>{data.snippet.title}</Title>
+            </Link>
             <Views>
               <span>
                 조회수 {nFormatter(Number(videoResult.statistics.viewCount))}
