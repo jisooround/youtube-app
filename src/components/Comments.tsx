@@ -40,23 +40,18 @@ export interface ISnippet {
 }
 
 interface CommentsProp {
-  videoId: string;
+  comments: IComment[];
+  setComments: React.Dispatch<React.SetStateAction<IComment[]>>;
 }
 
-const Comments = ({ videoId }: CommentsProp) => {
+const Comments = ({ comments, setComments }: CommentsProp) => {
   localStorage.setItem("comments", JSON.stringify(commentsDummyData));
   const localComments = JSON.parse(localStorage.getItem("comments") || "");
-  const [comments, setComments] = useState<IComment[]>(
-    () => localComments || commentsDummyData,
-  );
-  const [isError, setIsError] = useState<string>("");
 
   useEffect(() => {
     // getComments(videoId, setComments, setIsError);
     setComments(commentsDummyData);
-  }, [videoId]);
-
-  console.log(comments);
+  }, [comments]);
 
   const commentsData = comments.map(
     (comment) => comment.snippet.topLevelComment.snippet,

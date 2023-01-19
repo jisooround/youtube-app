@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { getComments, getDescription, getVideoDetail } from "../../api/api";
-import Comments from "../../components/Comments";
+import Comments, { IComment } from "../../components/Comments";
 import Description from "../../components/Description";
 import MainVideo from "../../components/MainVideo";
 import RelatedVideo from "../../components/RelatedVideo";
@@ -16,14 +16,16 @@ const Watch = ({ open }: WatchProps) => {
   // type assertion
   const { id } = useParams() as { id: string };
   const [videoDetailData, setVideoDetailData] = useState();
-  const [comments, setComments] = useState();
+  const [comments, setComments] = useState<IComment[]>([]);
   const [isError, setIsError] = useState("");
 
   useEffect(() => {
-    axios.all([
-      getVideoDetail(id, setVideoDetailData, setIsError),
-      getComments(id, setComments, setIsError),
-    ]);
+    axios
+      .all([
+        getVideoDetail(id, setVideoDetailData, setIsError),
+        getComments(id, setComments, setIsError),
+      ])
+      .catch((error) => setIsError(error.message));
   }, [id]);
 
   return (
@@ -31,7 +33,7 @@ const Watch = ({ open }: WatchProps) => {
       <WatchPageWrapper>
         <MainVideo videoId={id} />
         <Description channelId="UCwQLh1dMRrT4WRjNKYzGHcw" />
-        <Comments videoId={id} />
+        <Comments comments={comments} setComments={setComments} />
       </WatchPageWrapper>
       <RelatedVideo videoId={id} />
     </WatchContainer>
