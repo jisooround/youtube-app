@@ -1,4 +1,6 @@
-export function displayedAt(now:number, createdAt: number) {
+export function displayedAt(createdAt: number) {
+  const now = new Date().getTime();
+
   const milliSeconds = now - createdAt;
   const seconds = milliSeconds / 1000;
   if (seconds < 60) return `recently`;
@@ -7,7 +9,7 @@ export function displayedAt(now:number, createdAt: number) {
   const hours = minutes / 60;
   if (hours < 24) return `${Math.floor(hours)}시간 전`;
   const days = hours / 24;
-  if (days < 7) return `${Math.floor(days)}일 전`; 
+  if (days < 7) return `${Math.floor(days)}일 전`;
   const weeks = days / 7;
   if (weeks < 5) return `${Math.floor(weeks)}주 전`;
   const months = days / 30;
