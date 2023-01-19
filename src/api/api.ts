@@ -14,10 +14,12 @@ interface FetchFn {
 
 export const getComments: FetchFn = async (id, setState, setError) => {
   try {
-    const res = await instance.get(`/commentThreads?part=snippet&id=${id}`);
+    const res = await instance.get(
+      `/commentThreads?part=snippet&videoId=${id}`,
+    );
 
     if (res.status === 200) {
-      localStorage.setItem("comments", JSON.stringify(res.data.items));
+      // localStorage.setItem("comments", JSON.stringify(res.data.items));
       setState(res.data.items);
     }
   } catch (error) {
