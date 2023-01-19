@@ -9,8 +9,10 @@ import MainVideo from "../../components/MainVideo";
 import RelatedVideo from "../../components/RelatedVideo";
 import { commentsDummyData, videoDetailDummyData } from "../../data";
 import type { IComment } from "../../types/commentsTypes";
+
 import { VideoDetailData } from "../../types/videoDetailTypes";
 import type { IData } from "../../types/relatedTypes"
+
 
 interface WatchProps {
   open: boolean;
@@ -53,13 +55,16 @@ const Watch = ({ open }: WatchProps) => {
 const WatchPageWrapper = styled.div`
   max-width: 1000px;
   min-width: 500px;
-  margin-right: 40px;
 `;
 const WatchContainer = styled.div<{ open: boolean }>`
   display: flex;
+  gap: 40px;
   padding: 5rem 3.5rem;
   margin-left: ${(props) => (props.open ? "240" : "0")}px;
   justify-content: center;
+  @media screen and (max-width: 1000px) {
+    display: block;
+  }
 `;
 
 export default Watch;

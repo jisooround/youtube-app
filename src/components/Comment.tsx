@@ -59,11 +59,11 @@ const StyledComment = styled.div`
   font-size: 14px;
 
   span {
-    word-break: keep-all;
+    word-break: break-all;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
   }
 
   time {

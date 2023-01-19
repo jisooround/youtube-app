@@ -3,7 +3,8 @@ import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
 import Watch from "./pages/Watch";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import ScrollToTop from "./utils/ScrollToTop";
 
 const App = () => {
   const [open, setOpen] = useState(false);
@@ -12,8 +13,15 @@ const App = () => {
     setOpen((prev) => !prev);
   };
 
+  useEffect(() => {
+    window.onbeforeunload = function pushRefresh() {
+      window.scrollTo(0, 0);
+    };
+  }, []);
+
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route
           element={<Layout open={open} handleClickOpen={handleClickOpen} />}
