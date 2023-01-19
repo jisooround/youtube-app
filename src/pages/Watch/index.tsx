@@ -27,13 +27,13 @@ const Watch = ({ open }: WatchProps) => {
   const [relatedData, setRelatedData] = useState<IData>([]);
 
   useEffect(() => {
-    axios
-      .all([
-        getVideoDetail(id, setVideoDetailData, setIsError),
-        getComments(id, setComments, setIsError),
-        getRelated(id, setRelatedData, setIsError),
-      ])
-      .catch((error) => setIsError(error.message));
+    // axios
+    //   .all([
+    //     getVideoDetail(id, setVideoDetailData, setIsError),
+    //     getComments(id, setComments, setIsError),
+    //     getRelated(id, setRelatedData, setIsError),
+    //   ])
+    //   .catch((error) => setIsError(error.message));
   }, [id]);
 
   console.log(comments);
@@ -51,8 +51,11 @@ const Watch = ({ open }: WatchProps) => {
 };
 
 const WatchPageWrapper = styled.div`
-  max-width: 1000px;
+  width: 1000px;
   min-width: 500px;
+  @media screen and (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 const WatchContainer = styled.div<{ open: boolean }>`
   display: flex;
