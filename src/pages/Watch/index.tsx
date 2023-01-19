@@ -3,10 +3,12 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { getComments, getDescription, getVideoDetail } from "../../api/api";
-import Comments, { IComment } from "../../components/Comments";
+import Comments from "../../components/Comments";
 import Description from "../../components/Description";
 import MainVideo from "../../components/MainVideo";
 import RelatedVideo from "../../components/RelatedVideo";
+import { commentsDummyData } from "../../data";
+import type { IComment } from "../../types";
 
 interface WatchProps {
   open: boolean;
@@ -16,24 +18,26 @@ const Watch = ({ open }: WatchProps) => {
   // type assertion
   const { id } = useParams() as { id: string };
   const [videoDetailData, setVideoDetailData] = useState();
-  const [comments, setComments] = useState<IComment[]>([]);
+  const [comments, setComments] = useState<IComment[]>(() => commentsDummyData);
   const [isError, setIsError] = useState("");
 
   useEffect(() => {
-    axios
-      .all([
-        getVideoDetail(id, setVideoDetailData, setIsError),
-        getComments(id, setComments, setIsError),
-      ])
-      .catch((error) => setIsError(error.message));
+    // axios
+    //   .all([
+    //     getVideoDetail(id, setVideoDetailData, setIsError),
+    //     getComments(id, setComments, setIsError),
+    //   ])
+    //   .catch((error) => setIsError(error.message));
   }, [id]);
+
+  console.log(comments);
 
   return (
     <WatchContainer open={open}>
       <WatchPageWrapper>
         <MainVideo videoId={id} />
         <Description channelId="UCwQLh1dMRrT4WRjNKYzGHcw" />
-        <Comments comments={comments} setComments={setComments} />
+        <Comments comments={comments} />
       </WatchPageWrapper>
       <RelatedVideo videoId={id} />
     </WatchContainer>

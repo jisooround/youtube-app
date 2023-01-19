@@ -2,57 +2,10 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { getComments } from "../api/api";
 import { commentsDummyData } from "../data";
+import type { CommentsProp, IComment } from "../types";
 import Comment from "./Comment";
 
-export interface IComment {
-  kind: string;
-  etag: string;
-  id: string;
-  snippet: {
-    videoId: string;
-    topLevelComment: {
-      kind: string;
-      etag: string;
-      id: string;
-      snippet: ISnippet;
-    };
-    canReply: boolean;
-    totalReplyCount: number;
-    isPublic: boolean;
-  };
-}
-
-export interface ISnippet {
-  videoId: string;
-  textDisplay: string;
-  textOriginal: string;
-  authorDisplayName: string;
-  authorProfileImageUrl: string;
-  authorChannelUrl: string;
-  authorChannelId: {
-    value: string;
-  };
-  canRate: boolean;
-  viewerRating: string;
-  likeCount: number;
-  publishedAt: string;
-  updatedAt: string;
-}
-
-interface CommentsProp {
-  comments: IComment[];
-  setComments: React.Dispatch<React.SetStateAction<IComment[]>>;
-}
-
-const Comments = ({ comments, setComments }: CommentsProp) => {
-  localStorage.setItem("comments", JSON.stringify(commentsDummyData));
-  const localComments = JSON.parse(localStorage.getItem("comments") || "");
-
-  useEffect(() => {
-    // getComments(videoId, setComments, setIsError);
-    setComments(commentsDummyData);
-  }, [comments]);
-
+const Comments = ({ comments }: CommentsProp) => {
   const commentsData = comments.map(
     (comment) => comment.snippet.topLevelComment.snippet,
   );
@@ -60,7 +13,6 @@ const Comments = ({ comments, setComments }: CommentsProp) => {
   return (
     <CommentSection>
       <H4>댓글 {commentsData.length}개</H4>
-
       {
         <ul>
           {commentsData.map((comment) => (
