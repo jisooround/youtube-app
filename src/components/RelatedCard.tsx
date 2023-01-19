@@ -34,7 +34,7 @@ function RelatedCard({ item }: Props) {
     setVideoView(nFormatter(100000));
     setTime(videoTime("PT1H15M15S"));
   }, []);
-  const watchLink = `/watch/${item.id.videoId}`
+  const watchLink = `/watch/${item.id.videoId}`;
   return (
     <Link to={watchLink}>
       <VideoCard
