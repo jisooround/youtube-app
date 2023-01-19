@@ -146,6 +146,7 @@ const dummyData = {
 };
 
 const Card = ({ item }: { item: VideoData }) => {
+  const date: number = new Date(item.snippet.publishTime).getTime();
   const videoId = item.id.videoId;
 
   useEffect(() => {
@@ -167,8 +168,6 @@ const Card = ({ item }: { item: VideoData }) => {
 
   // dummy data 로컬에서 가져오기
   const localDetailData = JSON.parse(localStorage.getItem("videoId") || "");
-
-  // const { videoId } = useParams();
 
   return (
     <Wrap>
@@ -198,10 +197,7 @@ const Card = ({ item }: { item: VideoData }) => {
             <ViewCount>
               조회수 {nFormatter(localDetailData.items[0].statistics.viewCount)}
             </ViewCount>
-            <Time>
-              &nbsp; &middot;{" "}
-              {displayedAt(localDetailData.items[0].snippet.publishedAt)}{" "}
-            </Time>
+            <Time>&nbsp; &middot; {displayedAt(date)} </Time>
           </Detail>
         </Text>
       </Info>
@@ -266,6 +262,11 @@ const Title = styled.p`
   font-size: 1em;
   font-weight: 500;
   margin-bottom: 6px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 const ChannelTitle = styled.div`
   font-size: 0.8em;
