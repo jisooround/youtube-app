@@ -7,27 +7,26 @@ import { nFormatter } from "../utils/nFormatter";
 import { videoTime } from "../utils/videoTime";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { BiListCheck, BiDotsVerticalRounded } from "react-icons/bi";
+import { getVideoDetail } from "../api/api"
+import type {DataType, Video} from "../types/relatedTypes"
 
-type Props = { item: Root };
+type Props = { item: DataType };
 
 function RelatedCard({ item }: Props) {
   const videoDate: number = new Date(item.snippet.publishTime).getTime();
-  const [videoResult, setVideoResult] = useState<Video>();
+  const [videoResult, setVideoResult] = useState<Video|null>(null);
   const [isHovering, setIsHovering] = useState<boolean>(false);
-
-  const getDetail = async (videoId: string = item.id.videoId) => {
-    const res = await instance.get(
-      `/videos?part=snippet&part=contentDetails&part=player&part=statistics&id=${videoId}`,
-    );
-    setVideoResult(res.data.items[0]);
-  };
-
+  const [isError, setIsError] = useState<string>("")
+  // const getDetail = async (videoId: string = item.id.videoId) => {
+  //   const res = await instance.get(
+  //     `/videos?part=snippet&part=contentDetails&part=player&part=statistics&id=${videoId}`,
+  //   );
+  //   setVideoResult(res.data.items[0]);
+  // };
   useEffect(() => {
-    getDetail();
-    // setVideoView(nFormatter(100000));
-    // setTime(videoTime("PT1H15M15S"));
+    getVideoDetail(item.id.videoId, setVideoResult, setIsError);
   }, [item]);
-  // videoTime(videoResult?.contentDetails.duration)
+  console.log(JSON.stringify(item))
   const watchLink = `/watch/${item.id.videoId}`;
   return (
     <Link to={watchLink}>
@@ -38,7 +37,7 @@ function RelatedCard({ item }: Props) {
         <PreviewBox>
           <Thumbnail src={item.snippet.thumbnails.medium.url} />
           <VideoTime>
-            {videoTime(videoResult.contentDetails.duration)}
+            {videoTime(videoResult?.items[0]?.contentDetails?.duration||"")}
           </VideoTime>
           {isHovering ? (
             <HoverBox>
@@ -57,7 +56,7 @@ function RelatedCard({ item }: Props) {
           <RelatedChannel>{item.snippet.channelTitle}</RelatedChannel>
           <InfoBox>
             <p>
-              조회수 {nFormatter(Number(videoResult?.statistics.viewCount))}
+              조회수 {nFormatter(Number(videoResult?.items[0]?.statistics?.viewCount))}
             </p>
             <InfoDot> • </InfoDot>
             <p>{displayedAt(videoDate)}</p>
@@ -163,156 +162,5 @@ const MoreInfoBtn = styled.div`
     font-size: 20px;
   }
 `;
-
-export interface Root {
-  kind: string;
-  etag: string;
-  id: Id;
-  snippet: Snippet;
-}
-
-export interface Id {
-  kind: string;
-  videoId: string;
-}
-
-export interface Snippet {
-  publishedAt: string;
-  channelId: string;
-  title: string;
-  description: string;
-  thumbnails: Thumbnails;
-  channelTitle: string;
-  liveBroadcastContent: string;
-  publishTime: string;
-}
-
-export interface Thumbnails {
-  default: Default;
-  medium: Medium;
-  high: High;
-  standard: Standard;
-  maxres: Maxres;
-}
-
-export interface Default {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface Medium {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface High {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface Standard {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface Maxres {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface Video {
-  kind: string;
-  etag: string;
-  id: string;
-  snippet: Snippet;
-  contentDetails: ContentDetails;
-  statistics: Statistics;
-  player: Player;
-}
-
-export interface Snippet {
-  publishedAt: string;
-  channelId: string;
-  title: string;
-  description: string;
-  thumbnails: Thumbnails;
-  channelTitle: string;
-  tags: string[];
-  categoryId: string;
-  liveBroadcastContent: string;
-  localized: Localized;
-  defaultAudioLanguage: string;
-}
-
-export interface Thumbnails {
-  default: Default;
-  medium: Medium;
-  high: High;
-  standard: Standard;
-  maxres: Maxres;
-}
-
-export interface Default {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface Medium {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface High {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface Standard {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface Maxres {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface Localized {
-  title: string;
-  description: string;
-}
-
-export interface ContentDetails {
-  duration: string;
-  dimension: string;
-  definition: string;
-  caption: string;
-  licensedContent: boolean;
-  contentRating: ContentRating;
-  projection: string;
-}
-
-export interface ContentRating {}
-
-export interface Statistics {
-  viewCount: string;
-  likeCount: string;
-  favoriteCount: string;
-  commentCount: string;
-}
-
-export interface Player {
-  embedHtml: string;
-}
 
 export default RelatedCard;
