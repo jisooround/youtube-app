@@ -11,8 +11,7 @@ import { BiListCheck, BiDotsVerticalRounded } from "react-icons/bi";
 type Props = { item: Root };
 
 function RelatedCard({ item }: Props) {
-  const date: number = new Date(item.snippet.publishTime).getTime();
-  let now: number = new Date().getTime(); // 현재 날짜 및 시간
+  const videoDate: number = new Date(item.snippet.publishTime).getTime();
 
   const [videoView, setVideoView] = useState<string | number>(0);
   const [time, setTime] = useState<string>("");
@@ -50,7 +49,7 @@ function RelatedCard({ item }: Props) {
               <BiListCheck />
             </HoverBox>
           ) : (
-            ""
+            null
           )}
         </PreviewBox>
         <DetailBox>
@@ -60,13 +59,13 @@ function RelatedCard({ item }: Props) {
               <BiDotsVerticalRounded />
             </MoreInfoBtn>
           ) : (
-            ""
+            null
           )}
           <RelatedChannel>{item.snippet.channelTitle}</RelatedChannel>
           <InfoBox>
             <p>조회수 {videoView}</p>
             <InfoDot> • </InfoDot>
-            <p>{displayedAt(now, date)}</p>
+            <p>{displayedAt(videoDate)}</p>
           </InfoBox>
         </DetailBox>
       </VideoCard>

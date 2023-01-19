@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import {getRelated} from "../api/api"
-
 import RelatedCard from "./RelatedCard";
 import styled from "styled-components";
+import axios from "axios";
 
 const myData = [
   {
@@ -433,13 +433,11 @@ const myData = [
 type Props = { videoId: string };
  
 function RelatedVideo({videoId}:Props){
-
+  const [isError, setIsError] = useState('')
   const [data, setData] = useState<IData | null>(null);
-
-  
-
   useEffect(() => {
-    // getRelated(videoId, setData);
+    // getRelated(videoId, setData, setIsError);
+    axios.all
     setData(myData);
   }, [videoId]);
 
@@ -448,6 +446,7 @@ function RelatedVideo({videoId}:Props){
       {data?.map((item) => (
         <RelatedCard key={item.id.videoId} item={item} />
       ))}
+
     </RelatedList>
   );
 }
