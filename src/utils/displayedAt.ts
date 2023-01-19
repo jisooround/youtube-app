@@ -1,9 +1,8 @@
 export function displayedAt(createdAt: number) {
   const now = new Date().getTime();
-
-  const milliSeconds = now - createdAt;
+  const milliSeconds =  now - createdAt;
   const seconds = milliSeconds / 1000;
-  if (seconds < 60) return `recently`;
+  if (seconds < 60) return `방금전`;
   const minutes = seconds / 60;
   if (minutes < 60) return `${Math.floor(minutes)}분 전`;
   const hours = minutes / 60;

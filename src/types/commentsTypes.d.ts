@@ -38,3 +38,4 @@ export interface IComment {
 export interface CommentsProp {
   comments: IComment[];
 }
+

@@ -10,14 +10,35 @@ export const videoTime = (input: string) => {
     if (matches[2]) minutes = matches[2];
     if (matches[3]) seconds = matches[3];
   }
+  
   if (minutes.length === 1) minutes = `0${minutes}`;
   if (seconds.length === 1) seconds = `0${seconds}`;
-  if (hours.length === 1) {
-    hours = `${hours}`;
-    return `${hours}:${minutes}:${seconds}`;
+
+  if (hours.length === 0) {
+    if (minutes.length === 0) {
+      if (seconds.length === 0) {
+        return `00:00`;
+      } else {
+        return `00:${seconds}`;
+      }
+    } else {
+      if(seconds.length === 0){
+        return `${minutes}:00`;
+      } else {
+        return `${minutes}:${seconds}`;
+      }
+    }
+  } else {
+    if (minutes.length === 0) {
+      if (seconds.length === 0) {
+        return `${hours}:00:00`;
+      } else return `${hours}:00:${seconds}`;
+    } else {
+      if(seconds.length === 0){
+        return `${hours}:${minutes}:00`;
+      } else {
+        return `${hours}:${minutes}:${seconds}`;
+      }
+    }
   }
-  if (seconds.length === 0) return `${minutes}:00`;
-  if (minutes.length === 0) return `0:${seconds}`;
-  if (hours.length === 0) return `${minutes}:${seconds}`;
-  return ``;
 };
