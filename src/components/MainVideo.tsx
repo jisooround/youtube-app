@@ -1,240 +1,18 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { getVideoDetail } from "../api/api";
+import { VideoDetailData } from "../pages/Watch";
 import { displayedAt } from "../utils/displayedAt";
 import { nFormatter } from "../utils/nFormatter";
 
 interface MainVideoProps {
-  videoId: string;
+  videoDetailData: VideoDetailData | null;
 }
 
-export interface VideoDetailData {
-  kind: string;
-  etag: string;
-  items: Item[];
-  pageInfo: PageInfo;
-}
-
-export interface Item {
-  kind: string;
-  etag: string;
-  id: string;
-  snippet: Snippet;
-  contentDetails: ContentDetails;
-  statistics: Statistics;
-  player: Player;
-}
-
-export interface Snippet {
-  publishedAt: string;
-  channelId: string;
-  title: string;
-  description: string;
-  thumbnails: Thumbnails;
-  channelTitle: string;
-  tags: string[];
-  categoryId: string;
-  liveBroadcastContent: string;
-  localized: Localized;
-  defaultAudioLanguage: string;
-}
-
-export interface Thumbnails {
-  default: Default;
-  medium: Medium;
-  high: High;
-  standard: Standard;
-  maxres: Maxres;
-}
-
-export interface Default {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface Medium {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface High {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface Standard {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface Maxres {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface Localized {
-  title: string;
-  description: string;
-}
-
-export interface ContentDetails {
-  duration: string;
-  dimension: string;
-  definition: string;
-  caption: string;
-  licensedContent: boolean;
-  contentRating: ContentRating;
-  projection: string;
-}
-
-export interface ContentRating {}
-
-export interface Statistics {
-  viewCount: string;
-  likeCount: string;
-  favoriteCount: string;
-  commentCount: string;
-}
-
-export interface Player {
-  embedHtml: string;
-}
-
-export interface PageInfo {
-  totalResults: number;
-  resultsPerPage: number;
-}
-
-const MainVideo = ({ videoId }: MainVideoProps) => {
-  const initialData = {
-    kind: "youtube#videoListResponse",
-    etag: "UaVhWWfFRX6oOr9PuxvQGoIRITU",
-    items: [
-      {
-        kind: "youtube#video",
-        etag: "s43bWhmTNZVZVZZ0lWueAgD96s4",
-        id: "ZDHCU-j3y4Y",
-        snippet: {
-          publishedAt: "2023-01-15T19:00:11Z", // O
-          channelId: "UCwQLh1dMRrT4WRjNKYzGHcw",
-          title: "The History Of Reworks That FAILED In League Of Legends", // O
-          description:
-            "Throughout League's entire history, many champions were reworked or reimagined to have a more healthy, modernized, and engaging playstyle. For the most part, the majority of them have turned out for the better, but there were a few that turned out so bad that they actually had to get REVERTED (or in some cases reworked again). Today we'll be going through some of League's Failed Reworks!\n\nLeague of Legends Discussion Playlist: https://bit.ly/3dzJuUZ\n\nCheck out my Genshin Impact channel! https://bit.ly/3HQN9ud\nCheck out my Smash Bros channel! https://bit.ly/3rlFD3Z\n\nSupport me on Patreon! https://bit.ly/3iy5pvu\nDonate to the channel! https://bit.ly/36TpIQP\n\n~Editor (TofuGraphics)~\nTwitter: https://twitter.com/TofuGraphics\n\n~Contact Links~\nFacebook: https://bit.ly/3lGV9Vg\nTwitter: https://bit.ly/3kv7CZU\nDiscord: https://bit.ly/33M2iev\nTwitch: https://bit.ly/2XNes31\nCandle.gg: https://bit.ly/3ndfU9r\nEmail: varsverum@gmail.com (Business inquiries only)\n\nGraphics provided by: https://twitter.com/TofuGraphics\n\n#LoL #Fail #Reworks",
-          thumbnails: {
-            default: {
-              url: "https://i.ytimg.com/vi/ZDHCU-j3y4Y/default.jpg",
-              width: 120,
-              height: 90,
-            },
-            medium: {
-              url: "https://i.ytimg.com/vi/ZDHCU-j3y4Y/mqdefault.jpg",
-              width: 320,
-              height: 180,
-            },
-            high: {
-              url: "https://i.ytimg.com/vi/ZDHCU-j3y4Y/hqdefault.jpg",
-              width: 480,
-              height: 360,
-            },
-            standard: {
-              url: "https://i.ytimg.com/vi/ZDHCU-j3y4Y/sddefault.jpg",
-              width: 640,
-              height: 480,
-            },
-            maxres: {
-              url: "https://i.ytimg.com/vi/ZDHCU-j3y4Y/maxresdefault.jpg",
-              width: 1280,
-              height: 720,
-            },
-          },
-          channelTitle: "Vars",
-          tags: [
-            "vars",
-            "varsverum",
-            "league of legends",
-            "lol",
-            "vars lol",
-            "league of legends gameplay",
-            "lol discussion",
-            "vars league of legends",
-            "why no one plays",
-            "lol why no one plays",
-            "lol rework",
-            "lol rengar rework",
-            "lol asol rework",
-            "lol aurelion sol rework",
-            "lol zac",
-            "lol zac ultimate",
-            "lol leblanc rework",
-            "lol leblanc revert",
-            "lol rengar revert",
-            "rework",
-            "lol new aurelion sol",
-            "lol aurelion sol abilities",
-            "reworks in league of legends",
-            "lol kog'maw 5.0 attack speed",
-            "lol ryze",
-          ],
-          categoryId: "20",
-          liveBroadcastContent: "none",
-          localized: {
-            title: "The History Of Reworks That FAILED In League Of Legends",
-            description:
-              "Throughout League's entire history, many champions were reworked or reimagined to have a more healthy, modernized, and engaging playstyle. For the most part, the majority of them have turned out for the better, but there were a few that turned out so bad that they actually had to get REVERTED (or in some cases reworked again). Today we'll be going through some of League's Failed Reworks!\n\nLeague of Legends Discussion Playlist: https://bit.ly/3dzJuUZ\n\nCheck out my Genshin Impact channel! https://bit.ly/3HQN9ud\nCheck out my Smash Bros channel! https://bit.ly/3rlFD3Z\n\nSupport me on Patreon! https://bit.ly/3iy5pvu\nDonate to the channel! https://bit.ly/36TpIQP\n\n~Editor (TofuGraphics)~\nTwitter: https://twitter.com/TofuGraphics\n\n~Contact Links~\nFacebook: https://bit.ly/3lGV9Vg\nTwitter: https://bit.ly/3kv7CZU\nDiscord: https://bit.ly/33M2iev\nTwitch: https://bit.ly/2XNes31\nCandle.gg: https://bit.ly/3ndfU9r\nEmail: varsverum@gmail.com (Business inquiries only)\n\nGraphics provided by: https://twitter.com/TofuGraphics\n\n#LoL #Fail #Reworks",
-          },
-          defaultAudioLanguage: "en",
-        },
-        contentDetails: {
-          duration: "PT15M1S",
-          dimension: "2d",
-          definition: "hd",
-          caption: "false",
-          licensedContent: true,
-          contentRating: {},
-          projection: "rectangular",
-        },
-        statistics: {
-          viewCount: "50299", // O
-          likeCount: "2700", // O
-          favoriteCount: "0",
-          commentCount: "289",
-        },
-        player: {
-          // O
-          embedHtml:
-            '<iframe width="480" height="270" src="//www.youtube.com/embed/ZDHCU-j3y4Y?autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
-        },
-      },
-    ],
-    pageInfo: {
-      totalResults: 1,
-      resultsPerPage: 1,
-    },
-  };
-  const [videoDetailData, setVideoDetailData] =
-    useState<VideoDetailData | null>(null);
-  const [isError, setIsError] = useState<string>("");
+const MainVideo = ({ videoDetailData }: MainVideoProps) => {
   const tags = videoDetailData?.items[0].snippet.tags.map((tag, index) => {
     if (index < 4) return <Tag key={index}>#{tag}</Tag>;
   });
-
-  const handleViewCount = (): string => {
-    let viewCount = Number(
-      videoDetailData?.items[0]?.statistics?.viewCount,
-    ).toLocaleString("ko-kr");
-    if (viewCount === "NaN") viewCount = "";
-    return viewCount;
-  };
-
-  useEffect(() => {
-    // getVideoDetail(videoId, setVideoDetailData);
-    setVideoDetailData(initialData);
-  }, [videoId]);
 
   return (
     <VideoContainer>
@@ -275,7 +53,7 @@ const MainVideo = ({ videoId }: MainVideoProps) => {
             <span>
               {nFormatter(
                 Number(videoDetailData?.items[0].statistics.likeCount),
-              )}
+              ) || ""}
             </span>
           </Button>
           <Button>
