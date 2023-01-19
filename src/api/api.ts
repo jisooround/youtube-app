@@ -1,6 +1,5 @@
 import { AxiosError } from "axios";
 import { instance } from ".";
-
 // get comments
 interface FetchFn {
   (
@@ -14,7 +13,7 @@ interface FetchFn {
 
 export const getComments: FetchFn = async (id, setState, setError) => {
   try {
-    const res = await instance.get(`/commentThreads?part=snippet&id=${id}`);
+    const res = await instance.get(`/commentThreads?part=snippet&videoId=${id}`);
 
     if (res.status === 200) {
       localStorage.setItem("comments", JSON.stringify(res.data.items));
@@ -68,13 +67,13 @@ export const getVideoDetail: FetchFn = async (id, setState, setError) => {
   }
 };
 
-export const getRelated: FetchFn = async (id, setData, setError) => {
+export const getRelated: FetchFn = async (id, setRelatedData, setError) => {
   try {
     const res = await instance.get(
       `/search?part=snippet&maxResults=10&relatedToVideoId=${id}&type=video`,
     );
     if (res.status === 200) {
-      setData(res.data.items);
+      setRelatedData(res.data.items);
     }
   } catch (error) {
     if (error instanceof AxiosError) {
@@ -85,3 +84,5 @@ export const getRelated: FetchFn = async (id, setData, setError) => {
     }
   }
 };
+
+

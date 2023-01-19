@@ -430,23 +430,19 @@ const myData = [
 ];
 
 
-type Props = { videoId: string };
+type Props = { relatedData: any };
  
-function RelatedVideo({videoId}:Props){
-  const [isError, setIsError] = useState('')
-  const [data, setData] = useState<IData | null>(null);
-  useEffect(() => {
-    // getRelated(videoId, setData, setIsError);
-    axios.all
-    setData(myData);
-  }, [videoId]);
+function RelatedVideo({relatedData}:Props){
+  // const [myData1, setOwnData] = useState<any>(null)
 
   return (
     <RelatedList>
-      {data?.map((item) => (
+      {relatedData?.map((item:any) => (
         <RelatedCard key={item.id.videoId} item={item} />
       ))}
-
+      {myData?.map((item:any) => (
+        <RelatedCard key={item.id.videoId} item={item} />
+      ))}
     </RelatedList>
   );
 }
