@@ -32,8 +32,6 @@ const Watch = ({ open }: WatchProps) => {
       .catch((error) => setIsError(error.message));
   }, [id]);
 
-  console.log(comments);
-
   return (
     <WatchContainer open={open}>
       <WatchPageWrapper>

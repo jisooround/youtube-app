@@ -12,27 +12,22 @@ type Props = { item: Root };
 
 function RelatedCard({ item }: Props) {
   const videoDate: number = new Date(item.snippet.publishTime).getTime();
-
-  const [videoView, setVideoView] = useState<string | number>(0);
-  const [time, setTime] = useState<string>("");
+  const [videoResult, setVideoResult] = useState<Video>();
   const [isHovering, setIsHovering] = useState<boolean>(false);
 
-  const getDetail = async (videoId:string) => {
+  const getDetail = async (videoId: string = item.id.videoId) => {
     const res = await instance.get(
       `/videos?part=snippet&part=contentDetails&part=player&part=statistics&id=${videoId}`,
     );
-    const view = nFormatter(res.data.items[0].statistics.viewCount);
-    setVideoView(view);
-    const vTime = videoTime(res.data.items[0].contentDetails.duration);
-    setTime(vTime);
+    setVideoResult(res.data.items[0]);
   };
 
-  item.id.videoId;
   useEffect(() => {
-    getDetail(item.id.videoId);
+    getDetail();
     // setVideoView(nFormatter(100000));
     // setTime(videoTime("PT1H15M15S"));
-  }, []);
+  }, [item]);
+  // videoTime(videoResult?.contentDetails.duration)
   const watchLink = `/watch/${item.id.videoId}`;
   return (
     <Link to={watchLink}>
@@ -42,15 +37,15 @@ function RelatedCard({ item }: Props) {
       >
         <PreviewBox>
           <Thumbnail src={item.snippet.thumbnails.medium.url} />
-          <VideoTime>{time}</VideoTime>
+          <VideoTime>
+            {videoTime(videoResult.contentDetails.duration)}
+          </VideoTime>
           {isHovering ? (
             <HoverBox>
               <AiOutlineClockCircle />
               <BiListCheck />
             </HoverBox>
-          ) : (
-            null
-          )}
+          ) : null}
         </PreviewBox>
         <DetailBox>
           <RelatedTitle>{item.snippet.title}</RelatedTitle>
@@ -58,12 +53,12 @@ function RelatedCard({ item }: Props) {
             <MoreInfoBtn>
               <BiDotsVerticalRounded />
             </MoreInfoBtn>
-          ) : (
-            null
-          )}
+          ) : null}
           <RelatedChannel>{item.snippet.channelTitle}</RelatedChannel>
           <InfoBox>
-            <p>조회수 {videoView}</p>
+            <p>
+              조회수 {nFormatter(Number(videoResult?.statistics.viewCount))}
+            </p>
             <InfoDot> • </InfoDot>
             <p>{displayedAt(videoDate)}</p>
           </InfoBox>
@@ -86,6 +81,7 @@ const VideoTime = styled.span`
   bottom: 5px;
   font-size: 12px;
   border-radius: 3px;
+  color: #fff;
 `;
 
 const Thumbnail = styled.img`
@@ -227,6 +223,96 @@ export interface Maxres {
   url: string;
   width: number;
   height: number;
+}
+
+export interface Video {
+  kind: string;
+  etag: string;
+  id: string;
+  snippet: Snippet;
+  contentDetails: ContentDetails;
+  statistics: Statistics;
+  player: Player;
+}
+
+export interface Snippet {
+  publishedAt: string;
+  channelId: string;
+  title: string;
+  description: string;
+  thumbnails: Thumbnails;
+  channelTitle: string;
+  tags: string[];
+  categoryId: string;
+  liveBroadcastContent: string;
+  localized: Localized;
+  defaultAudioLanguage: string;
+}
+
+export interface Thumbnails {
+  default: Default;
+  medium: Medium;
+  high: High;
+  standard: Standard;
+  maxres: Maxres;
+}
+
+export interface Default {
+  url: string;
+  width: number;
+  height: number;
+}
+
+export interface Medium {
+  url: string;
+  width: number;
+  height: number;
+}
+
+export interface High {
+  url: string;
+  width: number;
+  height: number;
+}
+
+export interface Standard {
+  url: string;
+  width: number;
+  height: number;
+}
+
+export interface Maxres {
+  url: string;
+  width: number;
+  height: number;
+}
+
+export interface Localized {
+  title: string;
+  description: string;
+}
+
+export interface ContentDetails {
+  duration: string;
+  dimension: string;
+  definition: string;
+  caption: string;
+  licensedContent: boolean;
+  contentRating: ContentRating;
+  projection: string;
+}
+
+export interface ContentRating {}
+
+export interface Statistics {
+  viewCount: string;
+  likeCount: string;
+  favoriteCount: string;
+  commentCount: string;
+}
+
+export interface Player {
+  embedHtml: string;
 }
 
 export default RelatedCard;

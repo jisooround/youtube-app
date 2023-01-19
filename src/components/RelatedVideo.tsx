@@ -16,12 +16,12 @@ function RelatedVideo({ relatedData }: Props) {
 
   return (
     <RelatedList>
-      {/* {relatedData?.map((item:any) => (
-        <RelatedCard key={item.id.videoId} item={item} />
-      ))} */}
-      {relatedVideoDummyData?.map((item:any) => (
+      {relatedData?.map((item:any) => (
         <RelatedCard key={item.id.videoId} item={item} />
       ))}
+      {/* {relatedVideoDummyData?.map((item:any) => (
+        <RelatedCard key={item.id.videoId} item={item} />
+      ))} */}
     </RelatedList>
   );
 }
