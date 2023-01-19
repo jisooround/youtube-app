@@ -11,8 +11,7 @@ import { commentsDummyData, videoDetailDummyData } from "../../data";
 import type { IComment } from "../../types/commentsTypes";
 
 import { VideoDetailData } from "../../types/videoDetailTypes";
-import type { IData } from "../../types/relatedTypes"
-
+import type { IData } from "../../types/relatedTypes";
 
 interface WatchProps {
   open: boolean;
@@ -31,13 +30,13 @@ const Watch = ({ open }: WatchProps) => {
   const [relatedData, setRelatedData] = useState<IData>([]);
 
   useEffect(() => {
-    axios
-      .all([
-        getVideoDetail(id, setVideoDetailData, setIsError),
-        getComments(id, setComments, setIsError),
-        getRelated(id, setRelatedData, setIsError),
-      ])
-      .catch((error) => setIsError(error.message));
+    // axios
+    //   .all([
+    //     getVideoDetail(id, setVideoDetailData, setIsError),
+    //     getComments(id, setComments, setIsError),
+    //     getRelated(id, setRelatedData, setIsError),
+    //   ])
+    //   .catch((error) => setIsError(error.message));
   }, [id]);
 
   return (
@@ -53,8 +52,11 @@ const Watch = ({ open }: WatchProps) => {
 };
 
 const WatchPageWrapper = styled.div`
-  max-width: 1000px;
+  width: 1000px;
   min-width: 500px;
+  @media screen and (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 const WatchContainer = styled.div<{ open: boolean }>`
   display: flex;
