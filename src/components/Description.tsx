@@ -3,69 +3,18 @@ import styled from "styled-components";
 import { instance } from "../api";
 import { getDescription } from "../api/api";
 import { descriptionDummyData } from "../data";
+import type {
+  IDescription,
+  IDescriptionProps,
+} from "../types/descriptionTypes";
 import { nFormatter } from "../utils/nFormatter";
 
-interface Description {
-  kind: string;
-  etag: string;
-  pageInfo: {
-    totalResults: number;
-    resultsPerPage: number;
-  };
-  items: Array<{
-    kind: string;
-    etag: string;
-    id: string;
-    snippet: {
-      title: string;
-      description: string;
-      customUrl: string;
-      publishedAt: string;
-      thumbnails: {
-        default: {
-          url: string;
-          width: number;
-          height: number;
-        };
-        medium: {
-          url: string;
-          width: number;
-          height: number;
-        };
-        high: {
-          url: string;
-          width: number;
-          height: number;
-        };
-      };
-      localized: {
-        title: string;
-        description: string;
-      };
-      country: string;
-    };
-    contentDetails: {
-      relatedPlaylists: {
-        likes: string;
-        uploads: string;
-      };
-    };
-    statistics: {
-      viewCount: string;
-      subscriberCount: string;
-      hiddenSubscriberCount: boolean;
-      videoCount: string;
-    };
-  }>;
-}
-
-const Description = ({ channelId }: { channelId: string }) => {
-  localStorage.setItem("desc", JSON.stringify(descriptionDummyData));
-  const localDesc = JSON.parse(localStorage.getItem("desc") || "");
+const Description = ({ channelId }: IDescriptionProps) => {
   const [isError, setIsError] = useState<string>("");
 
-  const [description, setDescription] = useState<Description>(
-    () => localDesc || descriptionDummyData,
+  const [description, setDescription] = useState<IDescription>(
+    () =>
+      JSON.parse(localStorage.getItem("desc") || "") || descriptionDummyData,
   );
 
   useEffect(() => {

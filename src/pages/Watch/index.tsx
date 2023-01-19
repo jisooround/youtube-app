@@ -7,8 +7,9 @@ import Comments from "../../components/Comments";
 import Description from "../../components/Description";
 import MainVideo from "../../components/MainVideo";
 import RelatedVideo from "../../components/RelatedVideo";
-import { commentsDummyData } from "../../data";
-import type { IComment } from "../../types";
+import { commentsDummyData, videoDetailDummyData } from "../../data";
+import type { IComment } from "../../types/commentsTypes";
+import { VideoDetailData } from "../../types/videoDetailTypes";
 
 interface WatchProps {
   open: boolean;
@@ -17,17 +18,21 @@ interface WatchProps {
 const Watch = ({ open }: WatchProps) => {
   // type assertion
   const { id } = useParams() as { id: string };
-  const [videoDetailData, setVideoDetailData] = useState();
-  const [comments, setComments] = useState<IComment[]>(() => commentsDummyData);
+  const [videoDetailData, setVideoDetailData] =
+    useState<VideoDetailData>(videoDetailDummyData);
+  const [comments, setComments] = useState<IComment[]>(
+    () =>
+      JSON.parse(localStorage.getItem("comments") || "") || commentsDummyData,
+  );
   const [isError, setIsError] = useState("");
 
   useEffect(() => {
-    // axios
-    //   .all([
-    //     getVideoDetail(id, setVideoDetailData, setIsError),
-    //     getComments(id, setComments, setIsError),
-    //   ])
-    //   .catch((error) => setIsError(error.message));
+    axios;
+    // .all([
+    //   getVideoDetail(id, setVideoDetailData, setIsError),
+    //   getComments(id, setComments, setIsError),
+    // ])
+    // .catch((error) => setIsError(error.message));
   }, [id]);
 
   console.log(comments);
@@ -35,7 +40,7 @@ const Watch = ({ open }: WatchProps) => {
   return (
     <WatchContainer open={open}>
       <WatchPageWrapper>
-        <MainVideo videoId={id} />
+        <MainVideo videoDetailData={videoDetailData} />
         <Description channelId="UCwQLh1dMRrT4WRjNKYzGHcw" />
         <Comments comments={comments} />
       </WatchPageWrapper>

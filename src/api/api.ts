@@ -58,6 +58,7 @@ export const getVideoDetail: FetchFn = async (id, setState, setError) => {
       `/videos?part=snippet&part=contentDetails&part=player&part=statistics&id=${id}`,
     );
     if (res.status === 200) {
+      localStorage.setItem("detail", JSON.stringify(res.data));
       setState(res.data);
     }
   } catch (error) {
