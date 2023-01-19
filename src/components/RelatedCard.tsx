@@ -30,9 +30,9 @@ function RelatedCard({ item }: Props) {
 
   item.id.videoId;
   useEffect(() => {
-    getDetail();
-    // setVideoView(nFormatter(100000));
-    // setTime(videoTime("PT1H15M15S"));
+    // getDetail();
+    setVideoView(nFormatter(100000));
+    setTime(videoTime("PT1H15M15S"));
   }, []);
   const watchLink = `/watch/${item.id.videoId}`
   return (

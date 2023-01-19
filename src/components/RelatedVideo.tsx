@@ -449,9 +449,8 @@ function RelatedVideo({videoId}:Props){
   };
 
   useEffect(() => {
-    getVideoData(videoId, setData);
-    console.log(typeof(videoId))
-    // setData(myData);
+    // getVideoData(videoId, setData);
+    setData(myData);
   }, [videoId]);
 
   return (

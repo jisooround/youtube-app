@@ -17,6 +17,11 @@ type FetchFn = {
   ): void;
 };
 
+// get video detail
+interface GetDetailFn {
+  (videoId: string, setState: React.Dispatch<React.SetStateAction<any>>): void;
+}
+
 export const getComments: GetcommentsFn = async (
   videoId,
   setState,
@@ -61,3 +66,19 @@ export const getDescription: FetchFn = async (id, setState, setError) => {
   }
 };
 
+export const getVideoDetail: GetDetailFn = async (videoId, setState) => {
+  try {
+    const res = await instance.get(
+      `/videos?part=snippet&part=contentDetails&part=player&part=statistics&id=${videoId}`,
+    );
+    if (res.status === 200) {
+      setState(res.data);
+    }
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.log(error.message);
+    } else {
+      throw error;
+    }
+  }
+};
