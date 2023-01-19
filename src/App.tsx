@@ -20,7 +20,7 @@ const App = () => {
         >
           <Route index path="/" element={<Home open={open} />} />
           <Route index path="/search" element={<Search />} />
-          <Route index path="/watch/:id" element={<Watch />} />
+          <Route index path="/watch/:id" element={<Watch open={open} />} />
         </Route>
       </Routes>
     </BrowserRouter>

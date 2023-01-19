@@ -1,30 +1,36 @@
 import styled from "styled-components";
 import { MdHomeFilled } from "react-icons/Md";
+import { useLocation } from "react-router-dom";
 
 const Aside = ({ open }: { open: boolean }) => {
+  const { pathname } = useLocation();
+  console.log(pathname);
   if (open === true) {
     return <Open>{/* <MdHomeFilled style={{ color: "black" }} /> */}</Open>;
   } else {
-    return (
-      <Close>
-        <div className="wrap">
-          <MdHomeFilled className="icon" />
-          <p>홈</p>
-        </div>
-        <div className="wrap">
-          <MdHomeFilled className="icon" />
-          <p>Shorts</p>
-        </div>
-        <div className="wrap">
-          <MdHomeFilled className="icon" />
-          <p>구독</p>
-        </div>
-        <div className="wrap">
-          <MdHomeFilled className="icon" />
-          <p>보관함</p>
-        </div>
-      </Close>
-    );
+    if (pathname.includes("watch")) return null;
+    else {
+      return (
+        <Close>
+          <div className="wrap">
+            <MdHomeFilled className="icon" />
+            <p>홈</p>
+          </div>
+          <div className="wrap">
+            <MdHomeFilled className="icon" />
+            <p>Shorts</p>
+          </div>
+          <div className="wrap">
+            <MdHomeFilled className="icon" />
+            <p>구독</p>
+          </div>
+          <div className="wrap">
+            <MdHomeFilled className="icon" />
+            <p>보관함</p>
+          </div>
+        </Close>
+      );
+    }
   }
 };
 
