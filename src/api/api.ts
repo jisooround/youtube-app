@@ -19,7 +19,7 @@ export const getComments: FetchFn = async (id, setState, setError) => {
     );
 
     if (res.status === 200) {
-      localStorage.setItem("comments", JSON.stringify(res.data.items));
+      // localStorage.setItem("comments", JSON.stringify(res.data.items));
       setState(res.data.items);
     }
   } catch (error) {
