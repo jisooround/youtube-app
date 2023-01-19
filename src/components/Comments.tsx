@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Profile } from "./Description";
-import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
-import { timeAgo } from "../utils/timeAgo";
 import { getComments } from "../api/api";
+import Comment from "./Comment";
 
-interface Comment {
+export interface IComment {
   kind: string;
   etag: string;
   id: string;
@@ -15,28 +13,31 @@ interface Comment {
       kind: string;
       etag: string;
       id: string;
-      snippet: {
-        videoId: string;
-        textDisplay: string;
-        textOriginal: string;
-        authorDisplayName: string;
-        authorProfileImageUrl: string;
-        authorChannelUrl: string;
-        authorChannelId: {
-          value: string;
-        };
-        canRate: boolean;
-        viewerRating: string;
-        likeCount: number;
-        publishedAt: string;
-        updatedAt: string;
-      };
+      snippet: ISnippet;
     };
     canReply: boolean;
     totalReplyCount: number;
     isPublic: boolean;
   };
 }
+
+export interface ISnippet {
+  videoId: string;
+  textDisplay: string;
+  textOriginal: string;
+  authorDisplayName: string;
+  authorProfileImageUrl: string;
+  authorChannelUrl: string;
+  authorChannelId: {
+    value: string;
+  };
+  canRate: boolean;
+  viewerRating: string;
+  likeCount: number;
+  publishedAt: string;
+  updatedAt: string;
+}
+
 interface CommentsProp {
   videoId: string;
 }
@@ -745,30 +746,10 @@ const dummyData = [
 const Comments = ({ videoId }: CommentsProp) => {
   localStorage.setItem("comments", JSON.stringify(dummyData));
   const localComments = JSON.parse(localStorage.getItem("comments") || "");
-  const [comments, setComments] = useState<Comment[]>(
+  const [comments, setComments] = useState<IComment[]>(
     () => localComments || dummyData,
   );
   const [isError, setIsError] = useState<string>("");
-
-  // const getComments = async () => {
-  //   try {
-  //     const res = await instance.get(
-  //       `/commentThreads?part=snippet&videoId=${videoId}`,
-  //     );
-
-  //     if (res.status === 200) {
-  //       localStorage.setItem("comments", JSON.stringify(res.data.items));
-  //       setComments(res.data.items);
-  //     }
-  //   } catch (error) {
-  //     if (error instanceof AxiosError) {
-  //       console.log(error.message);
-  //       setIsError(error.message);
-  //     } else {
-  //       throw error;
-  //     }
-  //   }
-  // };
 
   useEffect(() => {
     // getComments(videoId, setComments, setIsError);
@@ -781,40 +762,15 @@ const Comments = ({ videoId }: CommentsProp) => {
 
   return (
     <CommentSection>
-      <H4>{commentsData.length} Comments</H4>
+      <H4>댓글 {commentsData.length}개</H4>
 
-      <ul>
-        {commentsData.map((comment) => (
-          <CommentList key={comment.authorDisplayName}>
-            <Profile>
-              <img
-                src={comment.authorProfileImageUrl}
-                alt={comment.authorDisplayName}
-              />
-            </Profile>
-            <CommentWrapper>
-              <Comment>
-                <Author>{comment.authorDisplayName}</Author>
-                <time dateTime={comment.publishedAt}>
-                  {timeAgo(comment.publishedAt)}
-                </time>
-              </Comment>
-              <Comment>
-                <span>{comment.textOriginal || comment.textDisplay}</span>
-              </Comment>
-              <Comment>
-                <Btn type="button">
-                  <AiOutlineLike /> <span>{comment.likeCount}</span>
-                </Btn>
-                <Btn type="button">
-                  <AiOutlineDislike />
-                </Btn>
-                <Reply>답글</Reply>
-              </Comment>
-            </CommentWrapper>
-          </CommentList>
-        ))}
-      </ul>
+      {
+        <ul>
+          {commentsData.map((comment) => (
+            <Comment comment={comment} />
+          ))}
+        </ul>
+      }
     </CommentSection>
   );
 };
@@ -828,68 +784,4 @@ const H4 = styled.h4`
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 2rem;
-`;
-
-const CommentList = styled.li`
-  display: flex;
-  gap: 1.25rem;
-  margin-bottom: 1.25rem;
-`;
-
-const CommentWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  font-size: 1rem;
-  font-weight: 300;
-`;
-
-const Comment = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  line-height: 1.2;
-  font-size: 14px;
-
-  span {
-    word-break: keep-all;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    -webkit-line-clamp: 2;
-  }
-
-  time {
-    font-weight: 400;
-    font-size: 12px;
-  }
-`;
-
-const Author = styled.span`
-  font-size: 13px;
-  font-weight: 500;
-`;
-
-const Reply = styled.span`
-  font-size: 12px;
-  font-weight: 500;
-`;
-
-const Btn = styled.button`
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.25rem;
-
-  span {
-    font-size: 12px;
-    color: #0f0f0f;
-
-    @media (prefers-color-scheme: dark) {
-      color: #fff;
-    }
-  }
 `;

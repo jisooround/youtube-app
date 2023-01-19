@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { instance } from "../api";
 import { getDescription } from "../api/api";
+import { nFormatter } from "../utils/nFormatter";
 
 interface Description {
   kind: string;
@@ -118,17 +119,6 @@ const Description = ({ channelId }: { channelId: string }) => {
     () => localDesc || dummyData,
   );
 
-  // const getDescription = async () => {
-  //   const res = await instance(
-  //     `/channels?part=snippet&part=statistics&part=contentDetails&id=${channelId}`,
-  //   );
-
-  //   if (res.status === 200) {
-  //     localStorage.setItem("desc", JSON.stringify(res.data));
-  //     setDescription(res.data);
-  //   }
-  // };
-
   useEffect(() => {
     // getDescription(channelId, setDescription, setIsError);
   }, []);
@@ -137,22 +127,22 @@ const Description = ({ channelId }: { channelId: string }) => {
 
   return (
     <DescContainer>
-      {desc.map((item) => (
-        <div key={item.snippet.title}>
-          <ProfileWrapper>
-            <Profile>
-              <img src={item.snippet.thumbnails.default.url} alt="avatar" />
-            </Profile>
-            <div>
-              <h4>{item.snippet.title}</h4>
-              <Follower>{item.statistics.subscriberCount}</Follower>
-            </div>
-          </ProfileWrapper>
-          <DescWrapper>
-            <Desc>{item.snippet.description}</Desc>
-          </DescWrapper>
-        </div>
-      ))}
+      <div>
+        <ProfileWrapper>
+          <Profile>
+            <img src={desc[0].snippet.thumbnails.default.url} alt="avatar" />
+          </Profile>
+          <div>
+            <h4>{desc[0].snippet.title}</h4>
+            <Follower>
+              구독자 {nFormatter(Number(desc[0].statistics.subscriberCount))}
+            </Follower>
+          </div>
+        </ProfileWrapper>
+        <DescWrapper>
+          <Desc>{desc[0].snippet.description}</Desc>
+        </DescWrapper>
+      </div>
     </DescContainer>
   );
 };
