@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import { instance } from "./../api/index";
-import { timeAgo } from "../utils/timeAgo";
 import { Search } from "../pages/Search";
 import { nFormatter } from "../utils/nFormatter";
 import { videoTime } from "../utils/videoTime";
@@ -12,8 +10,8 @@ import { displayedAt } from "./../utils/displayedAt";
 import { getVideoDetail, getDescription } from "../api/api";
 
 const SearchCard = ({ data }: { data: Search }) => {
-  const [videoResult, setVideoResult] = useState<Video | null>(null);
-  const [channelResult, setChannelResult] = useState<Channel | null>(null);
+  const [videoResult, setVideoResult] = useState<Video>();
+  const [channelResult, setChannelResult] = useState<Channel>();
   const [isHovering, setIsHovering] = useState<boolean>(false);
   const date: number = new Date(data.snippet.publishTime).getTime();
   const [isError, setIsError] = useState<string>("");
@@ -26,7 +24,7 @@ const SearchCard = ({ data }: { data: Search }) => {
 
   return (
     <>
-      {videoResult && channelResult ? (
+      {videoResult && channelResult && videoResult.items.length > 0 ? (
         <Section
           onMouseOver={() => setIsHovering(true)}
           onMouseOut={() => setIsHovering(false)}
@@ -76,7 +74,7 @@ const SearchCard = ({ data }: { data: Search }) => {
             </Views>
             <Name>
               <img
-                src={channelResult.items[0].snippet.thumbnails.medium.url}
+                src={channelResult?.items[0]?.snippet?.thumbnails?.medium.url}
               ></img>
 
               <span>{data.snippet.channelTitle}</span>
