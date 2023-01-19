@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { getComments } from "../api/api";
 import { commentsDummyData } from "../data";
-import type { CommentsProp, IComment } from "../types";
+import type { CommentsProp, IComment } from "../types/commentsTypes";
 import Comment from "./Comment";
 
 const Comments = ({ comments }: CommentsProp) => {
