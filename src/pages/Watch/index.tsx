@@ -4,12 +4,17 @@ import Comments from "../../components/Comments";
 import Description from "../../components/Description";
 import MainVideo from "../../components/MainVideo";
 import RelatedVideo from "../../components/RelatedVideo";
-const Watch = () => {
+
+interface WatchProps {
+  open: boolean;
+}
+
+const Watch = ({ open }: WatchProps) => {
   // type assertion
   const { id } = useParams() as { id: string };
 
   return (
-    <WatchContainer>
+    <WatchContainer open={open}>
       <WatchPageWrapper>
         <MainVideo videoId={id} />
         <Description channelId="UCwQLh1dMRrT4WRjNKYzGHcw" />
@@ -25,10 +30,11 @@ const WatchPageWrapper = styled.div`
   min-width: 500px;
   margin-right: 40px;
 `;
-const WatchContainer = styled.div`
+const WatchContainer = styled.div<{ open: boolean }>`
   display: flex;
-  justify-content: space-between;
-  padding: 3rem;
+  /* justify-content: space-between; */
+  padding: 5rem 3.5rem;
+  margin-left: ${(props) => (props.open ? "240" : "0")}px;
 `;
 
 export default Watch;
