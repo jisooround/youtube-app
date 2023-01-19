@@ -1,136 +1,16 @@
-import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { getVideoDetail } from "../api/api";
-import { videoDetailDummyData } from "../data";
+import { VideoDetailData } from "../types/videoDetailTypes";
 import { displayedAt } from "../utils/displayedAt";
 import { nFormatter } from "../utils/nFormatter";
 
 interface MainVideoProps {
-  videoId: string;
+  videoDetailData: VideoDetailData;
 }
 
-export interface VideoDetailData {
-  kind: string;
-  etag: string;
-  items: Item[];
-  pageInfo: PageInfo;
-}
-
-export interface Item {
-  kind: string;
-  etag: string;
-  id: string;
-  snippet: Snippet;
-  contentDetails: ContentDetails;
-  statistics: Statistics;
-  player: Player;
-}
-
-export interface Snippet {
-  publishedAt: string;
-  channelId: string;
-  title: string;
-  description: string;
-  thumbnails: Thumbnails;
-  channelTitle: string;
-  tags: string[];
-  categoryId: string;
-  liveBroadcastContent: string;
-  localized: Localized;
-  defaultAudioLanguage: string;
-}
-
-export interface Thumbnails {
-  default: Default;
-  medium: Medium;
-  high: High;
-  standard: Standard;
-  maxres: Maxres;
-}
-
-export interface Default {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface Medium {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface High {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface Standard {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface Maxres {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface Localized {
-  title: string;
-  description: string;
-}
-
-export interface ContentDetails {
-  duration: string;
-  dimension: string;
-  definition: string;
-  caption: string;
-  licensedContent: boolean;
-  contentRating: ContentRating;
-  projection: string;
-}
-
-export interface ContentRating {}
-
-export interface Statistics {
-  viewCount: string;
-  likeCount: string;
-  favoriteCount: string;
-  commentCount: string;
-}
-
-export interface Player {
-  embedHtml: string;
-}
-
-export interface PageInfo {
-  totalResults: number;
-  resultsPerPage: number;
-}
-
-const MainVideo = ({ videoId }: MainVideoProps) => {
-  const [videoDetailData, setVideoDetailData] =
-    useState<VideoDetailData | null>(null);
-  const [isError, setIsError] = useState<string>("");
+const MainVideo = ({ videoDetailData }: MainVideoProps) => {
   const tags = videoDetailData?.items[0].snippet.tags.map((tag, index) => {
     if (index < 4) return <Tag key={index}>#{tag}</Tag>;
   });
-
-  const handleViewCount = (): string => {
-    let viewCount = Number(
-      videoDetailData?.items[0]?.statistics?.viewCount,
-    ).toLocaleString("ko-kr");
-    if (viewCount === "NaN") viewCount = "";
-    return viewCount;
-  };
-
-  useEffect(() => {
-    // getVideoDetail(videoId, setVideoDetailData);
-    setVideoDetailData(videoDetailDummyData);
-  }, [videoId]);
 
   return (
     <VideoContainer>
@@ -171,7 +51,7 @@ const MainVideo = ({ videoId }: MainVideoProps) => {
             <span>
               {nFormatter(
                 Number(videoDetailData?.items[0].statistics.likeCount),
-              )}
+              ) || ""}
             </span>
           </Button>
           <Button>
