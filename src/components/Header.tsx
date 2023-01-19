@@ -12,14 +12,15 @@ const Header = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     navigate(`/search?q=${value}`);
-    setValue("");
-    e.target.value = "";
+    (document.activeElement as HTMLElement).blur();
   };
 
   return (
     <Container>
       <Start>
-        <SlMenu className="bar" />
+        <Box>
+          <SlMenu className="bar" />
+        </Box>
         <Link to="/">
           <Logo>
             <svg
@@ -70,15 +71,23 @@ const Header = () => {
             <SlMagnifier />
           </Submit>
         </Form>
-
         <Voice>
           <BsFillMicFill></BsFillMicFill>
         </Voice>
       </Center>
       <End>
-        <RiVideoAddLine className="video" />
-        <BsBell className="bell" />
-        <Profile></Profile>
+        <Box>
+          <RiVideoAddLine className="video" />
+        </Box>
+        <Box>
+          <BsBell className="bell" />
+        </Box>
+        <Profile>
+          <img
+            src="https://avatars.githubusercontent.com/u/122767468?s=200&v=4"
+            alt="profile"
+          />
+        </Profile>
       </End>
     </Container>
   );
@@ -98,8 +107,16 @@ const Start = styled.div`
   .bar {
     width: 18px;
     height: 18px;
-    padding: 8px;
+    padding: 12px;
     cursor: pointer;
+  }
+`;
+
+const Box = styled.div`
+  display: flex;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
   }
 `;
 
@@ -116,13 +133,12 @@ const Center = styled(Start)`
 
 const End = styled(Start)`
   min-width: 225px;
-  gap: 25px;
-  .video {
-    font-size: 24px;
-    cursor: pointer;
-  }
+  gap: 10px;
+  .video,
   .bell {
-    font-size: 20px;
+    width: 22px;
+    height: 22px;
+    padding: 10px;
     cursor: pointer;
   }
 `;
@@ -141,10 +157,16 @@ const Search = styled.input`
   height: 40px;
   margin-left: 10px;
   border-radius: 40px 0 0 40px;
-  padding: 0px 4px 0px 16px;
+  padding: 0px 4px 0px 20px;
   border: 1px solid rgb(211, 211, 211);
   box-shadow: rgb(238, 238, 238) 0px 1px 2px 0px inset;
-  border-right: none;
+  font-size: 15px;
+  &:focus {
+    border-width: 1.3px;
+    border-color: #3f51b5;
+    width: 530px;
+    box-shadow: rgb(238, 238, 238) 0px 1px 2px 0px inset;
+  }
 `;
 
 const Submit = styled.button`
@@ -152,26 +174,39 @@ const Submit = styled.button`
   height: 40px;
   border-radius: 0 40px 40px 0;
   border: 1px solid rgb(211, 211, 211);
+  border-left: none;
   padding: 1px 6px;
   margin-right: 10px;
   cursor: pointer;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
   svg {
     font-size: 18px;
   }
 `;
 
-const Voice = styled.button`
+const Profile = styled.button`
   border-radius: 50%;
   width: 40px;
   height: 40px;
   background-color: rgb(249, 249, 249);
   border: none;
   cursor: pointer;
+  img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+  }
+`;
+
+const Voice = styled(Profile)`
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
   svg {
     font-size: 16px;
   }
 `;
-
-const Profile = styled(Voice)``;
 
 export default Header;
