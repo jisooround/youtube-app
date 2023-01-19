@@ -118,12 +118,9 @@ export interface PageInfo {
 
 const Watch = ({ open }: WatchProps) => {
   // type assertion
-  localStorage.setItem("detail", JSON.stringify(videoDetailDummyData));
-  const localDetail = JSON.parse(localStorage.getItem("detail") || "");
-
   const { id } = useParams() as { id: string };
   const [videoDetailData, setVideoDetailData] =
-    useState<VideoDetailData>(localDetail);
+    useState<VideoDetailData>(videoDetailDummyData);
 
   const [comments, setComments] = useState<IComment[]>(() => commentsDummyData);
   const [isError, setIsError] = useState("");
