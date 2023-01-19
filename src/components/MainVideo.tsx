@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { getVideoDetail } from "../api/api";
+import { videoDetailDummyData } from "../data";
+import { displayedAt } from "../utils/displayedAt";
+import { nFormatter } from "../utils/nFormatter";
 
 interface MainVideoProps {
-  videoId: string
-};
+  videoId: string;
+}
 
 export interface VideoDetailData {
   kind: string;
@@ -108,114 +111,10 @@ export interface PageInfo {
   resultsPerPage: number;
 }
 
-const MainVideo = ({videoId}: MainVideoProps) => {
-  const initialData = {
-    kind: "youtube#videoListResponse",
-    etag: "UaVhWWfFRX6oOr9PuxvQGoIRITU",
-    items: [
-      {
-        kind: "youtube#video",
-        etag: "s43bWhmTNZVZVZZ0lWueAgD96s4",
-        id: "ZDHCU-j3y4Y",
-        snippet: {
-          publishedAt: "2023-01-15T19:00:11Z", // O
-          channelId: "UCwQLh1dMRrT4WRjNKYzGHcw",
-          title: "The History Of Reworks That FAILED In League Of Legends", // O
-          description:
-            "Throughout League's entire history, many champions were reworked or reimagined to have a more healthy, modernized, and engaging playstyle. For the most part, the majority of them have turned out for the better, but there were a few that turned out so bad that they actually had to get REVERTED (or in some cases reworked again). Today we'll be going through some of League's Failed Reworks!\n\nLeague of Legends Discussion Playlist: https://bit.ly/3dzJuUZ\n\nCheck out my Genshin Impact channel! https://bit.ly/3HQN9ud\nCheck out my Smash Bros channel! https://bit.ly/3rlFD3Z\n\nSupport me on Patreon! https://bit.ly/3iy5pvu\nDonate to the channel! https://bit.ly/36TpIQP\n\n~Editor (TofuGraphics)~\nTwitter: https://twitter.com/TofuGraphics\n\n~Contact Links~\nFacebook: https://bit.ly/3lGV9Vg\nTwitter: https://bit.ly/3kv7CZU\nDiscord: https://bit.ly/33M2iev\nTwitch: https://bit.ly/2XNes31\nCandle.gg: https://bit.ly/3ndfU9r\nEmail: varsverum@gmail.com (Business inquiries only)\n\nGraphics provided by: https://twitter.com/TofuGraphics\n\n#LoL #Fail #Reworks",
-          thumbnails: {
-            default: {
-              url: "https://i.ytimg.com/vi/ZDHCU-j3y4Y/default.jpg",
-              width: 120,
-              height: 90,
-            },
-            medium: {
-              url: "https://i.ytimg.com/vi/ZDHCU-j3y4Y/mqdefault.jpg",
-              width: 320,
-              height: 180,
-            },
-            high: {
-              url: "https://i.ytimg.com/vi/ZDHCU-j3y4Y/hqdefault.jpg",
-              width: 480,
-              height: 360,
-            },
-            standard: {
-              url: "https://i.ytimg.com/vi/ZDHCU-j3y4Y/sddefault.jpg",
-              width: 640,
-              height: 480,
-            },
-            maxres: {
-              url: "https://i.ytimg.com/vi/ZDHCU-j3y4Y/maxresdefault.jpg",
-              width: 1280,
-              height: 720,
-            },
-          },
-          channelTitle: "Vars",
-          tags: [
-            "vars",
-            "varsverum",
-            "league of legends",
-            "lol",
-            "vars lol",
-            "league of legends gameplay",
-            "lol discussion",
-            "vars league of legends",
-            "why no one plays",
-            "lol why no one plays",
-            "lol rework",
-            "lol rengar rework",
-            "lol asol rework",
-            "lol aurelion sol rework",
-            "lol zac",
-            "lol zac ultimate",
-            "lol leblanc rework",
-            "lol leblanc revert",
-            "lol rengar revert",
-            "rework",
-            "lol new aurelion sol",
-            "lol aurelion sol abilities",
-            "reworks in league of legends",
-            "lol kog'maw 5.0 attack speed",
-            "lol ryze",
-          ],
-          categoryId: "20",
-          liveBroadcastContent: "none",
-          localized: {
-            title: "The History Of Reworks That FAILED In League Of Legends",
-            description:
-              "Throughout League's entire history, many champions were reworked or reimagined to have a more healthy, modernized, and engaging playstyle. For the most part, the majority of them have turned out for the better, but there were a few that turned out so bad that they actually had to get REVERTED (or in some cases reworked again). Today we'll be going through some of League's Failed Reworks!\n\nLeague of Legends Discussion Playlist: https://bit.ly/3dzJuUZ\n\nCheck out my Genshin Impact channel! https://bit.ly/3HQN9ud\nCheck out my Smash Bros channel! https://bit.ly/3rlFD3Z\n\nSupport me on Patreon! https://bit.ly/3iy5pvu\nDonate to the channel! https://bit.ly/36TpIQP\n\n~Editor (TofuGraphics)~\nTwitter: https://twitter.com/TofuGraphics\n\n~Contact Links~\nFacebook: https://bit.ly/3lGV9Vg\nTwitter: https://bit.ly/3kv7CZU\nDiscord: https://bit.ly/33M2iev\nTwitch: https://bit.ly/2XNes31\nCandle.gg: https://bit.ly/3ndfU9r\nEmail: varsverum@gmail.com (Business inquiries only)\n\nGraphics provided by: https://twitter.com/TofuGraphics\n\n#LoL #Fail #Reworks",
-          },
-          defaultAudioLanguage: "en",
-        },
-        contentDetails: {
-          duration: "PT15M1S",
-          dimension: "2d",
-          definition: "hd",
-          caption: "false",
-          licensedContent: true,
-          contentRating: {},
-          projection: "rectangular",
-        },
-        statistics: {
-          viewCount: "50299", // O
-          likeCount: "2700", // O
-          favoriteCount: "0",
-          commentCount: "289",
-        },
-        player: {
-          // O
-          embedHtml:
-            '<iframe width="480" height="270" src="//www.youtube.com/embed/ZDHCU-j3y4Y?autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
-        },
-      },
-    ],
-    pageInfo: {
-      totalResults: 1,
-      resultsPerPage: 1,
-    },
-  };
+const MainVideo = ({ videoId }: MainVideoProps) => {
   const [videoDetailData, setVideoDetailData] =
     useState<VideoDetailData | null>(null);
+  const [isError, setIsError] = useState<string>("");
   const tags = videoDetailData?.items[0].snippet.tags.map((tag, index) => {
     if (index < 4) return <Tag key={index}>#{tag}</Tag>;
   });
@@ -228,45 +127,9 @@ const MainVideo = ({videoId}: MainVideoProps) => {
     return viewCount;
   };
 
-  const handleDate = (): string => {
-    const months = [
-      "",
-      "Jan",
-      "Feb",
-      "Mar",
-      "April",
-      "May",
-      "June",
-      "July",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
-    let temp = videoDetailData?.items[0]?.snippet?.publishedAt.split("-");
-    let date = "";
-    if (temp)
-      date +=
-        months[Number(temp[1] || 0)] +
-        " " +
-        temp[2].substring(0, 2) +
-        ", " +
-        temp[0];
-    return date;
-  };
-
-  const handleLikeCount = (): string => {
-    let likeCount = (
-      Number(videoDetailData?.items[0].statistics.likeCount) / 1000
-    ).toFixed(1);
-    if (likeCount === "NaN") likeCount = "";
-    return likeCount;
-  };
-
   useEffect(() => {
-    // getVideoDetail(videoId, setVideoDetailData)
-    setVideoDetailData(initialData);
+    // getVideoDetail(videoId, setVideoDetailData);
+    setVideoDetailData(videoDetailDummyData);
   }, [videoId]);
 
   return (
@@ -282,9 +145,14 @@ const MainVideo = ({videoId}: MainVideoProps) => {
       <Tags>{tags}</Tags>
       <Title>{videoDetailData?.items[0]?.snippet?.title}</Title>
       <ViewDateInfo>
-        {handleViewCount() || ""}
-        {" views • "}
-        {handleDate() || ""}
+        {"조회수 "}
+        {nFormatter(Number(videoDetailData?.items[0]?.statistics?.viewCount))}
+        {"회 "} &nbsp;
+        {displayedAt(
+          new Date(
+            videoDetailData?.items[0]?.snippet?.publishedAt || "",
+          ).getTime(),
+        )}
       </ViewDateInfo>
       <ButtonWrapper>
         <LikeContainer>
@@ -300,7 +168,11 @@ const MainVideo = ({videoId}: MainVideoProps) => {
             >
               <path d="M20 8h-5.612l1.123-3.367c.202-.608.1-1.282-.275-1.802S14.253 2 13.612 2H12c-.297 0-.578.132-.769.36L6.531 8H4c-1.103 0-2 .897-2 2v9c0 1.103.897 2 2 2h13.307a2.01 2.01 0 0 0 1.873-1.298l2.757-7.351A1 1 0 0 0 22 12v-2c0-1.103-.897-2-2-2zM4 10h2v9H4v-9zm16 1.819L17.307 19H8V9.362L12.468 4h1.146l-1.562 4.683A.998.998 0 0 0 13 10h7v1.819z"></path>
             </svg>
-            <span>{handleLikeCount()}K</span>
+            <span>
+              {nFormatter(
+                Number(videoDetailData?.items[0].statistics.likeCount),
+              )}
+            </span>
           </Button>
           <Button>
             <svg
@@ -331,7 +203,7 @@ const MainVideo = ({videoId}: MainVideoProps) => {
               <path d="M13 14h-2a8.999 8.999 0 0 0-7.968 4.81A10.136 10.136 0 0 1 3 18C3 12.477 7.477 8 13 8V2.5L23.5 11 13 19.5V14zm-2-2h4v3.308L20.321 11 15 6.692V10h-2a7.982 7.982 0 0 0-6.057 2.773A10.988 10.988 0 0 1 11 12z"></path>
             </g>
           </svg>
-          <span>SHARE</span>
+          <span>공유</span>
         </Button>
         <Button>
           <svg
@@ -346,7 +218,7 @@ const MainVideo = ({videoId}: MainVideoProps) => {
             <path fill="none" d="M0 0h24v24H0z"></path>
             <path d="M14 10H3v2h11v-2zm0-4H3v2h11V6zm4 8v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM3 16h7v-2H3v2z"></path>
           </svg>
-          <span>SAVE</span>
+          <span>저장</span>
         </Button>
         <Button>
           <svg

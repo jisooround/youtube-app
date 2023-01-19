@@ -1,43 +1,24 @@
 import { AxiosError } from "axios";
 import { instance } from ".";
-
 // get comments
-type GetcommentsFn = {
-  (
-    videoId: string,
-    setState: (value: React.SetStateAction<any>) => void,
-    setError: (value: React.SetStateAction<string>) => void,
-  ): void;
-};
-type FetchFn = {
+interface FetchFn {
   (
     id: string,
-    setState: (value: React.SetStateAction<any>) => void,
-    setError: (value: React.SetStateAction<string>) => void,
+    setState: React.Dispatch<React.SetStateAction<any>>,
+    setError: React.Dispatch<React.SetStateAction<string>>,
   ): void;
-};
+}
 
 // get video detail
-interface GetDetailFn {
-  (videoId: string, setState: React.Dispatch<React.SetStateAction<any>>): void;
-}
 
-interface GetRelatedFnc {
-  (videoId: string, setState: (value: React.SetStateAction<any>) => void): void;
-}
-
-export const getComments: GetcommentsFn = async (
-  videoId,
-  setState,
-  setError,
-) => {
+export const getComments: FetchFn = async (id, setState, setError) => {
   try {
     const res = await instance.get(
-      `/commentThreads?part=snippet&videoId=${videoId}`,
+      `/commentThreads?part=snippet&videoId=${id}`,
     );
 
     if (res.status === 200) {
-      localStorage.setItem("comments", JSON.stringify(res.data.items));
+      // localStorage.setItem("comments", JSON.stringify(res.data.items));
       setState(res.data.items);
     }
   } catch (error) {
@@ -70,10 +51,10 @@ export const getDescription: FetchFn = async (id, setState, setError) => {
   }
 };
 
-export const getVideoDetail: GetDetailFn = async (videoId, setState) => {
+export const getVideoDetail: FetchFn = async (id, setState, setError) => {
   try {
     const res = await instance.get(
-      `/videos?part=snippet&part=contentDetails&part=player&part=statistics&id=${videoId}`,
+      `/videos?part=snippet&part=contentDetails&part=player&part=statistics&id=${id}`,
     );
     if (res.status === 200) {
       setState(res.data);
@@ -81,23 +62,29 @@ export const getVideoDetail: GetDetailFn = async (videoId, setState) => {
   } catch (error) {
     if (error instanceof AxiosError) {
       console.log(error.message);
+      setError(error.message);
     } else {
       throw error;
     }
   }
 };
 
-export const getRelated: GetRelatedFnc = async (videoId, setData) => {
+export const getRelated: FetchFn = async (id, setRelatedData, setError) => {
   try {
     const res = await instance.get(
-      `/search?part=snippet&maxResults=10&relatedToVideoId=${videoId}&type=video`,
+      `/search?part=snippet&maxResults=10&relatedToVideoId=${id}&type=video`,
     );
-    setData(res.data.items);
+    if (res.status === 200) {
+      setRelatedData(res.data.items);
+    }
   } catch (error) {
     if (error instanceof AxiosError) {
       console.log(error.message);
+      setError(error.message);
     } else {
       throw error;
     }
   }
 };
+
+

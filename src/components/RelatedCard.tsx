@@ -17,7 +17,7 @@ function RelatedCard({ item }: Props) {
   const [time, setTime] = useState<string>("");
   const [isHovering, setIsHovering] = useState<boolean>(false);
 
-  const getDetail = async (videoId = item.id.videoId) => {
+  const getDetail = async (videoId:string) => {
     const res = await instance.get(
       `/videos?part=snippet&part=contentDetails&part=player&part=statistics&id=${videoId}`,
     );
@@ -29,11 +29,11 @@ function RelatedCard({ item }: Props) {
 
   item.id.videoId;
   useEffect(() => {
-    // getDetail();
-    setVideoView(nFormatter(100000));
-    setTime(videoTime("PT1H15M15S"));
+    getDetail(item.id.videoId);
+    // setVideoView(nFormatter(100000));
+    // setTime(videoTime("PT1H15M15S"));
   }, []);
-  const watchLink = `/watch/${item.id.videoId}`
+  const watchLink = `/watch/${item.id.videoId}`;
   return (
     <Link to={watchLink}>
       <VideoCard
