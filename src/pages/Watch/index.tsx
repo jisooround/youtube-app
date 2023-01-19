@@ -28,8 +28,7 @@ const WatchPageWrapper = styled.div`
 const WatchContainer = styled.div`
   display: flex;
   padding: 3rem;
-  display: flex;
-  /* flex-wrap: wrap; */
+  justify-content: center;
 `;
 
 export default Watch;
