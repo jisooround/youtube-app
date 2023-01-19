@@ -7,32 +7,26 @@ import { nFormatter } from "../utils/nFormatter";
 import { videoTime } from "../utils/videoTime";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { BiListCheck, BiDotsVerticalRounded } from "react-icons/bi";
+import { getVideoDetail } from "../api/api"
+import type {DataType, Video} from "../types/relatedTypes"
 
-type Props = { item: Root };
+type Props = { item: DataType };
 
 function RelatedCard({ item }: Props) {
   const videoDate: number = new Date(item.snippet.publishTime).getTime();
-
-  const [videoView, setVideoView] = useState<string | number>(0);
-  const [time, setTime] = useState<string>("");
+  const [videoResult, setVideoResult] = useState<Video|null>(null);
   const [isHovering, setIsHovering] = useState<boolean>(false);
-
-  const getDetail = async (videoId:string) => {
-    const res = await instance.get(
-      `/videos?part=snippet&part=contentDetails&part=player&part=statistics&id=${videoId}`,
-    );
-    const view = nFormatter(res.data.items[0].statistics.viewCount);
-    setVideoView(view);
-    const vTime = videoTime(res.data.items[0].contentDetails.duration);
-    setTime(vTime);
-  };
-
-  item.id.videoId;
+  const [isError, setIsError] = useState<string>("")
+  // const getDetail = async (videoId: string = item.id.videoId) => {
+  //   const res = await instance.get(
+  //     `/videos?part=snippet&part=contentDetails&part=player&part=statistics&id=${videoId}`,
+  //   );
+  //   setVideoResult(res.data.items[0]);
+  // };
   useEffect(() => {
-    getDetail(item.id.videoId);
-    // setVideoView(nFormatter(100000));
-    // setTime(videoTime("PT1H15M15S"));
-  }, []);
+    getVideoDetail(item.id.videoId, setVideoResult, setIsError);
+  }, [item]);
+  console.log(JSON.stringify(item))
   const watchLink = `/watch/${item.id.videoId}`;
   return (
     <Link to={watchLink}>
@@ -42,15 +36,15 @@ function RelatedCard({ item }: Props) {
       >
         <PreviewBox>
           <Thumbnail src={item.snippet.thumbnails.medium.url} />
-          <VideoTime>{time}</VideoTime>
+          <VideoTime>
+            {videoTime(videoResult?.items[0]?.contentDetails?.duration||"")}
+          </VideoTime>
           {isHovering ? (
             <HoverBox>
               <AiOutlineClockCircle />
               <BiListCheck />
             </HoverBox>
-          ) : (
-            null
-          )}
+          ) : null}
         </PreviewBox>
         <DetailBox>
           <RelatedTitle>{item.snippet.title}</RelatedTitle>
@@ -58,12 +52,12 @@ function RelatedCard({ item }: Props) {
             <MoreInfoBtn>
               <BiDotsVerticalRounded />
             </MoreInfoBtn>
-          ) : (
-            null
-          )}
+          ) : null}
           <RelatedChannel>{item.snippet.channelTitle}</RelatedChannel>
           <InfoBox>
-            <p>조회수 {videoView}</p>
+            <p>
+              조회수 {nFormatter(Number(videoResult?.items[0]?.statistics?.viewCount))}
+            </p>
             <InfoDot> • </InfoDot>
             <p>{displayedAt(videoDate)}</p>
           </InfoBox>
@@ -86,6 +80,7 @@ const VideoTime = styled.span`
   bottom: 5px;
   font-size: 12px;
   border-radius: 3px;
+  color: #fff;
 `;
 
 const Thumbnail = styled.img`
@@ -167,66 +162,5 @@ const MoreInfoBtn = styled.div`
     font-size: 20px;
   }
 `;
-
-export interface Root {
-  kind: string;
-  etag: string;
-  id: Id;
-  snippet: Snippet;
-}
-
-export interface Id {
-  kind: string;
-  videoId: string;
-}
-
-export interface Snippet {
-  publishedAt: string;
-  channelId: string;
-  title: string;
-  description: string;
-  thumbnails: Thumbnails;
-  channelTitle: string;
-  liveBroadcastContent: string;
-  publishTime: string;
-}
-
-export interface Thumbnails {
-  default: Default;
-  medium: Medium;
-  high: High;
-  standard: Standard;
-  maxres: Maxres;
-}
-
-export interface Default {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface Medium {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface High {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface Standard {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface Maxres {
-  url: string;
-  width: number;
-  height: number;
-}
 
 export default RelatedCard;
