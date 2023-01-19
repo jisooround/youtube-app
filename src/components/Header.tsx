@@ -26,7 +26,7 @@ const Header = ({
     <Container>
       <Start>
         <Box>
-          <SlMenu className="bar" />
+          <SlMenu className="bar" onClick={handleClickOpen} />
         </Box>
         <Link to="/">
           <Logo>
