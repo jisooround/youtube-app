@@ -2,8 +2,10 @@ import { useEffect } from "react";
 import styled from "styled-components";
 import { instance } from "../api";
 import { VideoData } from "../pages/Home";
-import { timeAgo } from "../utils/timeAgo";
 import { Link } from "react-router-dom";
+import { nFormatter } from "../utils/nFormatter";
+import { videoTime } from "../utils/videoTime";
+import { displayedAt } from "../utils/displayedAt";
 
 export interface MovieData {
   kind: string;
@@ -177,6 +179,11 @@ const Card = ({ item }: { item: VideoData }) => {
             alt="Channel-thumbnails"
           />
         </Link>
+        <Duration>
+          <span>
+            {videoTime(localDetailData.items[0].contentDetails.duration)}
+          </span>
+        </Duration>
       </MainImage>
       <Info>
         <Image>
@@ -189,11 +196,11 @@ const Card = ({ item }: { item: VideoData }) => {
           <ChannelTitle>{item.snippet.channelTitle}</ChannelTitle>
           <Detail>
             <ViewCount>
-              조회수 {localDetailData.items[0].statistics.viewCount}
+              조회수 {nFormatter(localDetailData.items[0].statistics.viewCount)}
             </ViewCount>
             <Time>
               &nbsp; &middot;{" "}
-              {timeAgo(localDetailData.items[0].snippet.publishedAt)}{" "}
+              {displayedAt(localDetailData.items[0].snippet.publishedAt)}{" "}
             </Time>
           </Detail>
         </Text>
@@ -229,6 +236,19 @@ const MainImage = styled.div`
     left: 0;
     border-radius: 15px;
   }
+`;
+const Duration = styled.div`
+  z-index: 10;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 5px;
+  font-size: 11px;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  border-radius: 5px;
+  margin: 5px;
 `;
 const Info = styled.div`
   width: 100%;
