@@ -16,6 +16,8 @@ export const videoTime = (input: string) => {
     hours = `${hours}`;
     return `${hours}:${minutes}:${seconds}`;
   }
+  if (seconds.length === 0) return `${minutes}:00`;
+  if (minutes.length === 0) return `0:${seconds}`;
   if (hours.length === 0) return `${minutes}:${seconds}`;
   return ``;
 };
