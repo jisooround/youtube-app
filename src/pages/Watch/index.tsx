@@ -11,7 +11,7 @@ const Watch = () => {
   return (
     <WatchContainer>
       <WatchPageWrapper>
-        <MainVideo videoId={id}/>
+        <MainVideo videoId={id} />
         <Description channelId="UCwQLh1dMRrT4WRjNKYzGHcw" />
         <Comments videoId={id} />
       </WatchPageWrapper>

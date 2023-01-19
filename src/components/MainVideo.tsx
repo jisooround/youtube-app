@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { getVideoDetail } from "../api/api";
 
 interface MainVideoProps {
-  videoId: string
-};
+  videoId: string;
+}
 
 export interface VideoDetailData {
   kind: string;
@@ -108,7 +108,7 @@ export interface PageInfo {
   resultsPerPage: number;
 }
 
-const MainVideo = ({videoId}: MainVideoProps) => {
+const MainVideo = ({ videoId }: MainVideoProps) => {
   const initialData = {
     kind: "youtube#videoListResponse",
     etag: "UaVhWWfFRX6oOr9PuxvQGoIRITU",
@@ -265,7 +265,7 @@ const MainVideo = ({videoId}: MainVideoProps) => {
   };
 
   useEffect(() => {
-    // getVideoDetail(videoId, setVideoDetailData)
+    // getVideoDetail(videoId, setVideoDetailData);
     setVideoDetailData(initialData);
   }, [videoId]);
 
