@@ -52,7 +52,7 @@ const Comments = ({ videoId }: CommentsProp) => {
   const [isError, setIsError] = useState<string>("");
 
   useEffect(() => {
-    getComments(videoId, setComments, setIsError);
+    // getComments(videoId, setComments, setIsError);
     setComments(commentsDummyData);
   }, [videoId]);
 
