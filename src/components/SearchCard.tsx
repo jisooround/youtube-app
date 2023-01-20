@@ -36,7 +36,9 @@ const SearchCard = ({ data }: { data: Search }) => {
               </Link>
               <Duration>
                 <span>
+
                   {videoTime(videoResult?.items[0]?.contentDetails?.duration || "")}
+
                 </span>
               </Duration>
               {isHovering ? (
@@ -65,7 +67,9 @@ const SearchCard = ({ data }: { data: Search }) => {
             <Views>
               <span>
                 조회수{" "}
+
                 {nFormatter(Number(videoResult?.items[0]?.statistics?.viewCount))}
+
               </span>
               {" • "}
               <span>{displayedAt(date)}</span>

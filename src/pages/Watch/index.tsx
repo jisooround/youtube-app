@@ -7,10 +7,12 @@ import Comments from "../../components/Comments";
 import Description from "../../components/Description";
 import MainVideo from "../../components/MainVideo";
 import RelatedVideo from "../../components/RelatedVideo";
-import { commentsDummyData, videoDetailDummyData } from "../../data";
+import { commentsDummyData, videoDetailDummyData, relatedVideoDummyData } from "../../data";
 import type { IComment } from "../../types/commentsTypes";
+
 import { VideoDetailData } from "../../types/videoDetailTypes";
-import type { IData } from "../../types/relatedTypes"
+import type { RelatedType } from "../../types/relatedTypes"
+
 
 interface WatchProps {
   open: boolean;
@@ -23,11 +25,11 @@ const Watch = ({ open }: WatchProps) => {
     useState<VideoDetailData>(videoDetailDummyData);
   const [comments, setComments] = useState<IComment[]>(
     () =>
-      JSON.parse(localStorage.getItem("comments") || "") || commentsDummyData,
+     commentsDummyData,
   );
   const [isError, setIsError] = useState("");
-  const [relatedData, setRelatedData] = useState<IData>([]);
-
+  const [relatedData, setRelatedData] = useState<RelatedType>(relatedVideoDummyData);
+localStorage.setItem("relatedData", JSON.stringify(relatedVideoDummyData));
   useEffect(() => {
     axios
       .all([
@@ -45,21 +47,28 @@ const Watch = ({ open }: WatchProps) => {
         <Description channelId="UCwQLh1dMRrT4WRjNKYzGHcw" />
         <Comments comments={comments} />
       </WatchPageWrapper>
-      <RelatedVideo relatedData={relatedData} />
+      <RelatedVideo relatedData={relatedData}  />
     </WatchContainer>
   );
 };
 
 const WatchPageWrapper = styled.div`
   max-width: 1000px;
+  width: 1000px;
   min-width: 500px;
-  margin-right: 40px;
+  @media screen and (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 const WatchContainer = styled.div<{ open: boolean }>`
   display: flex;
+  gap: 40px;
   padding: 5rem 3.5rem;
   margin-left: ${(props) => (props.open ? "240" : "0")}px;
   justify-content: center;
+  @media screen and (max-width: 1000px) {
+    display: block;
+  }
 `;
 
 export default Watch;

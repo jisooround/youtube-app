@@ -8,25 +8,21 @@ import { videoTime } from "../utils/videoTime";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { BiListCheck, BiDotsVerticalRounded } from "react-icons/bi";
 import { getVideoDetail } from "../api/api"
-import type {DataType, Video} from "../types/relatedTypes"
+import type { RelatedItem } from "../types/relatedItemType"
+import type { Video } from "../types/relatedCardTypes"
 
-type Props = { item: DataType };
+type Props = { item: RelatedItem };
 
 function RelatedCard({ item }: Props) {
+  localStorage.setItem("relatedCard",JSON.stringify(item))
+
   const videoDate: number = new Date(item.snippet.publishTime).getTime();
   const [videoResult, setVideoResult] = useState<Video|null>(null);
   const [isHovering, setIsHovering] = useState<boolean>(false);
   const [isError, setIsError] = useState<string>("")
-  // const getDetail = async (videoId: string = item.id.videoId) => {
-  //   const res = await instance.get(
-  //     `/videos?part=snippet&part=contentDetails&part=player&part=statistics&id=${videoId}`,
-  //   );
-  //   setVideoResult(res.data.items[0]);
-  // };
   useEffect(() => {
     getVideoDetail(item.id.videoId, setVideoResult, setIsError);
   }, [item]);
-  console.log(JSON.stringify(item))
   const watchLink = `/watch/${item.id.videoId}`;
   return (
     <Link to={watchLink}>

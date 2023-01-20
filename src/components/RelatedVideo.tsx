@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import RelatedCard from "./RelatedCard";
 import styled from "styled-components";
 import { relatedVideoDummyData } from "../data";
-import type { IData } from "../types/relatedTypes"
+import type { RelatedType } from "../types/relatedTypes"
 
-type Props = { relatedData: IData };
+type Props = { relatedData: RelatedType };
 
 function RelatedVideo({ relatedData }: Props) {
   return (

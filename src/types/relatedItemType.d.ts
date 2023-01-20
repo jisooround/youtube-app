@@ -1,6 +1,4 @@
-export type RelatedType = Root2[]
-
-export interface Root2 {
+export interface RelatedItem {
   kind: string
   etag: string
   id: Id

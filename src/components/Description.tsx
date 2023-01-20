@@ -14,7 +14,7 @@ const Description = ({ channelId }: IDescriptionProps) => {
 
   const [description, setDescription] = useState<IDescription>(
     () =>
-      JSON.parse(localStorage.getItem("desc") || "") || descriptionDummyData,
+      descriptionDummyData,
   );
 
   useEffect(() => {
