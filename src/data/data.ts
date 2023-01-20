@@ -2840,3 +2840,794 @@ export const mainVideoDetailDummyData = [
     pageInfo: { totalResults: 1, resultsPerPage: 1 },
   },
 ];
+
+export const searchVideoDummyData = [
+  {
+    kind: "youtube#searchResult",
+    etag: "nGP6BfI2SvkpbU1q7Wi0UHdVMAI",
+    id: {
+      kind: "youtube#video",
+      videoId: "zTcR0A9vPR4",
+    },
+    snippet: {
+      publishedAt: "2023-01-17T10:00:37Z",
+      channelId: "UC5xLohcPE65Y-U62X6snmRQ",
+      title: "나 진짜 안 먹어도 된다니까?",
+      description:
+        "문쌤 #졸업식 #쿠티크에센셜짜장 이 영상은 삼양식품 쿠티크의 지원을 받아 제작되었습니다. 아니 쌤이 일부러 안 준게 아니라 어쩔 ...",
+      thumbnails: {
+        default: {
+          url: "https://i.ytimg.com/vi/zTcR0A9vPR4/default.jpg",
+          width: 120,
+          height: 90,
+        },
+        medium: {
+          url: "https://i.ytimg.com/vi/zTcR0A9vPR4/mqdefault.jpg",
+          width: 320,
+          height: 180,
+        },
+        high: {
+          url: "https://i.ytimg.com/vi/zTcR0A9vPR4/hqdefault.jpg",
+          width: 480,
+          height: 360,
+        },
+      },
+      channelTitle: "빠더너스 BDNS",
+      liveBroadcastContent: "none",
+      publishTime: "2023-01-17T10:00:37Z",
+    },
+  },
+  {
+    kind: "youtube#searchResult",
+    etag: "KZy881dHZA38QDVTjejs5cearpk",
+    id: {
+      kind: "youtube#video",
+      videoId: "b4jT8K-rOvc",
+    },
+    snippet: {
+      publishedAt: "2023-01-10T10:10:27Z",
+      channelId: "UC5xLohcPE65Y-U62X6snmRQ",
+      title: "F는 이래서 안돼",
+      description: "문쌤 #MBTI #TF 쌤 MBTI 뭐게 Instagram @bdnspresents.",
+      thumbnails: {
+        default: {
+          url: "https://i.ytimg.com/vi/b4jT8K-rOvc/default.jpg",
+          width: 120,
+          height: 90,
+        },
+        medium: {
+          url: "https://i.ytimg.com/vi/b4jT8K-rOvc/mqdefault.jpg",
+          width: 320,
+          height: 180,
+        },
+        high: {
+          url: "https://i.ytimg.com/vi/b4jT8K-rOvc/hqdefault.jpg",
+          width: 480,
+          height: 360,
+        },
+      },
+      channelTitle: "빠더너스 BDNS",
+      liveBroadcastContent: "none",
+      publishTime: "2023-01-10T10:10:27Z",
+    },
+  },
+  {
+    kind: "youtube#searchResult",
+    etag: "mMZvd4KUMkKlvxnXpqYslAe2pSM",
+    id: {
+      kind: "youtube#video",
+      videoId: "idbT_FywEro",
+    },
+    snippet: {
+      publishedAt: "2023-01-15T04:00:11Z",
+      channelId: "UC5xLohcPE65Y-U62X6snmRQ",
+      title:
+        "[복학생 vlog] 걸어다니는 중소기업 청년 사업가 브이로그 (퇴사, 성공스토리, 20대 건물주, 자기개발, 스마트스토어 입점, 무자본 창업, 프랜차이즈 환영, 자영업자 현실)",
+      description:
+        "복학생 #창업 #entrepreneur 더 많은 숙취해소 젤리 출시정보는 인스타그램을 통해 확인해주세요! Instagram @bdnspresents.",
+      thumbnails: {
+        default: {
+          url: "https://i.ytimg.com/vi/idbT_FywEro/default.jpg",
+          width: 120,
+          height: 90,
+        },
+        medium: {
+          url: "https://i.ytimg.com/vi/idbT_FywEro/mqdefault.jpg",
+          width: 320,
+          height: 180,
+        },
+        high: {
+          url: "https://i.ytimg.com/vi/idbT_FywEro/hqdefault.jpg",
+          width: 480,
+          height: 360,
+        },
+      },
+      channelTitle: "빠더너스 BDNS",
+      liveBroadcastContent: "none",
+      publishTime: "2023-01-15T04:00:11Z",
+    },
+  },
+  {
+    kind: "youtube#searchResult",
+    etag: "Sw6nbELRELTtQ8GVU7HuiSvPSM0",
+    id: {
+      kind: "youtube#video",
+      videoId: "sgFgfjF1e-8",
+    },
+    snippet: {
+      publishedAt: "2022-11-20T04:00:15Z",
+      channelId: "UC5xLohcPE65Y-U62X6snmRQ",
+      title:
+        "[복학생 vlog] 속세 떠나 절간에서 공부하는 브이로그(주지스님 속마음 인터뷰, 절밥 먹방, 셀프 삭발 리뷰, 묵언 수행, 취뽀 108배, 달마야 놀자 결말, 순공 100시간)",
+      description:
+        "템플스테이 #복학생 #studywithme 장소협조 - 인천 강화군 전등사 Instagram @bdnspresents.",
+      thumbnails: {
+        default: {
+          url: "https://i.ytimg.com/vi/sgFgfjF1e-8/default.jpg",
+          width: 120,
+          height: 90,
+        },
+        medium: {
+          url: "https://i.ytimg.com/vi/sgFgfjF1e-8/mqdefault.jpg",
+          width: 320,
+          height: 180,
+        },
+        high: {
+          url: "https://i.ytimg.com/vi/sgFgfjF1e-8/hqdefault.jpg",
+          width: 480,
+          height: 360,
+        },
+      },
+      channelTitle: "빠더너스 BDNS",
+      liveBroadcastContent: "none",
+      publishTime: "2022-11-20T04:00:15Z",
+    },
+  },
+  {
+    kind: "youtube#searchResult",
+    etag: "g0H_0kV4pG1GgAnMEdudZSipPjs",
+    id: {
+      kind: "youtube#video",
+      videoId: "5sdB5272H_o",
+    },
+    snippet: {
+      publishedAt: "2022-12-08T10:04:31Z",
+      channelId: "UC5xLohcPE65Y-U62X6snmRQ",
+      title: "얘들아 지각 좀 하지 말아주세요 제발",
+      description: "문쌤 #일진 #참교육 Instagram @bdnspresents.",
+      thumbnails: {
+        default: {
+          url: "https://i.ytimg.com/vi/5sdB5272H_o/default.jpg",
+          width: 120,
+          height: 90,
+        },
+        medium: {
+          url: "https://i.ytimg.com/vi/5sdB5272H_o/mqdefault.jpg",
+          width: 320,
+          height: 180,
+        },
+        high: {
+          url: "https://i.ytimg.com/vi/5sdB5272H_o/hqdefault.jpg",
+          width: 480,
+          height: 360,
+        },
+      },
+      channelTitle: "빠더너스 BDNS",
+      liveBroadcastContent: "none",
+      publishTime: "2022-12-08T10:04:31Z",
+    },
+  },
+  {
+    kind: "youtube#searchResult",
+    etag: "OX50zSY87k3AXyrz-eBdlHz0mAg",
+    id: {
+      kind: "youtube#video",
+      videoId: "2pi-PKzkwtA",
+    },
+    snippet: {
+      publishedAt: "2023-01-03T10:00:02Z",
+      channelId: "UC5xLohcPE65Y-U62X6snmRQ",
+      title: "축구부면 수업 안 들어와도 되시나요?",
+      description:
+        "문쌤 #조규성 축구부도 학생이다 이 말이야 Instagram @bdnspresents.",
+      thumbnails: {
+        default: {
+          url: "https://i.ytimg.com/vi/2pi-PKzkwtA/default.jpg",
+          width: 120,
+          height: 90,
+        },
+        medium: {
+          url: "https://i.ytimg.com/vi/2pi-PKzkwtA/mqdefault.jpg",
+          width: 320,
+          height: 180,
+        },
+        high: {
+          url: "https://i.ytimg.com/vi/2pi-PKzkwtA/hqdefault.jpg",
+          width: 480,
+          height: 360,
+        },
+      },
+      channelTitle: "빠더너스 BDNS",
+      liveBroadcastContent: "none",
+      publishTime: "2023-01-03T10:00:02Z",
+    },
+  },
+  {
+    kind: "youtube#searchResult",
+    etag: "rPG-GGxmee_ThsiAzAxPgPnqT8k",
+    id: {
+      kind: "youtube#video",
+      videoId: "EqsCBihHLeU",
+    },
+    snippet: {
+      publishedAt: "2022-11-14T10:00:07Z",
+      channelId: "UC5xLohcPE65Y-U62X6snmRQ",
+      title: "수업을 왜 그렇게 하세요?",
+      description: "문쌤 #수능응원 #일타강사 Instagram @bdnspresents.",
+      thumbnails: {
+        default: {
+          url: "https://i.ytimg.com/vi/EqsCBihHLeU/default.jpg",
+          width: 120,
+          height: 90,
+        },
+        medium: {
+          url: "https://i.ytimg.com/vi/EqsCBihHLeU/mqdefault.jpg",
+          width: 320,
+          height: 180,
+        },
+        high: {
+          url: "https://i.ytimg.com/vi/EqsCBihHLeU/hqdefault.jpg",
+          width: 480,
+          height: 360,
+        },
+      },
+      channelTitle: "빠더너스 BDNS",
+      liveBroadcastContent: "none",
+      publishTime: "2022-11-14T10:00:07Z",
+    },
+  },
+  {
+    kind: "youtube#searchResult",
+    etag: "ZMXtAww2LKWKvZhZ8t8KTLeQrOU",
+    id: {
+      kind: "youtube#video",
+      videoId: "AHoz1iihgLU",
+    },
+    snippet: {
+      publishedAt: "2023-01-01T04:00:03Z",
+      channelId: "UC5xLohcPE65Y-U62X6snmRQ",
+      title:
+        "[복학생 vlog] 1월 1일 해돋이 여행 브이로그 (커플 펜션 추천, 다이어트, 첫키스, 새해 복 받아가세요, 강원도 정동진, 작심삼일 토익 공부법, 야간 산행 꿀팁)",
+      description:
+        "복학생 #커플여행 #시원스쿨랩 이 영상은 시원스쿨랩의 지원을 받아 제작되었습니다. 빠둥이 여러분과 이 자리에서 약속합니다,,, ...",
+      thumbnails: {
+        default: {
+          url: "https://i.ytimg.com/vi/AHoz1iihgLU/default.jpg",
+          width: 120,
+          height: 90,
+        },
+        medium: {
+          url: "https://i.ytimg.com/vi/AHoz1iihgLU/mqdefault.jpg",
+          width: 320,
+          height: 180,
+        },
+        high: {
+          url: "https://i.ytimg.com/vi/AHoz1iihgLU/hqdefault.jpg",
+          width: 480,
+          height: 360,
+        },
+      },
+      channelTitle: "빠더너스 BDNS",
+      liveBroadcastContent: "none",
+      publishTime: "2023-01-01T04:00:03Z",
+    },
+  },
+  {
+    kind: "youtube#searchResult",
+    etag: "oKhrYPsVL3qTOe4a-sTHTqEUQIQ",
+    id: {
+      kind: "youtube#video",
+      videoId: "035lAtnA96U",
+    },
+    snippet: {
+      publishedAt: "2022-09-10T03:49:57Z",
+      channelId: "UC5xLohcPE65Y-U62X6snmRQ",
+      title: "그때 그 시절 홈비디오 몰아보기",
+      description:
+        "명절 내내 홈비디오와 함께 행복한 한가위 보내세요~! 00:00 [홈비디오] 유튜브 3개월 쉬다 돌아왔는데 작업실이 생겨버렸네 01:55 [홈 ...",
+      thumbnails: {
+        default: {
+          url: "https://i.ytimg.com/vi/035lAtnA96U/default.jpg",
+          width: 120,
+          height: 90,
+        },
+        medium: {
+          url: "https://i.ytimg.com/vi/035lAtnA96U/mqdefault.jpg",
+          width: 320,
+          height: 180,
+        },
+        high: {
+          url: "https://i.ytimg.com/vi/035lAtnA96U/hqdefault.jpg",
+          width: 480,
+          height: 360,
+        },
+      },
+      channelTitle: "빠더너스 BDNS",
+      liveBroadcastContent: "none",
+      publishTime: "2022-09-10T03:49:57Z",
+    },
+  },
+  {
+    kind: "youtube#searchResult",
+    etag: "lnp4aRcs5_TM1MV5KaTGKj9_WLo",
+    id: {
+      kind: "youtube#video",
+      videoId: "Lb1UMS-n-rY",
+    },
+    snippet: {
+      publishedAt: "2019-11-11T09:00:06Z",
+      channelId: "UC5xLohcPE65Y-U62X6snmRQ",
+      title: "[ENG][문쌤] 수업 중 에어드랍 테러 그만해! 내가 돼지라는 소리야?",
+      description:
+        "기프티콘은 더 보내줘도 돼 ㅎㅎ 대신 안 쓴 것 Instagram @moonbdns Facebook / seoul.bdns.",
+      thumbnails: {
+        default: {
+          url: "https://i.ytimg.com/vi/Lb1UMS-n-rY/default.jpg",
+          width: 120,
+          height: 90,
+        },
+        medium: {
+          url: "https://i.ytimg.com/vi/Lb1UMS-n-rY/mqdefault.jpg",
+          width: 320,
+          height: 180,
+        },
+        high: {
+          url: "https://i.ytimg.com/vi/Lb1UMS-n-rY/hqdefault.jpg",
+          width: 480,
+          height: 360,
+        },
+      },
+      channelTitle: "빠더너스 BDNS",
+      liveBroadcastContent: "none",
+      publishTime: "2019-11-11T09:00:06Z",
+    },
+  },
+  {
+    kind: "youtube#searchResult",
+    etag: "y28ziEtKXg9s0ThwnlEVrrEYLbY",
+    id: {
+      kind: "youtube#video",
+      videoId: "rcZDzL7rMTM",
+    },
+    snippet: {
+      publishedAt: "2020-01-17T09:00:15Z",
+      channelId: "UC5xLohcPE65Y-U62X6snmRQ",
+      title: "[문쌤] 에어드랍 꺼놨더니 또 이런 짓을 해? 문제 테러 당한 문쌤",
+      description:
+        "이 영상은 콴다의 유료광고를 포함하고 있습니다. THIS IS COMMERCIAL Instagram @moonbdns Facebook / seoul.bdns.",
+      thumbnails: {
+        default: {
+          url: "https://i.ytimg.com/vi/rcZDzL7rMTM/default.jpg",
+          width: 120,
+          height: 90,
+        },
+        medium: {
+          url: "https://i.ytimg.com/vi/rcZDzL7rMTM/mqdefault.jpg",
+          width: 320,
+          height: 180,
+        },
+        high: {
+          url: "https://i.ytimg.com/vi/rcZDzL7rMTM/hqdefault.jpg",
+          width: 480,
+          height: 360,
+        },
+      },
+      channelTitle: "빠더너스 BDNS",
+      liveBroadcastContent: "none",
+      publishTime: "2020-01-17T09:00:15Z",
+    },
+  },
+  {
+    kind: "youtube#searchResult",
+    etag: "2GuFgDSJo7t17brKcVThNIQEEp0",
+    id: {
+      kind: "youtube#video",
+      videoId: "30E9m3tWKzg",
+    },
+    snippet: {
+      publishedAt: "2022-09-28T10:00:03Z",
+      channelId: "UC5xLohcPE65Y-U62X6snmRQ",
+      title: "제발 자리에 앉아라",
+      description:
+        "이 영상은 SKT ZEM의 지원을 받아 제작되었습니다. 우리 아이들 스마트폰 쓰기 시작하는 나이부터는 완전 새로운 세계로 내던져진 ...",
+      thumbnails: {
+        default: {
+          url: "https://i.ytimg.com/vi/30E9m3tWKzg/default.jpg",
+          width: 120,
+          height: 90,
+        },
+        medium: {
+          url: "https://i.ytimg.com/vi/30E9m3tWKzg/mqdefault.jpg",
+          width: 320,
+          height: 180,
+        },
+        high: {
+          url: "https://i.ytimg.com/vi/30E9m3tWKzg/hqdefault.jpg",
+          width: 480,
+          height: 360,
+        },
+      },
+      channelTitle: "빠더너스 BDNS",
+      liveBroadcastContent: "none",
+      publishTime: "2022-09-28T10:00:03Z",
+    },
+  },
+  {
+    kind: "youtube#searchResult",
+    etag: "c8SKEGl_KH6QntV3migf9LdeNeY",
+    id: {
+      kind: "youtube#video",
+      videoId: "oter9p3wqBE",
+    },
+    snippet: {
+      publishedAt: "2021-11-17T08:30:06Z",
+      channelId: "UC5xLohcPE65Y-U62X6snmRQ",
+      title: "[문쌤] &quot;쌤 몇 년 차세요?&quot; 수업 중 대노한 군기반장 문쌤",
+      description: "문쌤 #수능응원 #동기부여 Instagram @bdnspresents.",
+      thumbnails: {
+        default: {
+          url: "https://i.ytimg.com/vi/oter9p3wqBE/default.jpg",
+          width: 120,
+          height: 90,
+        },
+        medium: {
+          url: "https://i.ytimg.com/vi/oter9p3wqBE/mqdefault.jpg",
+          width: 320,
+          height: 180,
+        },
+        high: {
+          url: "https://i.ytimg.com/vi/oter9p3wqBE/hqdefault.jpg",
+          width: 480,
+          height: 360,
+        },
+      },
+      channelTitle: "빠더너스 BDNS",
+      liveBroadcastContent: "none",
+      publishTime: "2021-11-17T08:30:06Z",
+    },
+  },
+  {
+    kind: "youtube#searchResult",
+    etag: "tCMeyk-pqCYn-Metn9oMFTsWiMQ",
+    id: {
+      kind: "youtube#video",
+      videoId: "475dCgzjNyE",
+    },
+    snippet: {
+      publishedAt: "2022-12-27T10:00:04Z",
+      channelId: "UC5xLohcPE65Y-U62X6snmRQ",
+      title: "너 내가 1분에 얼마 버는지 알아?",
+      description: "문쌤 #일타강사 Instagram @bdnspresents.",
+      thumbnails: {
+        default: {
+          url: "https://i.ytimg.com/vi/475dCgzjNyE/default.jpg",
+          width: 120,
+          height: 90,
+        },
+        medium: {
+          url: "https://i.ytimg.com/vi/475dCgzjNyE/mqdefault.jpg",
+          width: 320,
+          height: 180,
+        },
+        high: {
+          url: "https://i.ytimg.com/vi/475dCgzjNyE/hqdefault.jpg",
+          width: 480,
+          height: 360,
+        },
+      },
+      channelTitle: "빠더너스 BDNS",
+      liveBroadcastContent: "none",
+      publishTime: "2022-12-27T10:00:04Z",
+    },
+  },
+  {
+    kind: "youtube#searchResult",
+    etag: "8Xr0XhXIoNRCjIkMDkpSJDTHuFs",
+    id: {
+      kind: "youtube#video",
+      videoId: "VmFFlK03WHc",
+    },
+    snippet: {
+      publishedAt: "2022-01-14T10:00:14Z",
+      channelId: "UC5xLohcPE65Y-U62X6snmRQ",
+      title: "[문쌤] 실감나는 6.25전쟁 6분 요약",
+      description:
+        "문쌤 #625전쟁 #625전쟁요약 문쌤 강의의 풀버전은 리더스 사탐 홈페이지에서 확인할 수 있습니다. Instagram @bdnspresents.",
+      thumbnails: {
+        default: {
+          url: "https://i.ytimg.com/vi/VmFFlK03WHc/default.jpg",
+          width: 120,
+          height: 90,
+        },
+        medium: {
+          url: "https://i.ytimg.com/vi/VmFFlK03WHc/mqdefault.jpg",
+          width: 320,
+          height: 180,
+        },
+        high: {
+          url: "https://i.ytimg.com/vi/VmFFlK03WHc/hqdefault.jpg",
+          width: 480,
+          height: 360,
+        },
+      },
+      channelTitle: "빠더너스 BDNS",
+      liveBroadcastContent: "none",
+      publishTime: "2022-01-14T10:00:14Z",
+    },
+  },
+  {
+    kind: "youtube#searchResult",
+    etag: "2f7u7l4bQ7emRZmYyZfF1PRt_So",
+    id: {
+      kind: "youtube#video",
+      videoId: "CMYPJ1LLGGA",
+    },
+    snippet: {
+      publishedAt: "2022-12-20T08:12:41Z",
+      channelId: "UCma37fJBlF718VRgGlx4yGA",
+      title: "[메가스터디] 수능 지리, 이름만 들어도 지리는 문쌤",
+      description:
+        "2023년 수능 지리의 문이 열린다 자신 있게 말씀 드립니다. 최소 5등급! 이름만 들어도 지리는 문쌤 드디어 메가스터디에 COMING ...",
+      thumbnails: {
+        default: {
+          url: "https://i.ytimg.com/vi/CMYPJ1LLGGA/default.jpg",
+          width: 120,
+          height: 90,
+        },
+        medium: {
+          url: "https://i.ytimg.com/vi/CMYPJ1LLGGA/mqdefault.jpg",
+          width: 320,
+          height: 180,
+        },
+        high: {
+          url: "https://i.ytimg.com/vi/CMYPJ1LLGGA/hqdefault.jpg",
+          width: 480,
+          height: 360,
+        },
+      },
+      channelTitle: "theMEGASTUDY",
+      liveBroadcastContent: "none",
+      publishTime: "2022-12-20T08:12:41Z",
+    },
+  },
+  {
+    kind: "youtube#searchResult",
+    etag: "YekBPSIOAEgSZopqZRZZ7K28kIo",
+    id: {
+      kind: "youtube#video",
+      videoId: "ADg08ZmrJ-Q",
+    },
+    snippet: {
+      publishedAt: "2021-12-29T10:00:09Z",
+      channelId: "UC5xLohcPE65Y-U62X6snmRQ",
+      title: "[문쌤] 실감나는 2차세계대전 6분 요약",
+      description:
+        "문쌤 #2차세계대전 #2세계대전요약 문쌤 강의의 풀버전은 리더스 사탐 홈페이지에서 확인할 수 있습니다. Instagram ...",
+      thumbnails: {
+        default: {
+          url: "https://i.ytimg.com/vi/ADg08ZmrJ-Q/default.jpg",
+          width: 120,
+          height: 90,
+        },
+        medium: {
+          url: "https://i.ytimg.com/vi/ADg08ZmrJ-Q/mqdefault.jpg",
+          width: 320,
+          height: 180,
+        },
+        high: {
+          url: "https://i.ytimg.com/vi/ADg08ZmrJ-Q/hqdefault.jpg",
+          width: 480,
+          height: 360,
+        },
+      },
+      channelTitle: "빠더너스 BDNS",
+      liveBroadcastContent: "none",
+      publishTime: "2021-12-29T10:00:09Z",
+    },
+  },
+];
+
+export const searchVideoDetailDummyData = {
+  kind: "youtube#videoListResponse",
+  etag: "nXMDwqw66U_g2O_i6IVUX6dehJc",
+  items: [
+    {
+      kind: "youtube#video",
+      etag: "Hc2Q9K7euFx5217qPuZp_RwdROA",
+      id: "5sdB5272H_o",
+      snippet: {
+        publishedAt: "2022-12-08T10:04:31Z",
+        channelId: "UC5xLohcPE65Y-U62X6snmRQ",
+        title: "얘들아 지각 좀 하지 말아주세요 제발",
+        description: "#문쌤 #일진 #참교육\n\n\n\nInstagram @bdnspresents",
+        thumbnails: {
+          default: {
+            url: "https://i.ytimg.com/vi/5sdB5272H_o/default.jpg",
+            width: 120,
+            height: 90,
+          },
+          medium: {
+            url: "https://i.ytimg.com/vi/5sdB5272H_o/mqdefault.jpg",
+            width: 320,
+            height: 180,
+          },
+          high: {
+            url: "https://i.ytimg.com/vi/5sdB5272H_o/hqdefault.jpg",
+            width: 480,
+            height: 360,
+          },
+          standard: {
+            url: "https://i.ytimg.com/vi/5sdB5272H_o/sddefault.jpg",
+            width: 640,
+            height: 480,
+          },
+          maxres: {
+            url: "https://i.ytimg.com/vi/5sdB5272H_o/maxresdefault.jpg",
+            width: 1280,
+            height: 720,
+          },
+        },
+        channelTitle: "빠더너스 BDNS",
+        tags: [
+          "comedy",
+          "코미디",
+          "코메디",
+          "스케치코미디",
+          "웃긴영상",
+          "문상훈",
+          "꽁트",
+          "레전드",
+          "문쌤",
+          "문상훈 문쌤",
+          "문상훈 인터뷰",
+          "문상훈 강사",
+          "문상훈 인강",
+          "문상훈 강의",
+          "문상훈 한국지리",
+          "문쌤 한국지리",
+          "한국지리 문쌤 강의",
+          "한국지리 문쌤 에어드랍",
+          "문쌤 에어드랍 돼지",
+          "문쌤 인강",
+          "빠더너스 문쌤 물",
+          "문쌤 에어드랍",
+          "문쌤 이기상",
+          "문쌤 최희준",
+          "문쌤 레전드",
+          "문쌤 강의",
+          "문쌤 공부하기 싫을때",
+          "문쌤 놀리기",
+          "일타강사",
+          "문쌤 현강",
+          "문쌤 현강반응",
+          "문쌤 직캠",
+          "일타강사 문쌤",
+          "문쌤 이지영",
+          "문쌤 정승제",
+          "한국지리 일타강사",
+          "한국지리 인강",
+          "한지 인강",
+          "한국지리",
+          "모의고사 한국지리",
+          "수능 한국지리",
+          "신승호",
+          "dp",
+          "d.p.",
+          "약한영웅",
+          "군대",
+          "선임으로 만나면",
+          "황장수",
+          "김루리",
+          "연시은",
+          "박지훈",
+          "환혼",
+          "에이틴",
+          "환혼 세자",
+          "일진 참교육",
+          "일진",
+          "인강",
+          "특강",
+          "수업",
+        ],
+        categoryId: "23",
+        liveBroadcastContent: "none",
+        localized: {
+          title: "얘들아 지각 좀 하지 말아주세요 제발",
+          description: "#문쌤 #일진 #참교육\n\n\n\nInstagram @bdnspresents",
+        },
+        defaultAudioLanguage: "ko",
+      },
+      contentDetails: {
+        duration: "PT6M19S",
+        dimension: "2d",
+        definition: "hd",
+        caption: "false",
+        licensedContent: true,
+        contentRating: {},
+        projection: "rectangular",
+      },
+      statistics: {
+        viewCount: "2620114",
+        likeCount: "47751",
+        favoriteCount: "0",
+        commentCount: "2374",
+      },
+      player: {
+        embedHtml:
+          '<iframe width="480" height="270" src="//www.youtube.com/embed/5sdB5272H_o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
+      },
+    },
+  ],
+  pageInfo: {
+    totalResults: 1,
+    resultsPerPage: 1,
+  },
+};
+
+export const searchVideoChannelDummyData = {
+  kind: "youtube#channelListResponse",
+  etag: "1a45RuSZjwbxQgUUYPCUlT0u3bA",
+  pageInfo: {
+    totalResults: 1,
+    resultsPerPage: 5,
+  },
+  items: [
+    {
+      kind: "youtube#channel",
+      etag: "ie0BsZdzCpWvgViehuoxd2pPSqQ",
+      id: "UC5xLohcPE65Y-U62X6snmRQ",
+      snippet: {
+        title: "빠더너스 BDNS",
+        description:
+          "하이퍼 리얼리즘의 콩트와 코미디 영상을 만듭니다\n웰메이드 코미디를 지향합니다   \n콜라보, 비즈니스 문의는 문상훈을 춤추게 합니다\n\nInstagram :  @bdnspresents @bdnsstudio\n비즈니스 문의 : seoul.bdns@gmail.com\n공식 홈페이지 : bdns.co.kr\n\n\nTHIS IS COMEDY!\nBDNS Presents\n\n",
+        customUrl: "@bdns",
+        publishedAt: "2016-05-31T03:31:12Z",
+        thumbnails: {
+          default: {
+            url: "https://yt3.ggpht.com/ytc/AMLnZu8Ia8DsIhh46F6WWu1xhktgEfbSZgSo8y-02K9dmQ=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          },
+          medium: {
+            url: "https://yt3.ggpht.com/ytc/AMLnZu8Ia8DsIhh46F6WWu1xhktgEfbSZgSo8y-02K9dmQ=s240-c-k-c0x00ffffff-no-rj",
+            width: 240,
+            height: 240,
+          },
+          high: {
+            url: "https://yt3.ggpht.com/ytc/AMLnZu8Ia8DsIhh46F6WWu1xhktgEfbSZgSo8y-02K9dmQ=s800-c-k-c0x00ffffff-no-rj",
+            width: 800,
+            height: 800,
+          },
+        },
+        localized: {
+          title: "빠더너스 BDNS",
+          description:
+            "하이퍼 리얼리즘의 콩트와 코미디 영상을 만듭니다\n웰메이드 코미디를 지향합니다   \n콜라보, 비즈니스 문의는 문상훈을 춤추게 합니다\n\nInstagram :  @bdnspresents @bdnsstudio\n비즈니스 문의 : seoul.bdns@gmail.com\n공식 홈페이지 : bdns.co.kr\n\n\nTHIS IS COMEDY!\nBDNS Presents\n\n",
+        },
+        country: "KR",
+      },
+      contentDetails: {
+        relatedPlaylists: {
+          likes: "",
+          uploads: "UU5xLohcPE65Y-U62X6snmRQ",
+        },
+      },
+      statistics: {
+        viewCount: "360065413",
+        subscriberCount: "1080000",
+        hiddenSubscriberCount: false,
+        videoCount: "596",
+      },
+    },
+  ],
+};
