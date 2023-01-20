@@ -1,47 +1,45 @@
 import { instance } from "../../api/index";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import MainCard from "../../components/home/MainCard";
 import { mainVideoDummyData } from "../../data/data";
 import { VideoSearchData } from "../../types/videoSearchTypes";
+import { getSearchData } from "../../api/api";
 
 const Home = ({ open }: { open: boolean }) => {
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await instance.get(
-          "/search?part=snippet&maxResults=10&q={동물의숲}",
-        );
-        const MovieData = response.data;
-        localStorage.setItem("동물의숲", JSON.stringify(response.data));
-      } catch (e) {
-        console.log((e as Error).message);
-      }
-    };
-    //  fetchData();
-  }, []);
+  const [videoResult, setVideoResult] = useState(mainVideoDummyData);
+  const [isError, setIsError] = useState<string>("");
+  const searchWord = "검색어";
 
   useEffect(() => {
     document.title = "YouTube";
   }, []);
 
+  useEffect(() => {
+    getSearchData(searchWord, setVideoResult, setIsError);
+  }, [searchWord]);
+
   // dummyData 로컬에 저장
-  localStorage.setItem("동물의숲", JSON.stringify(mainVideoDummyData));
+  localStorage.setItem(
+    "mainVideoDummyData",
+    JSON.stringify(mainVideoDummyData),
+  );
 
   // dummyData 로컬에서 가져오기
-  const localData = JSON.parse(localStorage.getItem("동물의숲") || "");
+  const localData = JSON.parse(
+    localStorage.getItem("mainVideoDummyData") || "",
+  );
 
   return (
     <Container open={open}>
-      {localData.items.map((item: VideoSearchData) => {
-        return <MainCard key={item.id.videoId} item={item} />;
+      {localData.items.map((item: VideoSearchData, i: number) => {
+        return <MainCard key={item.id.videoId} item={item} i={i} />;
       })}
     </Container>
   );
 };
 
 const Container = styled.div<{ open: boolean }>`
-  /* flex-wrap: wrap; */
   width: ${(props) => (props.open ? "calc(100% - 240)" : "calc(100% - 72)")}px;
   height: auto;
   padding: 100px 33px 0 33px;
