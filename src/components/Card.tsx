@@ -146,7 +146,7 @@ const dummyData = {
 };
 
 const Card = ({ item }: { item: VideoData }) => {
-  const date: number = new Date(item.snippet.publishTime).getTime();
+  // const date: number = new Date(item.snippet.publishTime).getTime();
   const videoId = item.id.videoId;
 
   useEffect(() => {
@@ -197,7 +197,9 @@ const Card = ({ item }: { item: VideoData }) => {
             <ViewCount>
               조회수 {nFormatter(localDetailData.items[0].statistics.viewCount)}
             </ViewCount>
-            <Time>&nbsp; &middot; {displayedAt(date)} </Time>
+            <Time>
+              &nbsp; &middot; {displayedAt(item.snippet.publishTime)}{" "}
+            </Time>
           </Detail>
         </Text>
       </Info>
