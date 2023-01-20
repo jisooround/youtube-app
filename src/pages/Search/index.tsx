@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { searchVideoDummyData } from "../../data/data";
 import styled from "styled-components";
-import SearchCard from "../../components/Search/SearchCard";
+import SearchCard from "../../components/search/SearchCard";
 import { getSearchData } from "../../api/api";
 import type { VideoSearchData } from "../../types/videoSearchTypes";
 
@@ -14,6 +14,10 @@ const Search = ({ open }: { open: boolean }) => {
   };
   const query = useQuery();
   const searchWord = query.get("q") || "";
+
+  useEffect(() => {
+    document.title = "Youtube";
+  }, []);
 
   useEffect(() => {
     getSearchData(searchWord, setResult, setIsError);

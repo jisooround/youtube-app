@@ -14,6 +14,7 @@ import {
 } from "../../data/data";
 import type { Video } from "../../types/relatedCardTypes";
 import type { IDescription } from "../../types/descriptionTypes";
+
 const SearchCard = ({ data }: { data: VideoSearchData }) => {
   const [videoResult, setVideoResult] = useState<Video>(
     searchVideoDetailDummyData,
@@ -22,7 +23,6 @@ const SearchCard = ({ data }: { data: VideoSearchData }) => {
     searchVideoChannelDummyData,
   );
   const [isHovering, setIsHovering] = useState<boolean>(false);
-  // const date: number = new Date(data.snippet.publishTime).getTime();
   const [isError, setIsError] = useState<string>("");
   useEffect(() => {
     getVideoDetail(data.id.videoId, setVideoResult, setIsError);
