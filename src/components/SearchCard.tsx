@@ -88,7 +88,8 @@ const SearchCard = ({ data }: { data: Search }) => {
 };
 
 const Section = styled.section`
-  padding: 1rem 2rem 0 2rem;
+  max-height: 200px;
+  padding: 1rem 8rem 0 2rem;
   display: flex;
 `;
 
@@ -102,11 +103,13 @@ const Card = styled.div`
 `;
 
 const Video = styled.div`
+  max-width: 100%;
   height: 200px;
   margin-right: 20px;
   cursor: pointer;
   img {
-    width: fit-content;
+    aspect-ratio: 16 / 9;
+    /* width: fit-content; */
     height: 100%;
     border-radius: 10px;
   }
