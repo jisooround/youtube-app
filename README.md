@@ -15,16 +15,18 @@
 <table>
   <tbody>
   <tr>
-  <td align="center"><a href="">팀장</a></td>
-  <td align="center"><a href="">팀원</a></td>
-  <td align="center"><a href="">팀원</a></td>
-  <td align="center"><a href="">팀원</a></td>
+  <td align="center"><a href="https://github.com/yujiseok">팀장: 유지석</a></td>
+  <td align="center"><a href="https://github.com/Jaeheon-So">팀원: 소재헌</a></td>
+  <td align="center"><a href="https://github.com/hoheesu">팀원: 윤준수</a></td>
+  <td align="center"><a href="https://github.com/jisooround">팀원: 우지수</a></td>
+  <td align="center"><a href="https://github.com/1myeji">팀원: 임예지</a></td>
   </tr>
   <tr>
-  <td align="center"><a href=""><img src="" width="150px;" style="max-width: 100%;"/></a></td>
-  <td align="center"><a href=""><img src="" width="150px;" style="max-width: 100%;"/></a></td>
-  <td align="center"><a href=""><img src="" width="150px;" style="max-width: 100%;"/></a></td>
-  <td align="center"><a href=""><img src="" width="150px;" style="max-width: 100%;"/></a></td>
+  <td align="center"><a href="https://github.com/yujiseok"><img src="https://avatars.githubusercontent.com/u/83855636?s=64&v=4" width="150px;" style="max-width: 100%;"/></a></td>
+  <td align="center"><a href="https://github.com/Jaeheon-So"><img src="https://avatars.githubusercontent.com/u/79908684?v=4" width="150px;" style="max-width: 100%;"/></a></td>
+  <td align="center"><a href="https://github.com/hoheesu"><img src="https://avatars.githubusercontent.com/u/99115509?s=64&v=4" width="150px;" style="max-width: 100%;"/></a></td>
+  <td align="center"><a href="https://github.com/jisooround"><img src="https://avatars.githubusercontent.com/u/110647022?s=64&v=4" width="150px;" style="max-width: 100%;"/></a></td>
+   <td align="center"><a href="https://github.com/1myeji"><img src="https://avatars.githubusercontent.com/u/106291546?s=64&v=4" width="150px;" style="max-width: 100%;"/></a></td>
   </tr>
   <tr>
   <td align="center"></td>
