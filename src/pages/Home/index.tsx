@@ -1,31 +1,23 @@
 import { instance } from "../../api/index";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import MainCard from "../../components/home/MainCard";
 import { mainVideoDummyData } from "../../data/data";
 import { VideoSearchData } from "../../types/videoSearchTypes";
+import { getSearchData } from "../../api/api";
 
 const Home = ({ open }: { open: boolean }) => {
+  const [videoResult, setVideoResult] = useState(mainVideoDummyData);
+  const [isError, setIsError] = useState<string>("");
+  const searchWord = "검색어";
+
   useEffect(() => {
     document.title = "YouTube";
   }, []);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await instance.get(
-          "/search?part=snippet&maxResults=10&q={파스타}",
-        );
-        localStorage.setItem(
-          "mainVideoSearchData",
-          JSON.stringify(response.data),
-        );
-      } catch (e) {
-        console.log((e as Error).message);
-      }
-    };
-    // fetchData();
-  }, []);
+    getSearchData(searchWord, setVideoResult, setIsError);
+  }, [searchWord]);
 
   // dummyData 로컬에 저장
   localStorage.setItem(
