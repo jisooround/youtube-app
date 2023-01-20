@@ -97,7 +97,7 @@ const MainImage = styled.div`
   }
 `;
 const Duration = styled.div`
-  z-index: 10;
+  z-index: 9;
   position: absolute;
   right: 0;
   bottom: 0;
