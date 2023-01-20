@@ -13,7 +13,7 @@ const SearchCard = ({ data }: { data: Search }) => {
   const [videoResult, setVideoResult] = useState<Video>();
   const [channelResult, setChannelResult] = useState<Channel>();
   const [isHovering, setIsHovering] = useState<boolean>(false);
-  const date: number = new Date(data.snippet.publishTime).getTime();
+  // const date: number = new Date(data.snippet.publishTime).getTime();
   const [isError, setIsError] = useState<string>("");
   useEffect(() => {
     getVideoDetail(data.id.videoId, setVideoResult, setIsError);
@@ -70,7 +70,7 @@ const SearchCard = ({ data }: { data: Search }) => {
                 )}
               </span>
               {" • "}
-              <span>{displayedAt(date)}</span>
+              <span>{displayedAt(data.snippet.publishTime)}</span>
             </Views>
             <Name>
               <img
