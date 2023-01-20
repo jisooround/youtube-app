@@ -33,7 +33,7 @@
   </tbody>
 </table>
 
-# 기술 스택
+# 🔨기술 스택
 
 <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black">
 <img src="https://img.shields.io/badge/vite-646CFF?style=for-the-badge&logo=vite&logoColor=white">
@@ -58,11 +58,13 @@
 - 타입스크립트가 익숙하지 않아서 타입 오류를 해결하는 것이 많이 힘들었다.
 - 중복되는 함수들을 합치는 작업이 어려웠다.
 - api 호출 할당량이 적어서 실제로 되는지 안되는지 확인하는 것이 힘들었다.
--
+- 반응형 작업이 어려웠다.
+  <br/><br/>
 
 # 💡궁금한 점
 
 - api 호출시, 여러 이펙트안에서 분리해서 각각 호출하는 것이 좋은지
 - 하나의 이펙트안에서 호출하는 게 좋은지
-- 혹은 하나의 이펙트안에서 all을 이용해 처리하는게 좋은지
+- 혹은 하나의 이펙트안에서 axios.all을 이용해 처리하는게 좋은지
 - 자녀 컴포넌트에서 각자 api 호출이 좋은지, 부모 컴포넌트에서 호출을 한 후 prop으로 내리는 게 좋을지
+- 더미데이터를 useState의 기본값에 할당을 해주어서 처음 렌더링 할때 더미데이터 값이 먼저 렌더링 되고 그 다음에 api에서 받아온 값이 렌더링 되는데 고칠 수 있는 방법이 있는지
