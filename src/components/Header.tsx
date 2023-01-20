@@ -21,7 +21,6 @@ const Header = ({
     (document.activeElement as HTMLElement).blur();
   };
 
-  console.log("open", open);
   return (
     <Container>
       <Start>

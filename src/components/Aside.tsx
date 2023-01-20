@@ -325,7 +325,7 @@ const Aside = ({
   }
 };
 
-const Open = styled.div`
+const Open = styled.aside`
   width: 240px;
   height: 100vh;
   position: fixed;
@@ -399,17 +399,24 @@ const Item = styled.div`
     p {
       font-size: 14px;
       text-align: center;
+      text-overflow: ellipsis;
     }
     :hover {
       border-radius: 10px;
       background-color: #eee;
       transition: 0.2s;
       cursor: pointer;
+      p {
+        color: black;
+      }
+      .icon {
+        fill: black;
+      }
     }
   }
 `;
 
-const Close = styled.div`
+const Close = styled.aside`
   width: 72px;
   height: 100vh;
   position: fixed;
@@ -429,6 +436,17 @@ const Close = styled.div`
     align-items: flex-end;
     padding: 16px 0 14px 0;
     box-sizing: border-box;
+    &:hover {
+      border-radius: 10px;
+      background-color: #eee;
+      transition: 0.2s;
+      p {
+        color: black;
+      }
+      .icon {
+        fill: black;
+      }
+    }
     .icon {
       width: 24px;
       height: 24px;
@@ -444,11 +462,6 @@ const Close = styled.div`
       font-size: 10px;
       text-align: center;
       line-height: 0.8rem;
-    }
-    :hover {
-      border-radius: 10px;
-      background-color: #eee;
-      transition: 0.2s;
     }
   }
 `;
