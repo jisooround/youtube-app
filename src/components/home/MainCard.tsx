@@ -1,72 +1,12 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 import { instance } from "../../api";
-import { VideoData } from "../pages/Home";
 import { Link } from "react-router-dom";
 import { nFormatter } from "../../utils/nFormatter";
 import { videoTime } from "../../utils/videoTime";
 import { displayedAt } from "../../utils/displayedAt";
-
-export interface MovieData {
-  kind: string;
-  etag: string;
-  nextPageToken: string;
-  regionCode: string;
-  pageInfo: PageInfo;
-  items: Item[];
-}
-
-export interface PageInfo {
-  totalResults: number;
-  resultsPerPage: number;
-}
-
-export interface Item {
-  kind: string;
-  etag: string;
-  id: Id;
-  snippet: Snippet;
-}
-
-export interface Id {
-  kind: string;
-  videoId: string;
-}
-
-export interface Snippet {
-  publishedAt: string;
-  channelId: string;
-  title: string;
-  description: string;
-  thumbnails: Thumbnails;
-  channelTitle: string;
-  liveBroadcastContent: string;
-  publishTime: string;
-}
-
-export interface Thumbnails {
-  default: Default;
-  medium: Medium;
-  high: High;
-}
-
-export interface Default {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface Medium {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface High {
-  url: string;
-  width: number;
-  height: number;
-}
+import { VideoDetailData } from "../../types/videoDetailTypes";
+import { VideoSearchData } from "../../types/videoSearchTypes";
 
 // 조회수, 게시일을 위한 상세 데이터
 const dummyData = {
@@ -145,7 +85,7 @@ const dummyData = {
   pageInfo: { totalResults: 1, resultsPerPage: 1 },
 };
 
-const Card = ({ item }: { item: VideoData }) => {
+const MainCard = ({ item }: { item: VideoSearchData }) => {
   // const date: number = new Date(item.snippet.publishTime).getTime();
   const videoId = item.id.videoId;
 
@@ -292,4 +232,4 @@ const Detail = styled.div`
 const ViewCount = styled(ChannelTitle)``;
 const Time = styled(ChannelTitle)``;
 
-export default Card;
+export default MainCard;
