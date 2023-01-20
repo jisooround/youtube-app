@@ -1,7 +1,7 @@
 import { instance } from "../../api/index";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import Card from "../../components/Card";
+import Card from "../../components/home/Card";
 import { mainVideoDummyData } from "../../data/data";
 
 export interface VideoData {
