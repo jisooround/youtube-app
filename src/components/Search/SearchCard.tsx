@@ -115,10 +115,24 @@ const Video = styled.div`
   cursor: pointer;
   img {
     aspect-ratio: 16 / 9;
-    /* width: fit-content; */
     height: 100%;
     border-radius: 10px;
   }
+`;
+
+const Duration = styled.div`
+  padding: 3px 4px;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  bottom: 0;
+  right: 5px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  font-size: 12px;
+  margin-bottom: 3px;
 `;
 
 const HoverBox = styled.div`
@@ -138,10 +152,22 @@ const HoverBox = styled.div`
   }
 `;
 
+const Info = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+`;
+
 const TitleBox = styled.div`
   display: flex;
   align-items: flex-start;
   cursor: pointer;
+`;
+
+const Title = styled.h3`
+  margin-bottom: 0.5rem;
+  line-height: 150%;
+  font-size: 18px;
 `;
 
 const MoreInfoBtn = styled.div`
@@ -151,33 +177,6 @@ const MoreInfoBtn = styled.div`
   svg {
     font-size: 20px;
   }
-`;
-
-const Duration = styled.div`
-  padding: 3px 4px;
-  background-color: rgba(0, 0, 0, 0.8);
-  position: absolute;
-  bottom: 0;
-  right: 5px;
-  font-weight: 600;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-  font-size: 12px;
-  margin-bottom: 3px;
-`;
-
-const Info = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-left: 15px;
-`;
-
-const Title = styled.h3`
-  margin-bottom: 0.5rem;
-  line-height: 150%;
-  font-size: 18px;
 `;
 
 const Views = styled.div`
