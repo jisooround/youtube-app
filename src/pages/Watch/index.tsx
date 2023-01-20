@@ -23,28 +23,27 @@ const Watch = ({ open }: WatchProps) => {
   const { id } = useParams() as { id: string };
   const [videoDetailData, setVideoDetailData] =
     useState<VideoDetailData>(videoDetailDummyData);
-  const [comments, setComments] = useState<IComment[]>(
-    () =>
-     commentsDummyData,
-  );
+  const [comments, setComments] = useState<IComment[]>(() => commentsDummyData);
   const [isError, setIsError] = useState("");
   const [relatedData, setRelatedData] = useState<RelatedType>(relatedVideoDummyData);
 localStorage.setItem("relatedData", JSON.stringify(relatedVideoDummyData));
   useEffect(() => {
-    axios
-      .all([
-        getVideoDetail(id, setVideoDetailData, setIsError),
-        getComments(id, setComments, setIsError),
-        getRelated(id, setRelatedData, setIsError),
-      ])
-      .catch((error) => setIsError(error.message));
+    // axios
+    //   .all([
+    //     getVideoDetail(id, setVideoDetailData, setIsError),
+    //     getComments(id, setComments, setIsError),
+    //     getRelated(id, setRelatedData, setIsError),
+    //   ])
+    //   .catch((error) => setIsError(error.message));
   }, [id]);
+
+  console.log(comments);
 
   return (
     <WatchContainer open={open}>
       <WatchPageWrapper>
         <MainVideo videoDetailData={videoDetailData} />
-        <Description channelId="UCwQLh1dMRrT4WRjNKYzGHcw" />
+        <Description channelId={videoDetailData.items[0].snippet.channelId} />
         <Comments comments={comments} />
       </WatchPageWrapper>
       <RelatedVideo relatedData={relatedData}  />
@@ -53,7 +52,6 @@ localStorage.setItem("relatedData", JSON.stringify(relatedVideoDummyData));
 };
 
 const WatchPageWrapper = styled.div`
-  max-width: 1000px;
   width: 1000px;
   min-width: 500px;
   @media screen and (max-width: 1000px) {

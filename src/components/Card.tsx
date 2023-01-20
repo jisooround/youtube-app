@@ -2,8 +2,10 @@ import { useEffect } from "react";
 import styled from "styled-components";
 import { instance } from "../api";
 import { VideoData } from "../pages/Home";
-import { timeAgo } from "../utils/timeAgo";
 import { Link } from "react-router-dom";
+import { nFormatter } from "../utils/nFormatter";
+import { videoTime } from "../utils/videoTime";
+import { displayedAt } from "../utils/displayedAt";
 
 export interface MovieData {
   kind: string;
@@ -144,6 +146,7 @@ const dummyData = {
 };
 
 const Card = ({ item }: { item: VideoData }) => {
+  const date: number = new Date(item.snippet.publishTime).getTime();
   const videoId = item.id.videoId;
 
   useEffect(() => {
@@ -166,8 +169,6 @@ const Card = ({ item }: { item: VideoData }) => {
   // dummy data 로컬에서 가져오기
   const localDetailData = JSON.parse(localStorage.getItem("videoId") || "");
 
-  // const { videoId } = useParams();
-
   return (
     <Wrap>
       <MainImage>
@@ -177,6 +178,11 @@ const Card = ({ item }: { item: VideoData }) => {
             alt="Channel-thumbnails"
           />
         </Link>
+        <Duration>
+          <span>
+            {videoTime(localDetailData.items[0].contentDetails.duration)}
+          </span>
+        </Duration>
       </MainImage>
       <Info>
         <Image>
@@ -189,12 +195,9 @@ const Card = ({ item }: { item: VideoData }) => {
           <ChannelTitle>{item.snippet.channelTitle}</ChannelTitle>
           <Detail>
             <ViewCount>
-              조회수 {localDetailData.items[0].statistics.viewCount}
+              조회수 {nFormatter(localDetailData.items[0].statistics.viewCount)}
             </ViewCount>
-            <Time>
-              &nbsp; &middot;{" "}
-              {timeAgo(localDetailData.items[0].snippet.publishedAt)}{" "}
-            </Time>
+            <Time>&nbsp; &middot; {displayedAt(date)} </Time>
           </Detail>
         </Text>
       </Info>
@@ -230,6 +233,19 @@ const MainImage = styled.div`
     border-radius: 15px;
   }
 `;
+const Duration = styled.div`
+  z-index: 10;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 5px;
+  font-size: 11px;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  border-radius: 5px;
+  margin: 5px;
+`;
 const Info = styled.div`
   width: 100%;
   height: 100px;
@@ -246,6 +262,11 @@ const Title = styled.p`
   font-size: 1em;
   font-weight: 500;
   margin-bottom: 6px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 const ChannelTitle = styled.div`
   font-size: 0.8em;
