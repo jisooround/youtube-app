@@ -1,55 +1,9 @@
 import { instance } from "../../api/index";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
-import Card from "../../components/Card";
+import MainCard from "../../components/home/MainCard";
 import { mainVideoDummyData } from "../../data/data";
-
-export interface VideoData {
-  kind: string;
-  etag: string;
-  id: Id;
-  snippet: Snippet;
-}
-
-export interface Id {
-  kind: string;
-  videoId: string;
-}
-
-export interface Snippet {
-  publishedAt: string;
-  channelId: string;
-  title: string;
-  description: string;
-  thumbnails: Thumbnails;
-  channelTitle: string;
-  liveBroadcastContent: string;
-  publishTime: string;
-}
-
-export interface Thumbnails {
-  default: Default;
-  medium: Medium;
-  high: High;
-}
-
-export interface Default {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface Medium {
-  url: string;
-  width: number;
-  height: number;
-}
-
-export interface High {
-  url: string;
-  width: number;
-  height: number;
-}
+import { VideoSearchData } from "../../types/videoSearchTypes";
 
 const Home = ({ open }: { open: boolean }) => {
   useEffect(() => {
@@ -67,6 +21,10 @@ const Home = ({ open }: { open: boolean }) => {
     //  fetchData();
   }, []);
 
+  useEffect(() => {
+    document.title = "YouTube";
+  }, []);
+
   // dummyData 로컬에 저장
   localStorage.setItem("동물의숲", JSON.stringify(mainVideoDummyData));
 
@@ -75,8 +33,8 @@ const Home = ({ open }: { open: boolean }) => {
 
   return (
     <Container open={open}>
-      {localData.items.map((item: VideoData) => {
-        return <Card key={item.id.videoId} item={item} />;
+      {localData.items.map((item: VideoSearchData) => {
+        return <MainCard key={item.id.videoId} item={item} />;
       })}
     </Container>
   );
