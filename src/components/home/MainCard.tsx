@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { instance } from "../../api";
 import { Link } from "react-router-dom";
@@ -7,23 +7,15 @@ import { videoTime } from "../../utils/videoTime";
 import { displayedAt } from "../../utils/displayedAt";
 import { VideoSearchData } from "../../types/videoSearchTypes";
 import { mainVideoDetailDummyData } from "../../data/data";
+import { getVideoDetail } from "../../api/api";
 
 const MainCard = ({ item, i }: { item: VideoSearchData; i: number }) => {
   const videoId = item.id.videoId;
-  console.log(videoId);
+  const [videoResult, setVideoResult] = useState(mainVideoDetailDummyData);
+  const [isError, setIsError] = useState<string>("");
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await instance.get(
-          `/videos?part=snippet&part=contentDetails&part=player&part=statistics&id=${videoId}`,
-        );
-        localStorage.setItem(`${videoId}`, JSON.stringify(data));
-      } catch (e) {
-        console.log((e as Error).message);
-      }
-    };
-    // fetchData();
+    getVideoDetail(videoId, setVideoResult, setIsError);
   }, []);
 
   // // dummy data 로컬에 저장
