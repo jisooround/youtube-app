@@ -16,7 +16,7 @@ const Description = ({ channelId }: IDescriptionProps) => {
   );
 
   useEffect(() => {
-    getDescription(channelId, setDescription, setIsError);
+    // getDescription(channelId, setDescription, setIsError);
   }, [channelId]);
 
   const desc = description?.items[0];
@@ -24,41 +24,35 @@ const Description = ({ channelId }: IDescriptionProps) => {
   return (
     <DescContainer>
       <div>
-        <ProfileSubscribeWrapper>
-          <ProfileWrapper>
-            <Profile>
-              <img src={desc?.snippet.thumbnails.default.url} alt="avatar" />
-            </Profile>
-            <div>
-              <h4>{desc?.snippet.title}</h4>
-              <Follower>
-                구독자 {nFormatter(Number(desc?.statistics.subscriberCount))}
-              </Follower>
-            </div>
-          </ProfileWrapper>
-          <SubscribeWrapper>
-            <Subscribe>구독하기</Subscribe>
-          </SubscribeWrapper>
-        </ProfileSubscribeWrapper>
+        <ProfileWrapper>
+          <Profile>
+            <img src={desc?.snippet.thumbnails.default.url} alt="avatar" />
+          </Profile>
+          <div>
+            <h4>{desc?.snippet.title}</h4>
+            <Follower>
+              구독자 {nFormatter(Number(desc?.statistics.subscriberCount))}
+            </Follower>
+          </div>
+        </ProfileWrapper>
         <DescWrapper>
           <Desc>{desc?.snippet.description}</Desc>
         </DescWrapper>
       </div>
+      <SubscribeWrapper>
+        <Subscribe>구독하기</Subscribe>
+      </SubscribeWrapper>
     </DescContainer>
   );
 };
 export default Description;
 
 const DescContainer = styled.section`
+  position: relative;
   display: flex;
   gap: 1rem;
   border-bottom: 1px solid rgba(90, 90, 90, 0.55);
   padding: 1.5rem;
-`;
-
-const ProfileSubscribeWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
 `;
 
 const ProfileWrapper = styled.div`
@@ -106,7 +100,11 @@ const Desc = styled.p`
   line-height: 1.4;
 `;
 
-const SubscribeWrapper = styled.div``;
+const SubscribeWrapper = styled.div`
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+`;
 
 const Subscribe = styled.button`
   padding: 10px 15px;
