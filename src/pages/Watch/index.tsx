@@ -28,13 +28,13 @@ const Watch = ({ open }: WatchProps) => {
   const [relatedData, setRelatedData] = useState<RelatedType>(relatedVideoDummyData);
 localStorage.setItem("relatedData", JSON.stringify(relatedVideoDummyData));
   useEffect(() => {
-    // axios
-    //   .all([
-    //     getVideoDetail(id, setVideoDetailData, setIsError),
-    //     getComments(id, setComments, setIsError),
-    //     getRelated(id, setRelatedData, setIsError),
-    //   ])
-    //   .catch((error) => setIsError(error.message));
+    axios
+      .all([
+        getVideoDetail(id, setVideoDetailData, setIsError),
+        getComments(id, setComments, setIsError),
+        getRelated(id, setRelatedData, setIsError),
+      ])
+      .catch((error) => setIsError(error.message));
   }, [id]);
 
   useEffect(() => {
