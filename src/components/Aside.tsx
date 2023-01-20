@@ -406,6 +406,12 @@ const Item = styled.div`
       background-color: #eee;
       transition: 0.2s;
       cursor: pointer;
+      p {
+        color: black;
+      }
+      .icon {
+        fill: black;
+      }
     }
   }
 `;
@@ -430,6 +436,17 @@ const Close = styled.aside`
     align-items: flex-end;
     padding: 16px 0 14px 0;
     box-sizing: border-box;
+    &:hover {
+      border-radius: 10px;
+      background-color: #eee;
+      transition: 0.2s;
+      p {
+        color: black;
+      }
+      .icon {
+        fill: black;
+      }
+    }
     .icon {
       width: 24px;
       height: 24px;
@@ -445,11 +462,6 @@ const Close = styled.aside`
       font-size: 10px;
       text-align: center;
       line-height: 0.8rem;
-    }
-    :hover {
-      border-radius: 10px;
-      background-color: #eee;
-      transition: 0.2s;
     }
   }
 `;
