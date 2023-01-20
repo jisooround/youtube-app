@@ -18,15 +18,28 @@ ${reset}
   @media (prefers-color-scheme: dark) {
     body {
       background-color: #0F0F0F;
-      color: #fff
+      color: #f1f1f1;
     }
 
-    svg {
-      color: #fff
+    .mono {
+      fill: #f1f1f1
     }
 
     a {
+      color: #f1f1f1;
+    }
+
+    p {
       color: #fff
+    }
+
+    .wrap {
+      &:hover{
+        border-radius: 10px;
+      background-color: #0F0F0F;
+      transition: 0.2s;
+      cursor: pointer;
+      }
     }
   }
 `;

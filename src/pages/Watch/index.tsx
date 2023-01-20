@@ -3,11 +3,11 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { getComments, getRelated, getVideoDetail } from "../../api/api";
-import Comments from "../../components/Comments";
-import Description from "../../components/Description";
-import MainVideo from "../../components/MainVideo";
-import RelatedVideo from "../../components/RelatedVideo";
-import { commentsDummyData, videoDetailDummyData } from "../../data";
+import Comments from "../../components/watch/Comments";
+import Description from "../../components/watch/Description";
+import MainVideo from "../../components/watch/MainVideo";
+import RelatedVideo from "../../components/watch/RelatedVideo";
+import { commentsDummyData, videoDetailDummyData } from "../../data/data";
 import type { IComment } from "../../types/commentsTypes";
 
 import { VideoDetailData } from "../../types/videoDetailTypes";
@@ -36,7 +36,9 @@ const Watch = ({ open }: WatchProps) => {
       .catch((error) => setIsError(error.message));
   }, [id]);
 
-  console.log(comments);
+  useEffect(() => {
+    document.title = videoDetailData.items[0].snippet.title;
+  });
 
   return (
     <WatchContainer open={open}>

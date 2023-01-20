@@ -1,14 +1,14 @@
 import styled from "styled-components";
-import { VideoDetailData } from "../types/videoDetailTypes";
-import { displayedAt } from "../utils/displayedAt";
-import { nFormatter } from "../utils/nFormatter";
+import { VideoDetailData } from "../../types/videoDetailTypes";
+import { displayedAt } from "../../utils/displayedAt";
+import { nFormatter } from "../../utils/nFormatter";
 
 interface MainVideoProps {
   videoDetailData: VideoDetailData;
 }
 
 const MainVideo = ({ videoDetailData }: MainVideoProps) => {
-  const tags = videoDetailData?.items[0].snippet.tags.map((tag, index) => {
+  const tags = videoDetailData?.items[0]?.snippet?.tags?.map((tag, index) => {
     if (index < 4) return <Tag key={index}>#{tag}</Tag>;
   });
 
@@ -28,11 +28,7 @@ const MainVideo = ({ videoDetailData }: MainVideoProps) => {
         {"조회수 "}
         {nFormatter(Number(videoDetailData?.items[0]?.statistics?.viewCount))}
         {"회 "} &nbsp;
-        {displayedAt(
-          new Date(
-            videoDetailData?.items[0]?.snippet?.publishedAt || "",
-          ).getTime(),
-        )}
+        {displayedAt(videoDetailData?.items[0]?.snippet?.publishedAt || "")}
       </ViewDateInfo>
       <ButtonWrapper>
         <LikeContainer>
