@@ -31,6 +31,7 @@ const Header = ({
         <Link to="/">
           <Logo>
             <svg
+              className="mono"
               viewBox="0 0 90 20"
               preserveAspectRatio="xMidYMid meet"
               focusable="false"
@@ -106,7 +107,7 @@ const Container = styled.header`
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
-  padding-left: 18px;
+  padding-left: 15px;
   position: fixed;
   top: 0;
   z-index: 10;

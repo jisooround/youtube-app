@@ -21,12 +21,25 @@ ${reset}
       color: #fff
     }
 
-    svg {
-      color: #fff
+    .mono {
+      fill: #f1f1f1
     }
 
     a {
       color: #fff
+    }
+
+    p {
+      color: #fff
+    }
+
+    .wrap {
+      &:hover{
+        border-radius: 10px;
+      background-color: #0F0F0F;
+      transition: 0.2s;
+      cursor: pointer;
+      }
     }
   }
 `;
