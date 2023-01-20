@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { instance } from "../../api";
+import { instance } from "../api";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { displayedAt } from "../../utils/displayedAt";
-import { nFormatter } from "../../utils/nFormatter";
-import { videoTime } from "../../utils/videoTime";
+import { displayedAt } from "../utils/displayedAt";
+import { nFormatter } from "../utils/nFormatter";
+import { videoTime } from "../utils/videoTime";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { BiListCheck, BiDotsVerticalRounded } from "react-icons/bi";
-import { getVideoDetail } from "../../api/api"
-import { videoDetailDummyData } from "../../data/data"
-import type { RelatedItem } from "../../types/relatedItemType"
-import type { Video } from "../../types/relatedCardTypes"
+import { getVideoDetail } from "../api/api"
+import { videoDetailDummyData } from "../data/data"
+import type { RelatedItem } from "../types/relatedItemType"
+import type { Video } from "../types/relatedCardTypes"
 
 type Props = { item: RelatedItem };
 
@@ -18,6 +18,7 @@ function RelatedCard({ item }: Props) {
   localStorage.setItem("relatedCard",JSON.stringify(item))
   
   const videoDate: number = new Date(item.snippet.publishTime).getTime();
+  console.log(videoDate, typeof(videoDate))
   const [videoResult, setVideoResult] = useState<Video>(videoDetailDummyData);
   const [isHovering, setIsHovering] = useState<boolean>(false);
   const [isError, setIsError] = useState<string>("")
@@ -34,7 +35,7 @@ function RelatedCard({ item }: Props) {
         <PreviewBox>
           <Thumbnail src={item.snippet.thumbnails.medium.url} />
           <VideoTime>
-            {videoTime(videoResult?.items[0]?.contentDetails?.duration || "")}
+            {videoTime(videoResult?.items[0]?.contentDetails?.duration||"")}
           </VideoTime>
           {isHovering ? (
             <HoverBox>
@@ -53,11 +54,10 @@ function RelatedCard({ item }: Props) {
           <RelatedChannel>{item.snippet.channelTitle}</RelatedChannel>
           <InfoBox>
             <p>
-              조회수{" "}
-              {nFormatter(Number(videoResult?.items[0]?.statistics?.viewCount))}
+              조회수 {nFormatter(Number(videoResult?.items[0]?.statistics?.viewCount))}
             </p>
             <InfoDot> • </InfoDot>
-            <p>{displayedAt(item.snippet.publishTime)}</p>
+            {/* <p>{displayedAt(videoDate)}</p> */}
           </InfoBox>
         </DetailBox>
       </VideoCard>
