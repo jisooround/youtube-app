@@ -8,7 +8,7 @@ interface MainVideoProps {
 }
 
 const MainVideo = ({ videoDetailData }: MainVideoProps) => {
-  const tags = videoDetailData?.items[0].snippet.tags.map((tag, index) => {
+  const tags = videoDetailData?.items[0]?.snippet?.tags?.map((tag, index) => {
     if (index < 4) return <Tag key={index}>#{tag}</Tag>;
   });
 
