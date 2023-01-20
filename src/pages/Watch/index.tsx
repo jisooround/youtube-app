@@ -7,12 +7,15 @@ import Comments from "../../components/watch/Comments";
 import Description from "../../components/watch/Description";
 import MainVideo from "../../components/watch/MainVideo";
 import RelatedVideo from "../../components/watch/RelatedVideo";
-import { commentsDummyData, videoDetailDummyData, relatedVideoDummyData } from "../../data/data";
+import {
+  commentsDummyData,
+  videoDetailDummyData,
+  relatedVideoDummyData,
+} from "../../data/data";
 import type { IComment } from "../../types/commentsTypes";
 
 import { VideoDetailData } from "../../types/videoDetailTypes";
-import type { RelatedType } from "../../types/relatedTypes"
-
+import type { RelatedType } from "../../types/relatedTypes";
 
 interface WatchProps {
   open: boolean;
@@ -25,16 +28,18 @@ const Watch = ({ open }: WatchProps) => {
     useState<VideoDetailData>(videoDetailDummyData);
   const [comments, setComments] = useState<IComment[]>(() => commentsDummyData);
   const [isError, setIsError] = useState("");
-  const [relatedData, setRelatedData] = useState<RelatedType>(relatedVideoDummyData);
-localStorage.setItem("relatedData", JSON.stringify(relatedVideoDummyData));
+  const [relatedData, setRelatedData] = useState<RelatedType>(
+    relatedVideoDummyData,
+  );
+  localStorage.setItem("relatedData", JSON.stringify(relatedVideoDummyData));
   useEffect(() => {
-    axios
-      .all([
-        getVideoDetail(id, setVideoDetailData, setIsError),
-        getComments(id, setComments, setIsError),
-        getRelated(id, setRelatedData, setIsError),
-      ])
-      .catch((error) => setIsError(error.message));
+    // axios
+    //   .all([
+    //     getVideoDetail(id, setVideoDetailData, setIsError),
+    //     getComments(id, setComments, setIsError),
+    //     getRelated(id, setRelatedData, setIsError),
+    //   ])
+    //   .catch((error) => setIsError(error.message));
   }, [id]);
 
   useEffect(() => {
@@ -76,7 +81,7 @@ localStorage.setItem("relatedData", JSON.stringify(relatedVideoDummyData));
         <Description channelId={videoDetailData.items[0].snippet.channelId} />
         <Comments comments={comments} />
       </WatchPageWrapper>
-      <RelatedVideo relatedData={relatedData}  />
+      <RelatedVideo relatedData={relatedData} />
     </WatchContainer>
   );
 };
