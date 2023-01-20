@@ -59,6 +59,7 @@ export const getVideoDetail: FetchFn = async (id, setState, setError) => {
     if (res.status === 200) {
       localStorage.setItem("detail", JSON.stringify(res.data));
       setState(res.data);
+      console.log(res.data);
     }
   } catch (error) {
     if (error instanceof AxiosError) {
