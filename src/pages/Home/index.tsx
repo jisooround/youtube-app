@@ -67,6 +67,10 @@ const Home = ({ open }: { open: boolean }) => {
     //  fetchData();
   }, []);
 
+  useEffect(() => {
+    document.title = "YouTube";
+  }, []);
+
   // dummyData 로컬에 저장
   localStorage.setItem("동물의숲", JSON.stringify(mainVideoDummyData));
 
