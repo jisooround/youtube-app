@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { instance } from "../../api";
+import { searchVideoDummyData } from "../../data/data";
 import styled from "styled-components";
-import SearchCard from "../../components/SearchCard";
+import SearchCard from "../../components/Search/SearchCard";
 import { getSearchData } from "../../api/api";
 
 const Search = ({ open }: { open: boolean }) => {
-  const [result, setResult] = useState<Search[]>([]);
+  const [result, setResult] = useState<Search[]>(searchVideoDummyData);
   const [isError, setIsError] = useState<string>("");
   const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -17,8 +17,6 @@ const Search = ({ open }: { open: boolean }) => {
   useEffect(() => {
     getSearchData(searchWord, setResult, setIsError);
   }, [searchWord]);
-
-  // localStorage.setItem("item", JSON.stringify(result));
 
   return (
     <Container open={open}>

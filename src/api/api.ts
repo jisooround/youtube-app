@@ -59,7 +59,7 @@ export const getVideoDetail: FetchFn = async (id, setState, setError) => {
     if (res.status === 200) {
       localStorage.setItem("detail", JSON.stringify(res.data));
       setState(res.data);
-      console.log(JSON.stringify(res.data));
+      // console.log(JSON.stringify(res.data));
     }
   } catch (error) {
     if (error instanceof AxiosError) {
@@ -101,6 +101,7 @@ export const getSearchData: FetchFn = async (
     );
     if (res.status === 200) {
       setState(res.data.items);
+      console.log(res);
     }
   } catch (error) {
     if (error instanceof AxiosError) {

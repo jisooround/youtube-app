@@ -1613,3 +1613,321 @@ export const mainVideoDummyData = {
 };
 
 export const mainVideoDetailDummyData = [];
+
+export const searchVideoDummyData = [
+  {
+    kind: "youtube#searchResult",
+    etag: "nGP6BfI2SvkpbU1q7Wi0UHdVMAI",
+    id: {
+      kind: "youtube#video",
+      videoId: "zTcR0A9vPR4",
+    },
+    snippet: {
+      publishedAt: "2023-01-17T10:00:37Z",
+      channelId: "UC5xLohcPE65Y-U62X6snmRQ",
+      title: "나 진짜 안 먹어도 된다니까?",
+      description:
+        "문쌤 #졸업식 #쿠티크에센셜짜장 이 영상은 삼양식품 쿠티크의 지원을 받아 제작되었습니다. 아니 쌤이 일부러 안 준게 아니라 어쩔 ...",
+      thumbnails: {
+        default: {
+          url: "https://i.ytimg.com/vi/zTcR0A9vPR4/default.jpg",
+          width: 120,
+          height: 90,
+        },
+        medium: {
+          url: "https://i.ytimg.com/vi/zTcR0A9vPR4/mqdefault.jpg",
+          width: 320,
+          height: 180,
+        },
+        high: {
+          url: "https://i.ytimg.com/vi/zTcR0A9vPR4/hqdefault.jpg",
+          width: 480,
+          height: 360,
+        },
+      },
+      channelTitle: "빠더너스 BDNS",
+      liveBroadcastContent: "none",
+      publishTime: "2023-01-17T10:00:37Z",
+    },
+  },
+  {
+    kind: "youtube#searchResult",
+    etag: "KZy881dHZA38QDVTjejs5cearpk",
+    id: {
+      kind: "youtube#video",
+      videoId: "b4jT8K-rOvc",
+    },
+    snippet: {
+      publishedAt: "2023-01-10T10:10:27Z",
+      channelId: "UC5xLohcPE65Y-U62X6snmRQ",
+      title: "F는 이래서 안돼",
+      description: "문쌤 #MBTI #TF 쌤 MBTI 뭐게 Instagram @bdnspresents.",
+      thumbnails: {
+        default: {
+          url: "https://i.ytimg.com/vi/b4jT8K-rOvc/default.jpg",
+          width: 120,
+          height: 90,
+        },
+        medium: {
+          url: "https://i.ytimg.com/vi/b4jT8K-rOvc/mqdefault.jpg",
+          width: 320,
+          height: 180,
+        },
+        high: {
+          url: "https://i.ytimg.com/vi/b4jT8K-rOvc/hqdefault.jpg",
+          width: 480,
+          height: 360,
+        },
+      },
+      channelTitle: "빠더너스 BDNS",
+      liveBroadcastContent: "none",
+      publishTime: "2023-01-10T10:10:27Z",
+    },
+  },
+  {
+    kind: "youtube#searchResult",
+    etag: "mMZvd4KUMkKlvxnXpqYslAe2pSM",
+    id: {
+      kind: "youtube#video",
+      videoId: "idbT_FywEro",
+    },
+    snippet: {
+      publishedAt: "2023-01-15T04:00:11Z",
+      channelId: "UC5xLohcPE65Y-U62X6snmRQ",
+      title:
+        "[복학생 vlog] 걸어다니는 중소기업 청년 사업가 브이로그 (퇴사, 성공스토리, 20대 건물주, 자기개발, 스마트스토어 입점, 무자본 창업, 프랜차이즈 환영, 자영업자 현실)",
+      description:
+        "복학생 #창업 #entrepreneur 더 많은 숙취해소 젤리 출시정보는 인스타그램을 통해 확인해주세요! Instagram @bdnspresents.",
+      thumbnails: {
+        default: {
+          url: "https://i.ytimg.com/vi/idbT_FywEro/default.jpg",
+          width: 120,
+          height: 90,
+        },
+        medium: {
+          url: "https://i.ytimg.com/vi/idbT_FywEro/mqdefault.jpg",
+          width: 320,
+          height: 180,
+        },
+        high: {
+          url: "https://i.ytimg.com/vi/idbT_FywEro/hqdefault.jpg",
+          width: 480,
+          height: 360,
+        },
+      },
+      channelTitle: "빠더너스 BDNS",
+      liveBroadcastContent: "none",
+      publishTime: "2023-01-15T04:00:11Z",
+    },
+  },
+  {
+    kind: "youtube#searchResult",
+    etag: "Sw6nbELRELTtQ8GVU7HuiSvPSM0",
+    id: {
+      kind: "youtube#video",
+      videoId: "sgFgfjF1e-8",
+    },
+    snippet: {
+      publishedAt: "2022-11-20T04:00:15Z",
+      channelId: "UC5xLohcPE65Y-U62X6snmRQ",
+      title:
+        "[복학생 vlog] 속세 떠나 절간에서 공부하는 브이로그(주지스님 속마음 인터뷰, 절밥 먹방, 셀프 삭발 리뷰, 묵언 수행, 취뽀 108배, 달마야 놀자 결말, 순공 100시간)",
+      description:
+        "템플스테이 #복학생 #studywithme 장소협조 - 인천 강화군 전등사 Instagram @bdnspresents.",
+      thumbnails: {
+        default: {
+          url: "https://i.ytimg.com/vi/sgFgfjF1e-8/default.jpg",
+          width: 120,
+          height: 90,
+        },
+        medium: {
+          url: "https://i.ytimg.com/vi/sgFgfjF1e-8/mqdefault.jpg",
+          width: 320,
+          height: 180,
+        },
+        high: {
+          url: "https://i.ytimg.com/vi/sgFgfjF1e-8/hqdefault.jpg",
+          width: 480,
+          height: 360,
+        },
+      },
+      channelTitle: "빠더너스 BDNS",
+      liveBroadcastContent: "none",
+      publishTime: "2022-11-20T04:00:15Z",
+    },
+  },
+  {
+    kind: "youtube#searchResult",
+    etag: "g0H_0kV4pG1GgAnMEdudZSipPjs",
+    id: {
+      kind: "youtube#video",
+      videoId: "5sdB5272H_o",
+    },
+    snippet: {
+      publishedAt: "2022-12-08T10:04:31Z",
+      channelId: "UC5xLohcPE65Y-U62X6snmRQ",
+      title: "얘들아 지각 좀 하지 말아주세요 제발",
+      description: "문쌤 #일진 #참교육 Instagram @bdnspresents.",
+      thumbnails: {
+        default: {
+          url: "https://i.ytimg.com/vi/5sdB5272H_o/default.jpg",
+          width: 120,
+          height: 90,
+        },
+        medium: {
+          url: "https://i.ytimg.com/vi/5sdB5272H_o/mqdefault.jpg",
+          width: 320,
+          height: 180,
+        },
+        high: {
+          url: "https://i.ytimg.com/vi/5sdB5272H_o/hqdefault.jpg",
+          width: 480,
+          height: 360,
+        },
+      },
+      channelTitle: "빠더너스 BDNS",
+      liveBroadcastContent: "none",
+      publishTime: "2022-12-08T10:04:31Z",
+    },
+  },
+  {
+    kind: "youtube#searchResult",
+    etag: "OX50zSY87k3AXyrz-eBdlHz0mAg",
+    id: {
+      kind: "youtube#video",
+      videoId: "2pi-PKzkwtA",
+    },
+    snippet: {
+      publishedAt: "2023-01-03T10:00:02Z",
+      channelId: "UC5xLohcPE65Y-U62X6snmRQ",
+      title: "축구부면 수업 안 들어와도 되시나요?",
+      description:
+        "문쌤 #조규성 축구부도 학생이다 이 말이야 Instagram @bdnspresents.",
+      thumbnails: {
+        default: {
+          url: "https://i.ytimg.com/vi/2pi-PKzkwtA/default.jpg",
+          width: 120,
+          height: 90,
+        },
+        medium: {
+          url: "https://i.ytimg.com/vi/2pi-PKzkwtA/mqdefault.jpg",
+          width: 320,
+          height: 180,
+        },
+        high: {
+          url: "https://i.ytimg.com/vi/2pi-PKzkwtA/hqdefault.jpg",
+          width: 480,
+          height: 360,
+        },
+      },
+      channelTitle: "빠더너스 BDNS",
+      liveBroadcastContent: "none",
+      publishTime: "2023-01-03T10:00:02Z",
+    },
+  },
+  {
+    kind: "youtube#searchResult",
+    etag: "rPG-GGxmee_ThsiAzAxPgPnqT8k",
+    id: {
+      kind: "youtube#video",
+      videoId: "EqsCBihHLeU",
+    },
+    snippet: {
+      publishedAt: "2022-11-14T10:00:07Z",
+      channelId: "UC5xLohcPE65Y-U62X6snmRQ",
+      title: "수업을 왜 그렇게 하세요?",
+      description: "문쌤 #수능응원 #일타강사 Instagram @bdnspresents.",
+      thumbnails: {
+        default: {
+          url: "https://i.ytimg.com/vi/EqsCBihHLeU/default.jpg",
+          width: 120,
+          height: 90,
+        },
+        medium: {
+          url: "https://i.ytimg.com/vi/EqsCBihHLeU/mqdefault.jpg",
+          width: 320,
+          height: 180,
+        },
+        high: {
+          url: "https://i.ytimg.com/vi/EqsCBihHLeU/hqdefault.jpg",
+          width: 480,
+          height: 360,
+        },
+      },
+      channelTitle: "빠더너스 BDNS",
+      liveBroadcastContent: "none",
+      publishTime: "2022-11-14T10:00:07Z",
+    },
+  },
+  {
+    kind: "youtube#searchResult",
+    etag: "ZMXtAww2LKWKvZhZ8t8KTLeQrOU",
+    id: {
+      kind: "youtube#video",
+      videoId: "AHoz1iihgLU",
+    },
+    snippet: {
+      publishedAt: "2023-01-01T04:00:03Z",
+      channelId: "UC5xLohcPE65Y-U62X6snmRQ",
+      title:
+        "[복학생 vlog] 1월 1일 해돋이 여행 브이로그 (커플 펜션 추천, 다이어트, 첫키스, 새해 복 받아가세요, 강원도 정동진, 작심삼일 토익 공부법, 야간 산행 꿀팁)",
+      description:
+        "복학생 #커플여행 #시원스쿨랩 이 영상은 시원스쿨랩의 지원을 받아 제작되었습니다. 빠둥이 여러분과 이 자리에서 약속합니다,,, ...",
+      thumbnails: {
+        default: {
+          url: "https://i.ytimg.com/vi/AHoz1iihgLU/default.jpg",
+          width: 120,
+          height: 90,
+        },
+        medium: {
+          url: "https://i.ytimg.com/vi/AHoz1iihgLU/mqdefault.jpg",
+          width: 320,
+          height: 180,
+        },
+        high: {
+          url: "https://i.ytimg.com/vi/AHoz1iihgLU/hqdefault.jpg",
+          width: 480,
+          height: 360,
+        },
+      },
+      channelTitle: "빠더너스 BDNS",
+      liveBroadcastContent: "none",
+      publishTime: "2023-01-01T04:00:03Z",
+    },
+  },
+  {
+    kind: "youtube#searchResult",
+    etag: "oKhrYPsVL3qTOe4a-sTHTqEUQIQ",
+    id: {
+      kind: "youtube#video",
+      videoId: "035lAtnA96U",
+    },
+    snippet: {
+      publishedAt: "2022-09-10T03:49:57Z",
+      channelId: "UC5xLohcPE65Y-U62X6snmRQ",
+      title: "그때 그 시절 홈비디오 몰아보기",
+      description:
+        "명절 내내 홈비디오와 함께 행복한 한가위 보내세요~! 00:00 [홈비디오] 유튜브 3개월 쉬다 돌아왔는데 작업실이 생겨버렸네 01:55 [홈 ...",
+      thumbnails: {
+        default: {
+          url: "https://i.ytimg.com/vi/035lAtnA96U/default.jpg",
+          width: 120,
+          height: 90,
+        },
+        medium: {
+          url: "https://i.ytimg.com/vi/035lAtnA96U/mqdefault.jpg",
+          width: 320,
+          height: 180,
+        },
+        high: {
+          url: "https://i.ytimg.com/vi/035lAtnA96U/hqdefault.jpg",
+          width: 480,
+          height: 360,
+        },
+      },
+      channelTitle: "빠더너스 BDNS",
+      liveBroadcastContent: "none",
+      publishTime: "2022-09-10T03:49:57Z",
+    },
+  },
+];

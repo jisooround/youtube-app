@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Search } from "../pages/Search";
-import { nFormatter } from "../utils/nFormatter";
-import { videoTime } from "../utils/videoTime";
+import { Search } from "../../pages/Search";
+import { nFormatter } from "../../utils/nFormatter";
+import { videoTime } from "../../utils/videoTime";
 import { Link } from "react-router-dom";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { BiListCheck, BiDotsVerticalRounded } from "react-icons/bi";
-import { displayedAt } from "./../utils/displayedAt";
-import { getVideoDetail, getDescription } from "../api/api";
+import { displayedAt } from "../../utils/displayedAt";
+import { getVideoDetail, getDescription } from "../../api/api";
 
 const SearchCard = ({ data }: { data: Search }) => {
   const [videoResult, setVideoResult] = useState<Video>();
