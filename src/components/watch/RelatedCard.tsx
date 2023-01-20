@@ -21,9 +21,9 @@ function RelatedCard({ item }: Props) {
   const [videoResult, setVideoResult] = useState<Video>(videoDetailDummyData);
   const [isHovering, setIsHovering] = useState<boolean>(false);
   const [isError, setIsError] = useState<string>("");
-  useEffect(() => {
-    // getVideoDetail(item.id.videoId, setVideoResult, setIsError);
-  }, [item]);
+  // useEffect(() => {
+  //   // getVideoDetail(item.id.videoId, setVideoResult, setIsError);
+  // }, [item]);
   const watchLink = `/watch/${item.id.videoId}`;
   return (
     <Link to={watchLink}>
