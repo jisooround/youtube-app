@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { getDescription } from "../api/api";
-import { descriptionDummyData } from "../data";
+import { getDescription } from "../../api/api";
+import { descriptionDummyData } from "../../data/data";
 import type {
   IDescription,
   IDescriptionProps,
-} from "../types/descriptionTypes";
-import { nFormatter } from "../utils/nFormatter";
+} from "../../types/descriptionTypes";
+import { nFormatter } from "../../utils/nFormatter";
 
 const Description = ({ channelId }: IDescriptionProps) => {
   const [isError, setIsError] = useState<string>("");
@@ -47,7 +47,7 @@ export default Description;
 const DescContainer = styled.section`
   display: flex;
   gap: 1rem;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid rgba(90, 90, 90, 0.55);
   padding: 1.5rem;
 `;
 

@@ -18,7 +18,7 @@ ${reset}
   @media (prefers-color-scheme: dark) {
     body {
       background-color: #0F0F0F;
-      color: #fff
+      color: #f1f1f1;
     }
 
     .mono {
@@ -26,7 +26,7 @@ ${reset}
     }
 
     a {
-      color: #fff
+      color: #f1f1f1;
     }
 
     p {
