@@ -24,17 +24,22 @@ const Description = ({ channelId }: IDescriptionProps) => {
   return (
     <DescContainer>
       <div>
-        <ProfileWrapper>
-          <Profile>
-            <img src={desc?.snippet.thumbnails.default.url} alt="avatar" />
-          </Profile>
-          <div>
-            <h4>{desc?.snippet.title}</h4>
-            <Follower>
-              구독자 {nFormatter(Number(desc?.statistics.subscriberCount))}
-            </Follower>
-          </div>
-        </ProfileWrapper>
+        <ProfileSubscribeWrapper>
+          <ProfileWrapper>
+            <Profile>
+              <img src={desc?.snippet.thumbnails.default.url} alt="avatar" />
+            </Profile>
+            <div>
+              <h4>{desc?.snippet.title}</h4>
+              <Follower>
+                구독자 {nFormatter(Number(desc?.statistics.subscriberCount))}
+              </Follower>
+            </div>
+          </ProfileWrapper>
+          <SubscribeWrapper>
+            <Subscribe>구독하기</Subscribe>
+          </SubscribeWrapper>
+        </ProfileSubscribeWrapper>
         <DescWrapper>
           <Desc>{desc?.snippet.description}</Desc>
         </DescWrapper>
@@ -49,6 +54,11 @@ const DescContainer = styled.section`
   gap: 1rem;
   border-bottom: 1px solid rgba(90, 90, 90, 0.55);
   padding: 1.5rem;
+`;
+
+const ProfileSubscribeWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 const ProfileWrapper = styled.div`
@@ -94,4 +104,17 @@ const Desc = styled.p`
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   line-height: 1.4;
+`;
+
+const SubscribeWrapper = styled.div``;
+
+const Subscribe = styled.button`
+  padding: 10px 15px;
+  background-color: red;
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
 `;
