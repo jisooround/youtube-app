@@ -1,7 +1,7 @@
 import { AiOutlineDislike, AiOutlineLike } from "react-icons/ai";
 import styled from "styled-components";
-import type { ISnippet } from "../types/commentsTypes";
-import { displayedAt } from "../utils/displayedAt";
+import type { ISnippet } from "../../types/commentsTypes";
+import { displayedAt } from "../../utils/displayedAt";
 import { Profile } from "./Description";
 
 const Comment = ({ comment }: { comment: ISnippet }) => {
@@ -17,7 +17,7 @@ const Comment = ({ comment }: { comment: ISnippet }) => {
         <StyledComment>
           <Author>{comment.authorDisplayName}</Author>
           <time dateTime={comment.publishedAt}>
-            {displayedAt(new Date(comment.publishedAt).getTime())}
+            {displayedAt(comment.publishedAt)}
           </time>
         </StyledComment>
         <StyledComment>
@@ -55,8 +55,9 @@ const StyledComment = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  line-height: 1.2;
+  line-height: 1.4;
   font-size: 14px;
+  font-weight: 400;
 
   span {
     word-break: break-all;

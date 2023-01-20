@@ -1,6 +1,6 @@
-export function displayedAt(createdAt: number) {
+export function displayedAt(createdAt: string) {
   const now = new Date().getTime();
-  const milliSeconds =  now - createdAt;
+  const milliSeconds = now - new Date(createdAt).getTime();
   const seconds = milliSeconds / 1000;
   if (seconds < 60) return `방금전`;
   const minutes = seconds / 60;
