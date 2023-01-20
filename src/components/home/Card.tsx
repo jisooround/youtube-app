@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import styled from "styled-components";
-import { instance } from "../api";
+import { instance } from "../../api";
 import { VideoData } from "../pages/Home";
 import { Link } from "react-router-dom";
-import { nFormatter } from "../utils/nFormatter";
-import { videoTime } from "../utils/videoTime";
-import { displayedAt } from "../utils/displayedAt";
+import { nFormatter } from "../../utils/nFormatter";
+import { videoTime } from "../../utils/videoTime";
+import { displayedAt } from "../../utils/displayedAt";
 
 export interface MovieData {
   kind: string;
