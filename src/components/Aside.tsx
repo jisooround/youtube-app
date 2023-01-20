@@ -325,7 +325,7 @@ const Aside = ({
   }
 };
 
-const Open = styled.div`
+const Open = styled.aside`
   width: 240px;
   height: 100vh;
   position: fixed;
@@ -409,7 +409,7 @@ const Item = styled.div`
   }
 `;
 
-const Close = styled.div`
+const Close = styled.aside`
   width: 72px;
   height: 100vh;
   position: fixed;
