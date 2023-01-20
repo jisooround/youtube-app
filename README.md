@@ -8,7 +8,7 @@
 
 ## 배포 사이트
 
-주소
+[요기](https://bulsazotube.netlify.app/)
 
 # 팀원
 
@@ -29,10 +29,6 @@
    <td align="center"><a href="https://github.com/1myeji"><img src="https://avatars.githubusercontent.com/u/106291546?s=64&v=4" width="150px;" style="max-width: 100%;"/></a></td>
   </tr>
   <tr>
-  <td align="center"></td>
-  <td align="center"></td>
-  <td align="center"></td>
-  <td align="center"></td>
   </tr>
   </tbody>
 </table>
@@ -44,4 +40,28 @@
 <img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
 <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white">
 <img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styled-components&logoColor=white">
-<img src="https://img.shields.io/badge/reactrouter-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white">
+<img src="https://img.shields.io/badge/reactrouter-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white"><br /><br />
+
+# 📆 과제 기간 및 담당 업무
+
+과제 기간: 2023. 1. 16 ~ 2022. 1. 20 <br />
+
+- <b>유지석 :</b> <상세 페이지> 동영상 설명, 댓글<br/>
+- <b>소재헌 :</b> <상세 페이지> 동영상 상세 정보 <br />
+- <b>윤준수 :</b> <상세 페이지> 관련동영상<br />
+- <b>우지수 :</b> <메인 페이지, 사이드바> 메인 페이지 전체, 사이드바<br />
+- <b>임예지 :</b> <검색 페이지, 헤더> 검색 페이지 전체, 헤더
+  <br/><br/>
+
+# 🔔어려웠던 점
+
+- 타입스크립트가 익숙하지 않아서 타입 오류를 해결하는 것이 많이 힘들었다.
+- 중복되는 함수들을 합치는 작업이 어려웠다.
+- api 호출 할당량이 적어서 실제로 되는지 안되는지 확인하는 것이 힘들었다.
+
+# 💡궁금한 점
+
+- api 호출시, 여러 이펙트안에서 분리해서 각각 호출하는 것이 좋은지
+- 하나의 이펙트안에서 호출하는 게 좋은지
+- 혹은 하나의 이펙트안에서 all을 이용해 처리하는게 좋은지
+- 자녀 컴포넌트에서 각자 api 호출이 좋은지, 부모 컴포넌트에서 호출을 한 후 prop으로 내리는 게 좋을지
