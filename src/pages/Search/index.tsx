@@ -48,10 +48,10 @@ const Search = ({ open }: { open: boolean }) => {
 };
 
 const Container = styled.div<{ open: boolean }>`
+  box-sizing: border-box;
   width: ${(props) => (props.open ? "calc(100% - 72)" : "calc(100% - 240)")}px;
-  margin-left: ${(props) => (props.open ? "250" : "72")}px;
-  /* margin-left: 250px; */
-  padding: 90px 24px 16px 0px;
+  margin-left: ${(props) => (props.open ? "280" : "200")}px;
+  padding: 70px 24px 16px 0px;
   overflow-y: hidden;
 `;
 

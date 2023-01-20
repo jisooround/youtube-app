@@ -36,9 +36,9 @@ const SearchCard = ({ data }: { data: Search }) => {
               </Link>
               <Duration>
                 <span>
-
-                  {videoTime(videoResult?.items[0]?.contentDetails?.duration || "")}
-
+                  {videoTime(
+                    videoResult?.items[0]?.contentDetails?.duration || "",
+                  )}
                 </span>
               </Duration>
               {isHovering ? (
@@ -67,9 +67,9 @@ const SearchCard = ({ data }: { data: Search }) => {
             <Views>
               <span>
                 조회수{" "}
-
-                {nFormatter(Number(videoResult?.items[0]?.statistics?.viewCount))}
-
+                {nFormatter(
+                  Number(videoResult?.items[0]?.statistics?.viewCount),
+                )}
               </span>
               {" • "}
               <span>{displayedAt(date)}</span>
@@ -90,7 +90,8 @@ const SearchCard = ({ data }: { data: Search }) => {
 };
 
 const Section = styled.section`
-  padding: 1rem 2rem 0 2rem;
+  max-height: 200px;
+  padding: 1rem 8rem 0 2rem;
   display: flex;
 `;
 
@@ -104,12 +105,13 @@ const Card = styled.div`
 `;
 
 const Video = styled.div`
+  max-width: 100%;
   height: 200px;
   margin-right: 20px;
   cursor: pointer;
   img {
     aspect-ratio: 16 / 9;
-    width: fit-content;
+    /* width: fit-content; */
     height: 100%;
     border-radius: 10px;
   }

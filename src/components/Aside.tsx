@@ -325,6 +325,7 @@ const Item = styled.div`
     p {
       font-size: 14px;
       text-align: center;
+      text-overflow: ellipsis;
     }
     :focus {
       border-radius: 10px;
