@@ -1,28 +1,39 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Aside from "./Aside";
 import Header from "./Header";
+import styled from "styled-components";
+import { useEffect } from "react";
 
 const Layout = ({
   open,
+  setOpen,
   handleClickOpen,
 }: {
   open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   handleClickOpen: () => void;
 }) => {
-  // const [open, setOpen] = useState(false);
+  const { pathname } = useLocation();
 
-  // const handleClickOpen = () => {
-  //   setOpen((prev) => !prev);
-  // };
+  useEffect(() => {
+    if (pathname.includes("watch") && open === true) {
+      setOpen(false);
+    }
+  }, [pathname]);
+
   return (
-    <>
+    <Container>
       <Header open={open} handleClickOpen={handleClickOpen} />
-      <Aside open={open} />
+      <Aside open={open} setOpen={setOpen} />
       <main>
         <Outlet />
       </main>
-    </>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  position: relative;
+`;
 
 export default Layout;

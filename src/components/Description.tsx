@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { instance } from "../api";
 import { getDescription } from "../api/api";
 import { descriptionDummyData } from "../data";
 import type {
@@ -12,33 +11,32 @@ import { nFormatter } from "../utils/nFormatter";
 const Description = ({ channelId }: IDescriptionProps) => {
   const [isError, setIsError] = useState<string>("");
 
-  const [description, setDescription] = useState<IDescription>(
-    () =>
-      descriptionDummyData,
+  const [description, setDescription] = useState<IDescription | null>(
+    () => descriptionDummyData,
   );
 
   useEffect(() => {
-    // getDescription(channelId, setDescription, setIsError);
+    getDescription(channelId, setDescription, setIsError);
   }, [channelId]);
 
-  const desc = description.items.map((item) => item);
+  const desc = description?.items[0];
 
   return (
     <DescContainer>
       <div>
         <ProfileWrapper>
           <Profile>
-            <img src={desc[0].snippet.thumbnails.default.url} alt="avatar" />
+            <img src={desc?.snippet.thumbnails.default.url} alt="avatar" />
           </Profile>
           <div>
-            <h4>{desc[0].snippet.title}</h4>
+            <h4>{desc?.snippet.title}</h4>
             <Follower>
-              구독자 {nFormatter(Number(desc[0].statistics.subscriberCount))}
+              구독자 {nFormatter(Number(desc?.statistics.subscriberCount))}
             </Follower>
           </div>
         </ProfileWrapper>
         <DescWrapper>
-          <Desc>{desc[0].snippet.description}</Desc>
+          <Desc>{desc?.snippet.description}</Desc>
         </DescWrapper>
       </div>
     </DescContainer>

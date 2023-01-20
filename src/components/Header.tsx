@@ -26,7 +26,7 @@ const Header = ({
     <Container>
       <Start>
         <Box>
-          <SlMenu className="bar" />
+          <SlMenu className="bar" onClick={handleClickOpen} />
         </Box>
         <Link to="/">
           <Logo>
@@ -106,7 +106,7 @@ const Container = styled.header`
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
-  padding-left: 15px;
+  padding-left: 18px;
   position: fixed;
   top: 0;
   z-index: 10;
@@ -136,9 +136,9 @@ const Box = styled.div`
 `;
 
 const Logo = styled.div`
-  width: 97px;
-  height: 20px;
-  padding: 18px 14px;
+  width: 90px;
+  height: 18px;
+  padding: 18px 20px;
   cursor: pointer;
 `;
 
