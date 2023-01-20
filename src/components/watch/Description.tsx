@@ -11,12 +11,11 @@ import { nFormatter } from "../../utils/nFormatter";
 const Description = ({ channelId }: IDescriptionProps) => {
   const [isError, setIsError] = useState<string>("");
 
-  const [description, setDescription] = useState<IDescription | null>(
-    () => descriptionDummyData,
-  );
+  const [description, setDescription] =
+    useState<IDescription>(descriptionDummyData);
 
   useEffect(() => {
-    // getDescription(channelId, setDescription, setIsError);
+    getDescription(channelId, setDescription, setIsError);
   }, [channelId]);
 
   const desc = description?.items[0];
