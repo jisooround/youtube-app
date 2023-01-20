@@ -1617,38 +1617,6 @@ export const mainVideoDummyData = {
     },
     {
       kind: "youtube#searchResult",
-      etag: "XjViBe31eaM1FR85znpF0k4-XnE",
-      id: { kind: "youtube#video", videoId: "tl0rweispgU" },
-      snippet: {
-        publishedAt: "2021-04-24T11:30:12Z",
-        channelId: "UCFiYPUhUzLKoi-cZ0AwpjLA",
-        title:
-          "레스토랑의 맛, 황금비율 크림파스타 만들기 :: 초보도 만들기 쉬운 알프레도 파스타 :: Fettuccine Alfredo Recipe",
-        description:
-          "예상되는 질문들 하단에 TIP 으로 적어두었으니 참고하세요. 레스토랑에서 사 먹는 것처럼 진하고 고소한 크림 파스타 만들었어요.",
-        thumbnails: {
-          default: {
-            url: "https://i.ytimg.com/vi/tl0rweispgU/default.jpg",
-            width: 120,
-            height: 90,
-          },
-          medium: {
-            url: "https://i.ytimg.com/vi/tl0rweispgU/mqdefault.jpg",
-            width: 320,
-            height: 180,
-          },
-          high: {
-            url: "https://i.ytimg.com/vi/tl0rweispgU/hqdefault.jpg",
-            width: 480,
-            height: 360,
-          },
-        },
-        channelTitle: "매일맛나 delicious day",
-        liveBroadcastContent: "none",
-        publishTime: "2021-04-24T11:30:12Z",
-      },
-
-      kind: "youtube#searchResult",
       etag: "Pxj2dtTMnwN1nhNicxkaP01jwn4",
       id: { kind: "youtube#video", videoId: "UUOpe_sTKzA" },
       snippet: {
